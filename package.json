@@ -1,22 +1,11 @@
 {
-  "name": "phaser3-typescript-template",
+  "name": "coronagame",
   "version": "1.0.1",
-  "description": "A Phaser 3 TypeScript Template",
   "scripts": {
     "build:dev": "webpack --env dev",
     "build:prod": "webpack --env prod",
     "start": "webpack-dev-server -d --env dev",
     "watch": "webpack --env dev --watch"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/wtravO/phaser3-typescript-template.git"
-  },
-  "author": "Travis O'Neal",
-  "license": "MIT",
-  "licenseUrl": "http://www.opensource.org/licenses/mit-license.php",
-  "bugs": {
-    "url": "https://github.com/wtravO/phaser3-typescript-template/issues"
   },
   "devDependencies": {
     "@types/node": "^10.12.2",
