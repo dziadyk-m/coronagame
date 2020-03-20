@@ -2,6 +2,9 @@
     "compilerOptions": {
         "target": "es6",
         "moduleResolution": "node",
+        "strictPropertyInitialization": false,
+        // TODO: should we really turn it off? :v
+        "strictNullChecks": false,
         "module": "CommonJS",
         "strict": true,
         "sourceMap": true
