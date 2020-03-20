@@ -1,17 +1,17 @@
-import { COLISION_BLOCKS, TILE_SIZE, NPC_DATA } from "../consts";
-import { Dialog } from 'phaser3-rex-plugins/templates/ui/ui-components.js';
-import { Player, Human } from "../core";
+import { Player, Character, GameObject } from "../core";
+import { NPC_DATA, GAME_OBJECTS_DATA } from "../data";
+import { tryToProvideAction } from "../utils";
+import { COLISION_BLOCKS } from "../consts";
 import {createLabel} from "../utils/createLabel";
 import {createModal} from "../utils/createModal";
 
 export class Main extends Phaser.Scene {
-    private _basicLayer: Phaser.Tilemaps.StaticTilemapLayer;
+    private _collisionLayer: Phaser.Tilemaps.StaticTilemapLayer;
     private _gameMap: Phaser.Tilemaps.Tilemap;
-    private _npcs: Human[] = [];
+    private _objects: GameObject[] = [];
+    private _npcs: Character[] = [];
     private _player: Player;
 
-
-    
     constructor() {
         super('main');
     }
@@ -19,60 +19,66 @@ export class Main extends Phaser.Scene {
     public create(): void {
         this._loadEntities();
         this._loadWorldData();
+        this._createNpcsAndObjects();
         this._createPlayer();
-        this._createNpcs();
+        this._actionHookes();
         this._createModal();
     }
     
     public update(): void {
-        this._engineLoop();
+        this._player.move();
+        this._moveNpcs();
     }
 
     private _loadEntities(): void {
-        this._gameMap = this.make.tilemap({ key: 'map', tileWidth: TILE_SIZE, tileHeight: TILE_SIZE });
-        const gameTiles = this._gameMap.addTilesetImage('tiles');
-        this._basicLayer = this._gameMap.createStaticLayer(0, gameTiles, 0, 0);
+        this._gameMap = this.make.tilemap({ key: 'map' });
+        const gameTiles = this._gameMap.addTilesetImage('tilemap2x', 'tiles');
+        this._gameMap.createStaticLayer(0, gameTiles, 0, 0);
+        this._collisionLayer = this._gameMap.createStaticLayer("collision", gameTiles, 0, 0);
+        this._gameMap.createStaticLayer("shadows", gameTiles, 0, 0);
+        this._gameMap.createStaticLayer("floating", gameTiles, 0, 0);
+        this._gameMap.createStaticLayer("overfloating", gameTiles, 0, 0);
     }
 
     private _loadWorldData(): void {
-        this._basicLayer.setCollisionBetween(COLISION_BLOCKS.start, COLISION_BLOCKS.stop);
-        this.impact.world.setCollisionMapFromTilemapLayer(this._basicLayer, { defaultCollidingSlope: 1 });
+        this._collisionLayer.setCollisionBetween(COLISION_BLOCKS.start, COLISION_BLOCKS.stop);
+        this.impact.world.setCollisionMapFromTilemapLayer(this._collisionLayer, { defaultCollidingSlope: 1 });
         this.cameras.main.setBounds(0, 0, this._gameMap.widthInPixels, this._gameMap.heightInPixels);
     }
 
     private _createPlayer(): void {
         this._player = new Player(this.impact, this.anims, this.input);
         this.cameras.main.startFollow(this._player.instance);
-
     }
 
     private _createModal() {
         createModal(
             this,
-            [
-            createLabel(this, '3'),
-            createLabel(this, '4'),
-            createLabel(this, '5'),
-            createLabel(this, '6')
-        ]
+            () => [createLabel(this, '3'), createLabel(this, '4')]
         );
     }
-    
-    private _createNpcs(): void {
-        NPC_DATA.forEach(npc => {
-            this._npcs.push(new Human(this.impact, this.anims, npc.sprite, npc.startX, npc.startY));
+
+    private _createNpcsAndObjects(): void {
+        NPC_DATA.forEach(npcData => {
+            this._npcs.push(new Character(this.impact, this.anims, npcData));
+        });
+        GAME_OBJECTS_DATA.forEach(objectData => {
+            this._objects.push(new GameObject(objectData));
         });
     }
 
     private _moveNpcs(): void {
-        this._npcs.forEach(npc => {
-            npc.move();
-        });
+        this._npcs.forEach(npc => npc.move());
     }
 
-    private _engineLoop(): void {
-        this._player.move();
-        this._moveNpcs();
+    private _actionHookes() {
+        this.input.keyboard.on('keydown', (key: Phaser.Input.Keyboard.Key) => {
+            switch(key.keyCode) {
+                case 32: /* Space */
+                    tryToProvideAction(this._player, this._npcs, this._objects);
+                    break;
+            }
+        });
     }
 }
 

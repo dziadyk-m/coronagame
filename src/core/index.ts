@@ -1,2 +1,3 @@
+export * from './GameObject';
+export * from './Character';
 export * from './Player';
-export * from './Human';

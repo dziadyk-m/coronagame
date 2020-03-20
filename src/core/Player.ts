@@ -1,7 +1,8 @@
-import { PLAYER_START, PLAYER_SPEED, PLAYER_FRAMES } from '../consts';
-import { Human } from './Human';
+import { PLAYER_SPEED, PLAYER_FRAMES, PLAYER_DATA } from '../consts';
+import { Character } from './Character';
+import { Animations } from '../enum';
 
-export class Player extends Human {
+export class Player extends Character {
     private _cursors: CursorKeys;
 
     constructor(
@@ -9,17 +10,10 @@ export class Player extends Human {
         animations: Phaser.Animations.AnimationManager,
         input: Phaser.Input.InputPlugin
     ) {
-        super(
-            impact,
-            animations,
-            'player',
-            PLAYER_START.x,
-            PLAYER_START.y,
-            PLAYER_FRAMES
-        );
-
+        super(impact, animations, PLAYER_DATA, PLAYER_FRAMES);
         this._cursors = input.keyboard.createCursorKeys();
         this.instance.setMaxVelocity(300, 300);
+        this.instance.setActiveCollision();
     }
 
     public move(): void {
@@ -38,13 +32,13 @@ export class Player extends Human {
         }
 
         if (this._cursors.left.isDown) {
-            this.instance.anims.play(`${this._spriteName}_left`, true);
+            this.instance.anims.play(`${this._spriteName}_${Animations.LEFT}`, true);
         } else if (this._cursors.right.isDown) {
-            this.instance.anims.play(`${this._spriteName}_right`, true);
+            this.instance.anims.play(`${this._spriteName}_${Animations.RIGHT}`, true);
         } else if (this._cursors.up.isDown) {
-            this.instance.anims.play(`${this._spriteName}_up`, true);
+            this.instance.anims.play(`${this._spriteName}_${Animations.UP}`, true);
         } else if (this._cursors.down.isDown) {
-            this.instance.anims.play(`${this._spriteName}_down`, true);
+            this.instance.anims.play(`${this._spriteName}_${Animations.DOWN}`, true);
         } else {
             this.instance.anims.stop();
         }
