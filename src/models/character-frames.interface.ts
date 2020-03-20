@@ -1,13 +1,13 @@
-interface IFrames {
+interface IFrame {
     animationStart: number,
     animationEnd: number,
     frameRate?: number
 }
 
 export interface ICharacterFrames {
-    up: IFrames;
-    down: IFrames;
-    left: IFrames;
-    right: IFrames;
-    idle?: IFrames;
+    up: IFrame;
+    down: IFrame;
+    left: IFrame;
+    right: IFrame;
+    idle?: IFrame;
 }
