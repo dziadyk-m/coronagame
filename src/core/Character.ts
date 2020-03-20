@@ -2,6 +2,51 @@ import { CHARACTER_DEFAULT_FRAMES, TILE_SIZE, CHARACTER_OFFSET } from '../consts
 import { ICharacterFrames, ICharacterData } from '../models';
 import { Emotions } from './Emotions';
 import { Animations } from '../enum';
+import { HUMAN_FRAMES, NPC_SLOW_SPEED, NPC_MODERATE_SPEED, NPC_SPRINT_SPEED, NPC_STOPPED } from '../consts/human-consts';
+
+
+
+class NpcSpeed {
+    protected _currentPeace: number;
+    protected _staminaLevel: number;
+    protected _inRush: boolean;
+
+    constructor(){
+        this._currentPeace = NPC_MODERATE_SPEED;
+        this._staminaLevel = 100;
+        this._inRush = false;
+    }
+
+    public getSpeed(): number {
+        if (this._staminaLevel > 90) {
+            this._currentPeace = [NPC_SPRINT_SPEED, NPC_MODERATE_SPEED][Math.floor(Math.random() * 2)]
+        } else if (this._staminaLevel > 40) {
+            this._currentPeace = [NPC_MODERATE_SPEED, NPC_SLOW_SPEED][Math.floor(Math.random() * 2)]
+        } else {
+            this._currentPeace = [NPC_SLOW_SPEED, NPC_STOPPED][Math.floor(Math.random() * 2)]
+        }
+        
+        switch (this._currentPeace) {
+            case NPC_STOPPED: {
+                this._staminaLevel += 10;
+                break;
+            }
+            case NPC_SLOW_SPEED: {
+                this._staminaLevel += 2;
+                break;
+            }
+            case NPC_SPRINT_SPEED: {
+                this._staminaLevel -= 10;
+                break;
+            }
+        }
+
+        if (this._staminaLevel > 100) {
+            this._staminaLevel = 100
+        }
+        return this._currentPeace
+    }
+}
 
 export class Character {
     public action: Function = () => {};
@@ -9,6 +54,9 @@ export class Character {
     
     private _instance: Phaser.Physics.Impact.ImpactSprite;
     private _emotions: Emotions;
+    protected _isMovingToGoal: boolean;
+    protected _npcSpeed: number;
+    private __speed: NpcSpeed;
 
     constructor(
         impact: Phaser.Physics.Impact.ImpactPhysics,
@@ -22,6 +70,8 @@ export class Character {
         this.action = data.action;
         this._createAnimations(anims, data.sprite, frames);
         this._menagePhisics();
+        this._isMovingToGoal = false;
+        this.__speed = new NpcSpeed()
     }
 
     get instance(): Phaser.Physics.Impact.ImpactSprite {
@@ -35,9 +85,60 @@ export class Character {
     public displayEmotion(id: string): void {
         this._emotions.display(this.instance.x, this.instance.y, id);
     }
+    private _moveUp(speed: number): void {
+        this._instance.anims.play(`${this._spriteName}_up`, true);
+        this.instance.setVelocityY(speed);
+        this.instance.setVelocityX(0);
+    }
+
+    private _moveDown(speed: number): void {
+        this._instance.anims.play(`${this._spriteName}_down`, true);
+        this.instance.setVelocityY(-speed);
+        this.instance.setVelocityX(0);
+    }
+
+    private _moveLeft(speed: number): void {
+        this._instance.anims.play(`${this._spriteName}_left`, true);
+        this.instance.setVelocityX(-speed);
+        this.instance.setVelocityY(0);
+    }
+
+    private _moveRight(speed: number): void {
+        this._instance.anims.play(`${this._spriteName}_right`, true);
+        this.instance.setVelocityX(speed);
+        this.instance.setVelocityY(0);
+    }
+
+    private _stop(): void {
+        this._instance.anims.play(`${this._spriteName}_idle`, true);
+        this.instance.setVelocityX(0);
+        this.instance.setVelocityY(0);
+    }
 
     public move(): void {
-        this._instance.anims.play(`${this._spriteName}_${Animations.IDLE}`, true);
+        const getCurrentSpeed = this.__speed.getSpeed()
+        switch (Math.floor(Math.random() * (5))) {
+            case 0: {
+                this._moveUp(getCurrentSpeed);
+                break;
+            }
+            case 1: {
+                this._moveDown(getCurrentSpeed);
+                break;
+            }
+            case 2: {
+                this._moveLeft(getCurrentSpeed);
+                break;
+            }
+            case 3: {
+                this._moveRight(getCurrentSpeed);
+                break;
+            }
+            case 4: {
+                this._stop();
+                break;
+            }
+        }
     }
 
     private _menagePhisics(): void {
