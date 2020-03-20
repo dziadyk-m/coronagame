@@ -1,7 +1,7 @@
 import { PLAYER_START, PLAYER_SPEED, PLAYER_FRAMES } from '../consts';
-import { Human } from './Human';
+import { Character } from './Character';
 
-export class Player extends Human {
+export class Player extends Character {
     private _cursors: CursorKeys;
 
     constructor(
@@ -17,11 +17,11 @@ export class Player extends Human {
             PLAYER_START.y,
             PLAYER_FRAMES
         );
-
         this._cursors = input.keyboard.createCursorKeys();
         this.instance.setMaxVelocity(300, 300);
+        this.instance.setActiveCollision();
     }
-
+    
     public move(): void {
         this.instance.setVelocity(0);
 
