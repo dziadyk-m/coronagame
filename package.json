@@ -4,7 +4,7 @@
   "scripts": {
     "build:dev": "npm install --dev && webpack --env dev",
     "build:prod": "npm install && webpack --env prod",
-    "start": "webpack-dev-server -d --env dev",
+    "start": "npm start",
     "watch": "webpack --env dev --watch"
   },
   "devDependencies": {
