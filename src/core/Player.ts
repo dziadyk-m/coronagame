@@ -1,3 +1,4 @@
+import { PLAYER_START } from '../consts';
 import { Human } from './Human';
 
 export class Player extends Human {
@@ -8,7 +9,7 @@ export class Player extends Human {
         animations: Phaser.Animations.AnimationManager,
         input: Phaser.Input.InputPlugin
     ) {
-        super(impact, animations, 'player', 30, 50);
+        super(impact, animations, 'player', PLAYER_START.x, PLAYER_START.y);
 
         this._cursors = input.keyboard.createCursorKeys();
         this.instance.setMaxVelocity(300, 400);

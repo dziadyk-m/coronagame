@@ -1,3 +1,4 @@
+import { COLISION_BLOCKS } from "../consts";
 import { Player } from "../core";
 
 export class Main extends Phaser.Scene {
@@ -25,9 +26,7 @@ export class Main extends Phaser.Scene {
     }
 
     private _loadWorldData(): void {
-        this._assets.layer.setCollisionBetween(54, 83);
-        // If we don't have slopes in our map, we can simply specify what the default colliding tile's
-        // slope ID should be. In this case, it would just be the ID for a solid rectangle, 1.
+        this._assets.layer.setCollisionBetween(COLISION_BLOCKS.start, COLISION_BLOCKS.stop);
         this.impact.world.setCollisionMapFromTilemapLayer(this._assets.layer, { defaultCollidingSlope: 1 });
         this.cameras.main.setBounds(0, 0, this._assets.map.widthInPixels, this._assets.map.heightInPixels);
     }
