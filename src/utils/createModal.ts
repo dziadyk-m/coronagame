@@ -1,7 +1,7 @@
 import {createLabel} from "./createLabel";
 
 
-export const createModal = (scene, getChoices, getContent = () => null) => {
+export const createModal = (scene, question, getChoices, getContent = () => null, actions = [(props) => {}]) => {
     const x = scene.game.config.width / 2;
     const y = scene.game.config.height - 220;
     let dialog = scene.rexUI.add.dialog({
@@ -11,7 +11,7 @@ export const createModal = (scene, getChoices, getContent = () => null) => {
         background: scene.rexUI.add.roundRectangle(0, 0, 100, 100, 20, 0x2196F3),
         title: scene.rexUI.add.label({
             background: scene.rexUI.add.roundRectangle(0, 0, 100, 40, 20, 0x90CAF9),
-            text: scene.add.text(0, 0, 'Person1\n Tell me: 1+1+1 = ', {
+            text: scene.add.text(0, 0, question, {
                 fontSize: '40px'
             }),
             space: {
@@ -33,20 +33,12 @@ export const createModal = (scene, getChoices, getContent = () => null) => {
             bottom: 25,
         },
         expand: {
-            content: true,  // Content is a pure text object
+            content: true,
         }
     }).layout()
 
-    const textObject = scene.add.text(0, 0, '');
     dialog
-        .on('button.click',  (button, groupName, index) => {
-            textObject.text += index + ': ' + button.text + '\n';
-            console.log('click')
-            if (index === 0) {
-                console.log(index)
-                dialog.destroy()
-            }
-        }, scene)
+        .on('button.click',  (button, groupName, index) => actions[index]({ dialog, button, groupName, index, scene }), scene)
         .on('button.over', (button, groupName, index) => {
             console.log(button)
             button.getElement('background').setStrokeStyle(2, 0xffffff);
