@@ -1,4 +1,4 @@
-export const TILIE_SIZE = 32;
+export const TILE_SIZE = 32;
 
 export const COLISION_BLOCKS = {
     start: 54,
@@ -6,6 +6,6 @@ export const COLISION_BLOCKS = {
 };
 
 export const PLAYER_START = {
-    x: TILIE_SIZE * 4.5,
-    y: TILIE_SIZE * 10.5
+    x: TILE_SIZE * 4.5,
+    y: TILE_SIZE * 10.5
 };

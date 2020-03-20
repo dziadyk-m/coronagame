@@ -1,4 +1,4 @@
-import { COLISION_BLOCKS } from "../consts";
+import { COLISION_BLOCKS, TILE_SIZE } from "../consts";
 import { Player } from "../core";
 
 export class Main extends Phaser.Scene {
@@ -20,7 +20,7 @@ export class Main extends Phaser.Scene {
     }
 
     private _loadEntities(): void {
-        this._assets.map = this.make.tilemap({ key: 'map', tileWidth: 32, tileHeight: 32 });
+        this._assets.map = this.make.tilemap({ key: 'map', tileWidth: TILE_SIZE, tileHeight: TILE_SIZE });
         this._assets.tileset = this._assets.map.addTilesetImage('tiles');
         this._assets.layer = this._assets.map.createStaticLayer(0, this._assets.tileset, 0, 0);
     }
