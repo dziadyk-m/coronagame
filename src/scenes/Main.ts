@@ -5,7 +5,7 @@ export class Main extends Phaser.Scene {
     private _basicLayer: Phaser.Tilemaps.StaticTilemapLayer;
     private _gameMap: Phaser.Tilemaps.Tilemap;
     private _player: Player;
-
+    
     constructor() {
         super('main');
     }

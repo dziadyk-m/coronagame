@@ -1,4 +1,4 @@
-import { PLAYER_START } from '../consts';
+import { PLAYER_START, PLAYER_SPEED } from '../consts';
 import { Human } from './Human';
 
 export class Player extends Human {
@@ -12,22 +12,22 @@ export class Player extends Human {
         super(impact, animations, 'player', PLAYER_START.x, PLAYER_START.y);
 
         this._cursors = input.keyboard.createCursorKeys();
-        this.instance.setMaxVelocity(300, 400);
+        this.instance.setMaxVelocity(300, 300);
     }
 
     public move(): void {
         this.instance.setVelocity(0);
 
         if (this._cursors.left.isDown) {
-            this.instance.setVelocityX(-100);
+            this.instance.setVelocityX(-PLAYER_SPEED);
         } else if (this._cursors.right.isDown) {
-            this.instance.setVelocityX(100);
+            this.instance.setVelocityX(PLAYER_SPEED);
         }
 
         if (this._cursors.up.isDown) {
-            this.instance.setVelocityY(-100);
+            this.instance.setVelocityY(-PLAYER_SPEED);
         } else if (this._cursors.down.isDown) {
-            this.instance.setVelocityY(100);
+            this.instance.setVelocityY(PLAYER_SPEED);
         }
 
         if (this._cursors.left.isDown) {
