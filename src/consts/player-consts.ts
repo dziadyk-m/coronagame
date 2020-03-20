@@ -1,4 +1,4 @@
-import { ICharacterFrames, INpcData } from '../models';
+import { ICharacterFrames, ICharacterData } from '../models';
 import { TILE_SIZE } from './game-consts';
 
 export const PLAYER_SPEED = 150;
@@ -10,9 +10,9 @@ export const PLAYER_FRAMES: ICharacterFrames = {
     right: { start: 1, end: 2 }
 };
 
-export const PLAYER_DATA: INpcData = {
+export const PLAYER_DATA: ICharacterData = {
     sprite: 'player',
-    startX: TILE_SIZE * 4.5,
-    startY: TILE_SIZE * 10.5,
+    startX: 4.5,
+    startY: 10.5,
     action: null
 };

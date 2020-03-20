@@ -1,4 +1,4 @@
-export interface INpcData {
+export interface ICharacterData {
     action: Function;
     sprite: string;
     startX: number;

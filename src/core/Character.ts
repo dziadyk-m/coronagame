@@ -1,5 +1,5 @@
-import { ICharacterFrames, INpcData } from '../models';
-import { CHARACTER_DEFAULT_FRAMES } from '../consts';
+import { ICharacterFrames, ICharacterData } from '../models';
+import { CHARACTER_DEFAULT_FRAMES, TILE_SIZE } from '../consts';
 
 export class Character {
     public action: Function = () => {};
@@ -9,10 +9,10 @@ export class Character {
     constructor(
         impact: Phaser.Physics.Impact.ImpactPhysics,
         anims: Phaser.Animations.AnimationManager,
-        data: INpcData,
+        data: ICharacterData,
         frames?: ICharacterFrames
     ) {
-        this._instance = impact.add.sprite(data.startX, data.startY, data.sprite, 1);
+        this._instance = impact.add.sprite(data.startX * TILE_SIZE, data.startY * TILE_SIZE, data.sprite, 1);
         this._createAnimations(anims, data.sprite, frames);
         this._instance.setFixedCollision();
         this._spriteName = data.sprite;
