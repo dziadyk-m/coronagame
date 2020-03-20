@@ -7,6 +7,7 @@
         "strictNullChecks": false,
         "module": "CommonJS",
         "strict": true,
+        "noImplicitAny": false,
         "sourceMap": true
     },
     "include": [

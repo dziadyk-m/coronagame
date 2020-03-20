@@ -50,7 +50,9 @@ module.exports = {
         new webpack.DefinePlugin({
             'typeof SHADER_REQUIRE': JSON.stringify(false),
             'typeof CANVAS_RENDERER': JSON.stringify(true),
-            'typeof WEBGL_RENDERER': JSON.stringify(true)
+            'CANVAS_RENDERER': JSON.stringify(true),
+            'typeof WEBGL_RENDERER': JSON.stringify(true),
+            ' WEBGL_RENDERER': JSON.stringify(true)
         }),
         new CopyWebpackPlugin(
         [

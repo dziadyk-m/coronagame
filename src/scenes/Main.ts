@@ -1,11 +1,15 @@
 import { COLISION_BLOCKS, TILE_SIZE, NPC_DATA } from "../consts";
+import { Dialog } from 'phaser3-rex-plugins/templates/ui/ui-components.js';
 import { Player, Human } from "../core";
+import {createLabel} from "../utils/createLabel";
+import {createModal} from "../utils/createModal";
 
 export class Main extends Phaser.Scene {
     private _basicLayer: Phaser.Tilemaps.StaticTilemapLayer;
     private _gameMap: Phaser.Tilemaps.Tilemap;
     private _npcs: Human[] = [];
     private _player: Player;
+
 
     
     constructor() {
@@ -17,6 +21,7 @@ export class Main extends Phaser.Scene {
         this._loadWorldData();
         this._createPlayer();
         this._createNpcs();
+        this._createModal();
     }
     
     public update(): void {
@@ -39,6 +44,18 @@ export class Main extends Phaser.Scene {
         this._player = new Player(this.impact, this.anims, this.input);
         this.cameras.main.startFollow(this._player.instance);
 
+    }
+
+    private _createModal() {
+        createModal(
+            this,
+            [
+            createLabel(this, '3'),
+            createLabel(this, '4'),
+            createLabel(this, '5'),
+            createLabel(this, '6')
+        ]
+        );
     }
     
     private _createNpcs(): void {
