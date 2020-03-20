@@ -1,4 +1,0 @@
-* linguist-vendored
-*.ts linguist-vendored=false
-*.ts linguist-language=TypeScript
-* -text

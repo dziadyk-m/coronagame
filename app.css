@@ -3,10 +3,12 @@
 }
 
 canvas {
-    display: block;
-    margin: 0;
+    transform: translate(-50%, -50%);
     position: absolute;
-    top: 0%;
+    display: block;
+    height: 100%;
+    width: 100%;
+    margin: 0;
     left: 50%;
-    transform: translate(-50%, 0%);
+    top: 50%;
 }

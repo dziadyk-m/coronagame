@@ -16,6 +16,7 @@ export class Human {
         return this._instance;
     }
 
+    // FIXME: Needs some work with default conflig
     private _createAnimations(
         animations: Phaser.Animations.AnimationManager,
         sprite: string
