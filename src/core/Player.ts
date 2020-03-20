@@ -18,8 +18,8 @@ export class Player extends Character {
             PLAYER_FRAMES
         );
         this._cursors = input.keyboard.createCursorKeys();
-        this.instance.setActiveCollision();
         this.instance.setMaxVelocity(300, 300);
+        this.instance.setActiveCollision();
     }
     
     public move(): void {

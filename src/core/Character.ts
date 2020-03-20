@@ -28,7 +28,7 @@ export class Character {
     }
 
     public action(): void {
-        console.log('action');
+        console.log('Hello, im ' + this._spriteName);
     }
 
     private _createAnimations(

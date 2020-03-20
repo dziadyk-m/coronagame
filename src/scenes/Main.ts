@@ -1,4 +1,5 @@
 import { COLISION_BLOCKS, TILE_SIZE, NPC_DATA } from "../consts";
+import { tryToProvideAction } from "../utils";
 import { Player, Character } from "../core";
 
 export class Main extends Phaser.Scene {
@@ -53,14 +54,12 @@ export class Main extends Phaser.Scene {
     }
 
     private _actionHookes() {
-        this.input.keyboard.on('keydown_A', () => {
-            this._npcs.forEach(npc => {
-                // if (this.scene.ph .overlap(npc.instance, this._player.instance)) {
-                //     npc.action();
-                // } else {
-                //     console.log('no action')
-                // }
-            });
+        this.input.keyboard.on('keydown', (key: Phaser.Input.Keyboard.Key) => {
+            switch(key.keyCode) {
+                case 32: /* Space */
+                    tryToProvideAction(this._player, this._npcs);
+                    break;
+            }
         });
     }
 }
