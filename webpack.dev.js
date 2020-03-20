@@ -10,7 +10,8 @@ module.exports = {
     mode: 'development',
     devtool: 'eval-source-map',
     devServer: {
-        contentBase: './build'
+        contentBase: './build',
+        port: 8000
     },
     output: {
         path: path.resolve(__dirname, 'build'),
