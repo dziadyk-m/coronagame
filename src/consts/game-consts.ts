@@ -3,7 +3,7 @@ import { ICharacterFrames } from "../models";
 export const TILE_SIZE = 32;
 
 export const COLISION_BLOCKS = {
-    start: 400,
+    start: 1,
     stop: 600
 };
 

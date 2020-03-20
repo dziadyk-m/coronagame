@@ -32,6 +32,9 @@ export class Main extends Phaser.Scene {
         const gameTiles = this._gameMap.addTilesetImage('tilemap2x', 'tiles');
         this._gameMap.createStaticLayer(0, gameTiles, 0, 0);
         this._collisionLayer = this._gameMap.createStaticLayer("collision", gameTiles, 0, 0);
+        this._gameMap.createStaticLayer("shadows", gameTiles, 0, 0);
+        this._gameMap.createStaticLayer("floating", gameTiles, 0, 0);
+        this._gameMap.createStaticLayer("overfloating", gameTiles, 0, 0);
     }
 
     private _loadWorldData(): void {
