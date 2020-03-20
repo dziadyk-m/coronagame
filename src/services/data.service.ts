@@ -1,4 +1,5 @@
-import { GameObject, Character, Player } from "../core";
+import { GameObject, Character, Player } from '../core';
+import { head } from '../utils';
 
 export class DataService {
     private static instance: DataService;
@@ -6,6 +7,14 @@ export class DataService {
     public objects: GameObject[] = [];
     public npcs: Character[] = [];
     public player: Player;
+
+    public findNpcById(id: string): Character {
+        return head(this.npcs.filter(npc => npc.spriteName === id));
+    }
+
+    public findObjectById(id: string): GameObject {
+        return head(this.objects.filter(object => object.id === id));
+    }
 
     public static getInstance(): DataService {
         if (!DataService.instance) {

@@ -24,6 +24,10 @@ export class Character {
         return this._instance;
     }
 
+    get spriteName(): string {
+        return this._spriteName;
+    }
+
     public move(): void {
         this._instance.anims.play(`${this._spriteName}_${Animations.IDLE}`, true);
     }
