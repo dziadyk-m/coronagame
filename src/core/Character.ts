@@ -1,22 +1,22 @@
-import { HUMAN_FRAMES } from '../consts/human-consts';
-import { IHumanFrames } from '../models';
+import { ICharacterFrames, INpcData } from '../models';
+import { CHARACTER_DEFAULT_FRAMES } from '../consts';
 
 export class Character {
-    private _instance: Phaser.Physics.Impact.ImpactSprite;
+    public action: Function = () => {};
     protected _spriteName: string;
+    private _instance: Phaser.Physics.Impact.ImpactSprite;
 
     constructor(
         impact: Phaser.Physics.Impact.ImpactPhysics,
         anims: Phaser.Animations.AnimationManager,
-        spriteName: string,
-        startX: number,
-        startY: number,
-        frames?: IHumanFrames
+        data: INpcData,
+        frames?: ICharacterFrames
     ) {
-        this._instance = impact.add.sprite(startX, startY, spriteName, 1);
-        this._createAnimations(anims, spriteName, frames);
+        this._instance = impact.add.sprite(data.startX, data.startY, data.sprite, 1);
+        this._createAnimations(anims, data.sprite, frames);
         this._instance.setFixedCollision();
-        this._spriteName = spriteName;
+        this._spriteName = data.sprite;
+        this.action = data.action;
     }
 
     get instance(): Phaser.Physics.Impact.ImpactSprite {
@@ -27,14 +27,10 @@ export class Character {
         this._instance.anims.play(`${this._spriteName}_idle`, true);
     }
 
-    public action(): void {
-        console.log('Hello, im ' + this._spriteName);
-    }
-
     private _createAnimations(
         animations: Phaser.Animations.AnimationManager,
         sprite: string,
-        frames: IHumanFrames = HUMAN_FRAMES
+        frames: ICharacterFrames = CHARACTER_DEFAULT_FRAMES
     ): void {
         Object.keys(frames).forEach((key: string) => {
             animations.create({

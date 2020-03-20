@@ -5,11 +5,13 @@ export const NPC_DATA: INpcData[] = [
     {
         sprite: 'skeleton',
         startX: 7.5 * TILE_SIZE,
-        startY: 8.5 * TILE_SIZE
+        startY: 8.5 * TILE_SIZE,
+        action: () => console.log('Hello im skeleton')
     },
     {
         sprite: 'monster',
         startX: 9.5 * TILE_SIZE,
-        startY: 8.5 * TILE_SIZE
+        startY: 8.5 * TILE_SIZE,
+        action: () => console.log('Hello im monster')
     }
 ];

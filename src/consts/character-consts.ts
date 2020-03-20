@@ -1,6 +1,6 @@
-import { IHumanFrames } from '../models';
+import { ICharacterFrames } from '../models';
 
-export const HUMAN_FRAMES: IHumanFrames = {
+export const CHARACTER_DEFAULT_FRAMES: ICharacterFrames = {
     up: { start: 6, end: 8 },
     down: { start: 0, end: 2 },
     left: { start: 9, end: 11 },

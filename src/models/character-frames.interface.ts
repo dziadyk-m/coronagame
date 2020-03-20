@@ -3,7 +3,7 @@ interface IFrames {
     end: number
 }
 
-export interface IHumanFrames {
+export interface ICharacterFrames {
     up: IFrames;
     down: IFrames;
     left: IFrames;

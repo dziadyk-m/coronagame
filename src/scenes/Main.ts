@@ -1,4 +1,4 @@
-import { COLISION_BLOCKS, TILE_SIZE, NPC_DATA } from "../consts";
+import { COLISION_BLOCKS, NPC_DATA } from "../consts";
 import { tryToProvideAction } from "../utils";
 import { Player, Character } from "../core";
 
@@ -44,8 +44,8 @@ export class Main extends Phaser.Scene {
     }
     
     private _createNpcs(): void {
-        NPC_DATA.forEach(npc => {
-            const character = new Character(this.impact, this.anims, npc.sprite, npc.startX, npc.startY)
+        NPC_DATA.forEach(npcData => {
+            const character = new Character(this.impact, this.anims, npcData);
             this._npcs.push(character);
         });
     }
