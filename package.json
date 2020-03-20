@@ -2,9 +2,8 @@
   "name": "coronagame",
   "version": "1.0.1",
   "scripts": {
-    "heroku-prebuild": "npm install --dev",
-    "build:dev": "webpack --env dev",
-    "build:prod": "webpack --env prod",
+    "build:dev": "npm install --dev && webpack --env dev",
+    "build:prod": "npm install && webpack --env prod",
     "start": "webpack-dev-server -d --env dev",
     "watch": "webpack --env dev --watch"
   },
