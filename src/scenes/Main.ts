@@ -2,13 +2,13 @@ import { Player, Character, GameObject } from "../core";
 import { NPC_DATA, GAME_OBJECTS_DATA } from "../data";
 import { tryToProvideAction } from "../utils";
 import { COLISION_BLOCKS } from "../consts";
+import { DataService } from "../services";
 
 export class Main extends Phaser.Scene {
     private _collisionLayer: Phaser.Tilemaps.StaticTilemapLayer;
     private _gameMap: Phaser.Tilemaps.Tilemap;
-    private _objects: GameObject[] = [];
-    private _npcs: Character[] = [];
-    private _player: Player;
+
+    private _dataService = DataService.getInstance();
 
     constructor() {
         super('main');
@@ -23,7 +23,7 @@ export class Main extends Phaser.Scene {
     }
     
     public update(): void {
-        this._player.move();
+        this._dataService.player.move();
         this._moveNpcs();
     }
 
@@ -44,29 +44,33 @@ export class Main extends Phaser.Scene {
     }
 
     private _createPlayer(): void {
-        this._player = new Player(this.impact, this.anims, this.input);
-        this.cameras.main.startFollow(this._player.instance);
+        this._dataService.player = new Player(this.impact, this.anims, this.input);
+        this.cameras.main.startFollow(this._dataService.player.instance);
     }
     
     private _createNpcsAndObjects(): void {
         NPC_DATA.forEach(npcData => {
-            this._npcs.push(new Character(this.impact, this.anims, npcData));
+            this._dataService.npcs.push(new Character(this.impact, this.anims, npcData));
         });
         GAME_OBJECTS_DATA.forEach(objectData => {
-            this._objects.push(new GameObject(objectData));
+            this._dataService.objects.push(new GameObject(objectData));
         });
     }
 
     private _moveNpcs(): void {
-        this._npcs.forEach(npc => npc.move());
+        this._dataService.npcs.forEach(npc => npc.move());
     }
 
     private _actionHookes() {
         this.input.keyboard.on('keydown', (key: Phaser.Input.Keyboard.Key) => {
             switch(key.keyCode) {
                 case 32: /* Space */
-                    tryToProvideAction(this._player, this._npcs, this._objects);
-                    break;
+                tryToProvideAction(
+                    this._dataService.player,
+                    this._dataService.npcs,
+                    this._dataService.objects
+                ); 
+                break;
             }
         });
     }
