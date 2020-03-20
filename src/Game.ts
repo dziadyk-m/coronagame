@@ -3,7 +3,7 @@ import "phaser";
 import { Preloader } from './scenes/Preloader';
 import { Main } from './scenes/Main';
     
-const config: GameConfig = {
+const config = {
     type: Phaser.CANVAS,
     width: 800,
     height: 600,
@@ -11,6 +11,11 @@ const config: GameConfig = {
     physics: {
         default: 'impact',
         impact: { gravity: 0 }
+    },
+    render: {
+        antialias: false,
+        pixelArt: true,
+        roundPixels: true
     },
     scene: [
         Preloader,
