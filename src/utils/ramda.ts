@@ -19,10 +19,6 @@ const difference = (arr: any[], ...others: any[]) => {
 // combine(["foo"], ["bar", "baz"], [1, 2]) // => ["foo", "bar", "baz", 1, 2]
 const combine = (...arrays: any[]): any[] => [].concat(...arrays);
 
-// Array.isArray((() => toArray(arguments))("foo", "bar")) // => true
-const toArray = (() =>
-    Array.from ? Array.from : (obj: any) => [].slice.call(obj))();
-
 // min([10, 50, 30]) // => 10
 const min = (arr: any) => Math.min(...arr);
 
@@ -32,7 +28,6 @@ const max = (arr: any) => Math.max(...arr);
 export {
     difference,
     combine,
-    toArray,
     take,
     tail,
     head,
