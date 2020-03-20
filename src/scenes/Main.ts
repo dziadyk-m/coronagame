@@ -2,7 +2,8 @@ import { COLISION_BLOCKS, TILE_SIZE } from "../consts";
 import { Player } from "../core";
 
 export class Main extends Phaser.Scene {
-    private _assets: any = {};
+    private _basicLayer: Phaser.Tilemaps.StaticTilemapLayer;
+    private _gameMap: Phaser.Tilemaps.Tilemap;
     private _player: Player;
 
     constructor() {
@@ -20,15 +21,15 @@ export class Main extends Phaser.Scene {
     }
 
     private _loadEntities(): void {
-        this._assets.map = this.make.tilemap({ key: 'map', tileWidth: TILE_SIZE, tileHeight: TILE_SIZE });
-        this._assets.tileset = this._assets.map.addTilesetImage('tiles');
-        this._assets.layer = this._assets.map.createStaticLayer(0, this._assets.tileset, 0, 0);
+        this._gameMap = this.make.tilemap({ key: 'map', tileWidth: TILE_SIZE, tileHeight: TILE_SIZE });
+        const gameTiles = this._gameMap.addTilesetImage('tiles');
+        this._basicLayer = this._gameMap.createStaticLayer(0, gameTiles, 0, 0);
     }
 
     private _loadWorldData(): void {
-        this._assets.layer.setCollisionBetween(COLISION_BLOCKS.start, COLISION_BLOCKS.stop);
-        this.impact.world.setCollisionMapFromTilemapLayer(this._assets.layer, { defaultCollidingSlope: 1 });
-        this.cameras.main.setBounds(0, 0, this._assets.map.widthInPixels, this._assets.map.heightInPixels);
+        this._basicLayer.setCollisionBetween(COLISION_BLOCKS.start, COLISION_BLOCKS.stop);
+        this.impact.world.setCollisionMapFromTilemapLayer(this._basicLayer, { defaultCollidingSlope: 1 });
+        this.cameras.main.setBounds(0, 0, this._gameMap.widthInPixels, this._gameMap.heightInPixels);
     }
 
     private _createPlayer(): void {
