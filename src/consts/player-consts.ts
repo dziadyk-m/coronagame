@@ -1,5 +1,4 @@
 import { ICharacterFrames, ICharacterData } from '../models';
-import { TILE_SIZE } from './game-consts';
 
 export const PLAYER_SPEED = 150;
 

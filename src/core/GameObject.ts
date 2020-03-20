@@ -1,22 +1,21 @@
-import { TILE_SIZE } from "../consts";
+import { IGameModel } from '../models';
+import { TILE_SIZE } from '../consts';
 
 export class GameObject {
     public action: Function = () => {};
 
-    private _x: number;
-    private _y: number;
+    private _instance: { x: number; y: number } = {
+        x: null,
+        y: null
+    };
 
-    constructor(x: number, y: number, action: Function) {
-        this._x = x;
-        this._y = y;
-        this.action = action;
+    constructor(data: IGameModel) {
+        this._instance.x = data.x * TILE_SIZE;
+        this._instance.y = data.y * TILE_SIZE;
+        this.action = data.action;
     }
 
-    get x(): number {
-        return this._x * TILE_SIZE;
-    }
-
-    get y(): number {
-        return this._y * TILE_SIZE;
+    get instance(): { x: number; y: number } {
+        return this._instance;
     }
 }

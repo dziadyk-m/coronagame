@@ -1,5 +1,5 @@
-import { ICharacterFrames, ICharacterData } from '../models';
 import { CHARACTER_DEFAULT_FRAMES, TILE_SIZE } from '../consts';
+import { ICharacterFrames, ICharacterData } from '../models';
 
 export class Character {
     public action: Function = () => {};

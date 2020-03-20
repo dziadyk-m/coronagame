@@ -1,10 +1,13 @@
-import { COLISION_BLOCKS, NPC_DATA } from "../consts";
+import { Player, Character, GameObject } from "../core";
 import { tryToProvideAction } from "../utils";
-import { Player, Character } from "../core";
+import { COLISION_BLOCKS } from "../consts";
+import { NPC_DATA } from "../data";
+import { GAME_OBJECTS_DATA } from "../data/objects.data";
 
 export class Main extends Phaser.Scene {
     private _collisionLayer: Phaser.Tilemaps.StaticTilemapLayer;
     private _gameMap: Phaser.Tilemaps.Tilemap;
+    private _objects: GameObject[] = [];
     private _npcs: Character[] = [];
     private _player: Player;
 
@@ -15,7 +18,7 @@ export class Main extends Phaser.Scene {
     public create(): void {
         this._loadEntities();
         this._loadWorldData();
-        this._createNpcs();
+        this._createNpcsAndObjects();
         this._createPlayer();
         this._actionHookes();
     }
@@ -43,10 +46,12 @@ export class Main extends Phaser.Scene {
         this.cameras.main.startFollow(this._player.instance);
     }
     
-    private _createNpcs(): void {
+    private _createNpcsAndObjects(): void {
         NPC_DATA.forEach(npcData => {
-            const character = new Character(this.impact, this.anims, npcData);
-            this._npcs.push(character);
+            this._npcs.push(new Character(this.impact, this.anims, npcData));
+        });
+        GAME_OBJECTS_DATA.forEach(objectData => {
+            this._objects.push(new GameObject(objectData));
         });
     }
 
@@ -58,7 +63,7 @@ export class Main extends Phaser.Scene {
         this.input.keyboard.on('keydown', (key: Phaser.Input.Keyboard.Key) => {
             switch(key.keyCode) {
                 case 32: /* Space */
-                    tryToProvideAction(this._player, this._npcs);
+                    tryToProvideAction(this._player, this._npcs, this._objects);
                     break;
             }
         });
