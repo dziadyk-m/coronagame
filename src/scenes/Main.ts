@@ -1,13 +1,12 @@
 import { COLISION_BLOCKS, TILE_SIZE, NPC_DATA } from "../consts";
-import { Player, Human } from "../core";
+import { Player, Character } from "../core";
 
 export class Main extends Phaser.Scene {
     private _basicLayer: Phaser.Tilemaps.StaticTilemapLayer;
     private _gameMap: Phaser.Tilemaps.Tilemap;
-    private _npcs: Human[] = [];
+    private _npcs: Character[] = [];
     private _player: Player;
 
-    
     constructor() {
         super('main');
     }
@@ -15,12 +14,14 @@ export class Main extends Phaser.Scene {
     public create(): void {
         this._loadEntities();
         this._loadWorldData();
-        this._createPlayer();
         this._createNpcs();
+        this._createPlayer();
+        this._actionHookes();
     }
     
     public update(): void {
-        this._engineLoop();
+        this._player.move();
+        this._moveNpcs();
     }
 
     private _loadEntities(): void {
@@ -38,24 +39,29 @@ export class Main extends Phaser.Scene {
     private _createPlayer(): void {
         this._player = new Player(this.impact, this.anims, this.input);
         this.cameras.main.startFollow(this._player.instance);
-
     }
     
     private _createNpcs(): void {
         NPC_DATA.forEach(npc => {
-            this._npcs.push(new Human(this.impact, this.anims, npc.sprite, npc.startX, npc.startY));
+            const character = new Character(this.impact, this.anims, npc.sprite, npc.startX, npc.startY)
+            this._npcs.push(character);
         });
     }
 
     private _moveNpcs(): void {
-        this._npcs.forEach(npc => {
-            npc.move();
-        });
+        this._npcs.forEach(npc => npc.move());
     }
 
-    private _engineLoop(): void {
-        this._player.move();
-        this._moveNpcs();
+    private _actionHookes() {
+        this.input.keyboard.on('keydown_A', () => {
+            this._npcs.forEach(npc => {
+                // if (this.scene.ph .overlap(npc.instance, this._player.instance)) {
+                //     npc.action();
+                // } else {
+                //     console.log('no action')
+                // }
+            });
+        });
     }
 }
 

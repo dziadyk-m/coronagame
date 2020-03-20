@@ -1,7 +1,7 @@
 import { HUMAN_FRAMES } from '../consts/human-consts';
 import { IHumanFrames } from '../models';
 
-export class Human {
+export class Character {
     private _instance: Phaser.Physics.Impact.ImpactSprite;
     protected _spriteName: string;
 
@@ -15,6 +15,7 @@ export class Human {
     ) {
         this._instance = impact.add.sprite(startX, startY, spriteName, 1);
         this._createAnimations(anims, spriteName, frames);
+        this._instance.setFixedCollision();
         this._spriteName = spriteName;
     }
 
@@ -26,12 +27,15 @@ export class Human {
         this._instance.anims.play(`${this._spriteName}_idle`, true);
     }
 
+    public action(): void {
+        console.log('action');
+    }
+
     private _createAnimations(
         animations: Phaser.Animations.AnimationManager,
         sprite: string,
         frames: IHumanFrames = HUMAN_FRAMES
     ): void {
-        console.log(sprite)
         Object.keys(frames).forEach((key: string) => {
             animations.create({
                 key: `${sprite}_${key}`,
