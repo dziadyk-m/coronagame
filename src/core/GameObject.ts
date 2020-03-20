@@ -10,8 +10,8 @@ export class GameObject {
     };
 
     constructor(data: IGameModel) {
-        this._instance.x = data.x * TILE_SIZE;
-        this._instance.y = data.y * TILE_SIZE;
+        this._instance.x = data.positionX * TILE_SIZE;
+        this._instance.y = data.positionY * TILE_SIZE;
         this.action = data.action;
     }
 

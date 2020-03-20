@@ -1,5 +1,5 @@
 export interface IGameModel {
-    x: number;
-    y: number;
+    positionX: number;
+    positionY: number;
     action: Function;
 }

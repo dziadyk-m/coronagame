@@ -1,8 +1,7 @@
 import { Player, Character, GameObject } from "../core";
+import { NPC_DATA, GAME_OBJECTS_DATA } from "../data";
 import { tryToProvideAction } from "../utils";
 import { COLISION_BLOCKS } from "../consts";
-import { NPC_DATA } from "../data";
-import { GAME_OBJECTS_DATA } from "../data/objects.data";
 
 export class Main extends Phaser.Scene {
     private _collisionLayer: Phaser.Tilemaps.StaticTilemapLayer;

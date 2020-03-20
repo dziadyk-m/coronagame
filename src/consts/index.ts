@@ -1,2 +1,2 @@
-export * from './player-consts';
+export * from './character-consts';
 export * from './game-consts';
