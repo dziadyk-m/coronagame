@@ -8,9 +8,9 @@ export const COLISION_BLOCKS = {
 };
 
 export const CHARACTER_DEFAULT_FRAMES: ICharacterFrames = {
-    up: { start: 6, end: 8 },
-    down: { start: 0, end: 2 },
-    left: { start: 9, end: 11 },
-    right: { start: 3, end: 5 },
-    idle: { start: 12, end: 13 }
+    up: { animationStart: 6, animationEnd: 8 },
+    down: { animationStart: 0, animationEnd: 2 },
+    left: { animationStart: 9, animationEnd: 11 },
+    right: { animationStart: 3, animationEnd: 5 },
+    idle: { animationStart: 12, animationEnd: 13, frameRate: 5 }
 };

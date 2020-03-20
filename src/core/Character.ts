@@ -1,5 +1,6 @@
 import { CHARACTER_DEFAULT_FRAMES, TILE_SIZE } from '../consts';
 import { ICharacterFrames, ICharacterData } from '../models';
+import { Animations } from '../enum';
 
 export class Character {
     public action: Function = () => {};
@@ -24,7 +25,7 @@ export class Character {
     }
 
     public move(): void {
-        this._instance.anims.play(`${this._spriteName}_idle`, true);
+        this._instance.anims.play(`${this._spriteName}_${Animations.IDLE}`, true);
     }
 
     private _createAnimations(
@@ -36,10 +37,10 @@ export class Character {
             animations.create({
                 key: `${sprite}_${key}`,
                 frames: animations.generateFrameNumbers(sprite, {
-                    start: (frames as any)[key].start,
-                    end: (frames as any)[key].end
+                    start: (frames as any)[key].animationStart,
+                    end: (frames as any)[key].animationEnd
                 }),
-                frameRate: 10,
+                frameRate: (frames as any)[key].frameRate || 10,
                 repeat: -1
             });
         });

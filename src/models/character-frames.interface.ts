@@ -1,6 +1,7 @@
 interface IFrames {
-    start: number,
-    end: number
+    animationStart: number,
+    animationEnd: number,
+    frameRate?: number
 }
 
 export interface ICharacterFrames {
