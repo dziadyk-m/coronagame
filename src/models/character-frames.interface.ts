@@ -1,7 +1,8 @@
-interface IFrame {
-    animationStart: number,
-    animationEnd: number,
-    frameRate?: number
+export interface IFrame {
+    animationStart: number;
+    animationEnd: number;
+    frameRate?: number;
+    key?: string;
 }
 
 export interface ICharacterFrames {

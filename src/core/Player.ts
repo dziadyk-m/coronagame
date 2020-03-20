@@ -1,5 +1,6 @@
 import { PLAYER_SPEED, PLAYER_FRAMES, PLAYER_DATA } from '../consts';
 import { Character } from './Character';
+import { Emotions } from './Emotions';
 import { Animations } from '../enum';
 
 export class Player extends Character {
@@ -8,9 +9,10 @@ export class Player extends Character {
     constructor(
         impact: Phaser.Physics.Impact.ImpactPhysics,
         animations: Phaser.Animations.AnimationManager,
-        input: Phaser.Input.InputPlugin
+        input: Phaser.Input.InputPlugin,
+        emotions: Emotions
     ) {
-        super(impact, animations, PLAYER_DATA, PLAYER_FRAMES);
+        super(impact, animations, PLAYER_DATA, emotions, PLAYER_FRAMES);
         this._cursors = input.keyboard.createCursorKeys();
         this.instance.setMaxVelocity(300, 300);
         this.instance.setActiveCollision();

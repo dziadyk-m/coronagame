@@ -1,4 +1,4 @@
-import { Player, Character, GameObject } from "../core";
+import { Player, Character, GameObject, Emotions } from "../core";
 import { NPC_DATA, GAME_OBJECTS_DATA } from "../data";
 import { tryToProvideAction } from "../utils";
 import { COLISION_BLOCKS } from "../consts";
@@ -18,7 +18,6 @@ export class Main extends Phaser.Scene {
         this._loadEntities();
         this._loadWorldData();
         this._createNpcsAndObjects();
-        this._createPlayer();
         this._actionHookes();
     }
     
@@ -43,18 +42,17 @@ export class Main extends Phaser.Scene {
         this.cameras.main.setBounds(0, 0, this._gameMap.widthInPixels, this._gameMap.heightInPixels);
     }
 
-    private _createPlayer(): void {
-        this._dataService.player = new Player(this.impact, this.anims, this.input);
-        this.cameras.main.startFollow(this._dataService.player.instance);
-    }
-    
     private _createNpcsAndObjects(): void {
+        const emotions = new Emotions(this.anims, this.impact)
         NPC_DATA.forEach(npcData => {
-            this._dataService.npcs.push(new Character(this.impact, this.anims, npcData));
+            this._dataService.npcs.push(new Character(this.impact, this.anims, npcData, emotions));
         });
         GAME_OBJECTS_DATA.forEach(objectData => {
             this._dataService.objects.push(new GameObject(objectData));
         });
+        // Create player
+        this._dataService.player = new Player(this.impact, this.anims, this.input, emotions);
+        this.cameras.main.startFollow(this._dataService.player.instance);
     }
 
     private _moveNpcs(): void {
