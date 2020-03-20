@@ -38,13 +38,13 @@ export class Player extends Human {
         }
 
         if (this._cursors.left.isDown) {
-            this.instance.anims.play('left', true);
+            this.instance.anims.play(`${this._spriteName}_left`, true);
         } else if (this._cursors.right.isDown) {
-            this.instance.anims.play('right', true);
+            this.instance.anims.play(`${this._spriteName}_right`, true);
         } else if (this._cursors.up.isDown) {
-            this.instance.anims.play('up', true);
+            this.instance.anims.play(`${this._spriteName}_up`, true);
         } else if (this._cursors.down.isDown) {
-            this.instance.anims.play('down', true);
+            this.instance.anims.play(`${this._spriteName}_down`, true);
         } else {
             this.instance.anims.stop();
         }
