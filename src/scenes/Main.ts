@@ -3,6 +3,7 @@ import { Player, Human } from "../core";
 
 export class Main extends Phaser.Scene {
     private _basicLayer: Phaser.Tilemaps.StaticTilemapLayer;
+    private _collisionLayer: Phaser.Tilemaps.StaticTilemapLayer;
     private _gameMap: Phaser.Tilemaps.Tilemap;
     private _npcs: Human[] = [];
     private _player: Player;
@@ -24,14 +25,16 @@ export class Main extends Phaser.Scene {
     }
 
     private _loadEntities(): void {
-        this._gameMap = this.make.tilemap({ key: 'map', tileWidth: TILE_SIZE, tileHeight: TILE_SIZE });
-        const gameTiles = this._gameMap.addTilesetImage('tiles');
+        this._gameMap = this.make.tilemap({ key: 'map' });
+        const gameTiles = this._gameMap.addTilesetImage('tilemap2x', 'tiles');
         this._basicLayer = this._gameMap.createStaticLayer(0, gameTiles, 0, 0);
+        this._collisionLayer = this._gameMap.createStaticLayer("collision", gameTiles, 0, 0);
     }
 
     private _loadWorldData(): void {
         this._basicLayer.setCollisionBetween(COLISION_BLOCKS.start, COLISION_BLOCKS.stop);
         this.impact.world.setCollisionMapFromTilemapLayer(this._basicLayer, { defaultCollidingSlope: 1 });
+        this.impact.world.setCollisionMapFromTilemapLayer(this._collisionLayer, { defaultCollidingSlope: 1 });
         this.cameras.main.setBounds(0, 0, this._gameMap.widthInPixels, this._gameMap.heightInPixels);
     }
 
