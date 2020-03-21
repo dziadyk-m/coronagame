@@ -1,8 +1,8 @@
 import {DataService, DialogService, SoundService} from '../services';
 import { Player, Character, GameObject } from '../core';
-import { NPC_DATA, GAME_OBJECTS_DATA } from '../data';
+import { NPC_DATA, GAME_OBJECTS_DATA, NPC_PATHS } from '../data';
 import { tryToProvideAction } from '../utils';
-import { COLISION_BLOCKS } from '../consts';
+import { COLLISION_BLOCKS } from '../consts';
 
 export class Main extends Phaser.Scene {
     private _collisionLayer: Phaser.Tilemaps.StaticTilemapLayer;
@@ -47,7 +47,7 @@ export class Main extends Phaser.Scene {
     }
 
     private _loadWorldData(): void {
-        this._collisionLayer.setCollisionBetween(COLISION_BLOCKS.start, COLISION_BLOCKS.stop);
+        this._collisionLayer.setCollisionBetween(COLLISION_BLOCKS.start, COLLISION_BLOCKS.stop);
         this.impact.world.setCollisionMapFromTilemapLayer(this._collisionLayer);
         this.cameras.main.setBounds(0, 0, this._gameMap.widthInPixels, this._gameMap.heightInPixels);
         this._setBackgroundMusic();

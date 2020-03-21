@@ -19,6 +19,8 @@ const directionMapper = {
     "left": "up"
 }
 
+const AvoidObstacleStep = 20 
+
 export class SingleStep {
     private _posX : number;
     private _posY : number;
@@ -28,6 +30,7 @@ export class SingleStep {
     private _previousDirection : string;
 
     private _avoidObstacleTries: number;
+    private _timesBackoff: number;
     
     constructor(
         x : number,
@@ -41,6 +44,7 @@ export class SingleStep {
       this._avoidObstacleTries = 0;
 
       this._previousDirection = "up"
+      this._timesBackoff = 0;
     }
 
     public getPoint(): number[] {
@@ -68,8 +72,11 @@ export class SingleStep {
         }
 
         if (Math.abs(this._previousPlayerX - x) < 0.2 && Math.abs(this._previousPlayerY - y) < 0.2 && this._avoidObstacleTries == 0) {
+            if (this._previousDirection == "up") {
+                this._timesBackoff++
+            }
             this._previousDirection = (<any>directionMapper)[this._previousDirection]
-            this._avoidObstacleTries = 20 // Magic number lol
+            this._avoidObstacleTries = this._timesBackoff * AvoidObstacleStep // Magic number lol
         }
 
         this._previousPlayerY = y
