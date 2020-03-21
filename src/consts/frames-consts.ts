@@ -30,5 +30,5 @@ export const EMOTION_FRAMES: IFrame[] = [
     { key: 'no', animationStart: 88, animationEnd: 95 },
     { key: 'eek', animationStart: 96, animationEnd: 103 },
     { key: 'oh_yes', animationStart: 104, animationEnd: 111 },
-    { key: 'oh_no', animationStart: 112, animationEnd: 119 },
+    { key: 'oh_no', animationStart: 112, animationEnd: 119 }
 ];
