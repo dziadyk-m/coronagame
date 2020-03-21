@@ -28,9 +28,38 @@ export const NPC_DATA: ICharacterData[] = [
         action: () => {
             DialogService.getInstance().createDialog(SIMPLE_DIALOG);
         }
+    },
+    {
+        sprite: 'npc_3',
+        startX: 10.5,
+        startY: 6.5,
+        waypoints: new MultiSteps(
+            [
+                new SingleStep(1, 6),
+                new SingleStep(199, 6),
+                new SingleStep(1, 6)
+            ],
+            true
+        ),
+        action: () => {
+            DialogService.getInstance().createDialog(SIMPLE_DIALOG);
+        }
+    },
+    {
+        sprite: 'npc_4',
+        startX: 10.5,
+        startY: 6.5,
+        waypoints: new MultiSteps(
+            [
+                new SingleStep(1, 19),
+                new SingleStep(39, 6),
+                new SingleStep(39, 22),
+                new SingleStep(68, 19)
+            ],
+            true
+        ),
+        action: () => {
+            DialogService.getInstance().createDialog(SIMPLE_DIALOG);
+        }
     }
 ];
-
-// (1, 10) -> (199, 10) -> (1, 10)
-// (1, 6) -> (199, 6) -> (1, 6)
-// (1,19) -> (39, 19) -> [(39, 22), (68, 19)]
