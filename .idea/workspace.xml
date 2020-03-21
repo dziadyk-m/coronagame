@@ -2,17 +2,33 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f5e3df2b-8bc5-489d-b9d7-9ff657e81542" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/assets/audio/background_music.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/licence.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/services/sound.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/core/TextBubble.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/consts/frames-consts.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/consts/frames-consts.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/Character.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/Character.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/Player.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/Player.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/npcs.data.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/npcs.data.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/character-data.inteface.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/character-data.inteface.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/scenes/Main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/Main.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scenes/Preloader.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/Preloader.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/index.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -70,21 +86,21 @@
       <screen x="-423" y="-1417" width="2560" height="1417" />
     </state>
     <state x="595" y="-955" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1792.1097/-423.-1417.2560.1417@-423.-1417.2560.1417" timestamp="1584747608761" />
-    <state x="-299" y="-1417" width="2344" height="1325" key="MergeDialog" timestamp="1584749721280">
+    <state x="-299" y="-1417" width="2344" height="1325" key="MergeDialog" timestamp="1584830945964">
       <screen x="-423" y="-1417" width="2560" height="1417" />
     </state>
-    <state x="-299" y="-1417" width="2344" height="1325" key="MergeDialog/0.23.1792.1097/-423.-1417.2560.1417@-423.-1417.2560.1417" timestamp="1584749721280" />
-    <state x="573" y="-986" key="MultipleFileMergeDialog" timestamp="1584749721330">
+    <state x="-299" y="-1417" width="2344" height="1325" key="MergeDialog/0.23.1792.1097/-423.-1417.2560.1417@-423.-1417.2560.1417" timestamp="1584830945964" />
+    <state x="573" y="-986" key="MultipleFileMergeDialog" timestamp="1584830946004">
       <screen x="-423" y="-1417" width="2560" height="1417" />
     </state>
-    <state x="573" y="-986" key="MultipleFileMergeDialog/0.23.1792.1097/-423.-1417.2560.1417@-423.-1417.2560.1417" timestamp="1584749721330" />
-    <state x="537" y="-952" width="639" height="486" key="find.popup" timestamp="1584749803358">
+    <state x="573" y="-986" key="MultipleFileMergeDialog/0.23.1792.1097/-423.-1417.2560.1417@-423.-1417.2560.1417" timestamp="1584830946004" />
+    <state x="537" y="-952" width="782" height="550" key="find.popup" timestamp="1584826020760">
       <screen x="-423" y="-1417" width="2560" height="1417" />
     </state>
-    <state x="537" y="-952" width="639" height="486" key="find.popup/0.23.1792.1097/-423.-1417.2560.1417@-423.-1417.2560.1417" timestamp="1584749803358" />
-    <state x="522" y="-1092" width="670" height="676" key="search.everywhere.popup" timestamp="1584798107641">
+    <state x="537" y="-952" width="782" height="550" key="find.popup/0.23.1792.1097/-423.-1417.2560.1417@-423.-1417.2560.1417" timestamp="1584826020760" />
+    <state x="522" y="-1092" width="670" height="676" key="search.everywhere.popup" timestamp="1584830842374">
       <screen x="-423" y="-1417" width="2560" height="1417" />
     </state>
-    <state x="522" y="-1092" width="670" height="676" key="search.everywhere.popup/0.23.1792.1097/-423.-1417.2560.1417@-423.-1417.2560.1417" timestamp="1584798107641" />
+    <state x="522" y="-1092" width="670" height="676" key="search.everywhere.popup/0.23.1792.1097/-423.-1417.2560.1417@-423.-1417.2560.1417" timestamp="1584830842374" />
   </component>
 </project>

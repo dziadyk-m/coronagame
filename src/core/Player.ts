@@ -23,8 +23,13 @@ export class Player extends Character {
             if (isFarEnough(this, npc, 60)) {
                 npc.infect();
             }
+            if (this.shouldTriggerNPCIdleAction(npc)) {
+                npc.idleAction();
+            }
         })
     }
+
+    private shouldTriggerNPCIdleAction = (npc) => isFarEnough(this, npc, 120)  && !npc.isIdleActionDone;
 
     public move(): void {
         this.instance.setVelocity(0);
