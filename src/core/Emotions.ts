@@ -6,8 +6,9 @@ export const OUT_OF_SREEN = 1000;
 
 export class Emotions {
     private _instance: Phaser.Physics.Impact.ImpactSprite;
+    private static _classInstance: Emotions;
 
-    constructor(
+    private constructor(
         anims: Phaser.Animations.AnimationManager,
         impact: Phaser.Physics.Impact.ImpactPhysics
     ) {
@@ -49,5 +50,15 @@ export class Emotions {
                 repeat: 0
             });
         });
+    }
+
+    public static getInstance(
+        anims: Phaser.Animations.AnimationManager,
+        impact: Phaser.Physics.Impact.ImpactPhysics
+    ): Emotions {
+        if (!Emotions._classInstance) {
+            Emotions._classInstance = new Emotions(anims, impact);
+        }
+        return Emotions._classInstance;
     }
 }
