@@ -2,6 +2,7 @@ import {DataService, DialogService, SoundService} from '../services';
 import { COLLISION_BLOCKS, TILE_SIZE } from '../consts';
 import { Player, Character, GameObject } from '../core';
 import { NPC_DATA, GAME_OBJECTS_DATA } from '../data';
+import { checkForInfection } from '../utils/infection';
 import { tryToProvideAction } from '../utils';
 
 export class Main extends Phaser.Scene {
@@ -15,13 +16,14 @@ export class Main extends Phaser.Scene {
     }
 
     public create(): void {
+        this._setBackgroundMusic();
         this._loadEntitiesAndWorldData();
         this._actionHookes();
     }
 
     public update(): void {
         this._dataService.player.move();
-        this._dataService.player.tryToProvideActions()
+        this._tryToProvideActions()
         this._moveNpcs();
         this._dataService.npcs.forEach(npc => npc.update());
     }
@@ -52,7 +54,6 @@ export class Main extends Phaser.Scene {
         this.impact.world.setCollisionMapFromTilemapLayer(this._collisionLayer);
 
         this.cameras.main.setBounds(0, TILE_SIZE, this._gameMap.widthInPixels, this._gameMap.heightInPixels);
-        this._setBackgroundMusic();
     }
 
     private _setBackgroundMusic(): void {
@@ -91,5 +92,9 @@ export class Main extends Phaser.Scene {
                     break;
             }
         });
+    }
+    
+    private _tryToProvideActions(): void {
+        checkForInfection();
     }
 }

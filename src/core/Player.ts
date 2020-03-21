@@ -1,7 +1,7 @@
 import { PLAYER_SPEED, PLAYER_DATA } from '../consts';
 import { DataService } from '../services';
 import { Character } from './Character';
-import { isFarEnough } from '../utils';
+import { isCloseEnough } from '../utils';
 import { Animations } from '../enum';
 
 export class Player extends Character {
@@ -16,14 +16,6 @@ export class Player extends Character {
         this._cursors = input.keyboard.createCursorKeys();
         this.instance.setMaxVelocity(300, 300);
         this.instance.setActiveCollision();
-    }
-
-    public tryToProvideActions(): void {
-        DataService.getInstance().npcs.forEach(npc => {
-            if (isFarEnough(this, npc, 60)) {
-                npc.infect();
-            }
-        })
     }
 
     public move(): void {

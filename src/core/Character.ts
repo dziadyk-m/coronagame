@@ -1,9 +1,9 @@
 import { CHARACTER_DEFAULT_FRAMES, TILE_SIZE, CHARACTER_OFFSET } from '../consts';
 import { ICharacterFrames, ICharacterData, ICharacterMoves } from '../models';
+import { TextBubble } from './TextBubble';
 import { NpcSpeed } from './NpcSpeed';
 import { Emotions } from './Emotions';
 import { Animations } from '../enum';
-import { TextBubble } from './TextBubble';
 
 const MIN_MESSAGE_INITIAL_OFFSET = 2000;
 const MAX_MESSAGE_INITIAL_OFFSET = 4000;
@@ -15,16 +15,16 @@ export class Character {
     protected _spriteName: string;
     protected _npcSpeed: number;
     
+    private _messages?: [{ cooldown: number, message: string }];
     private _instance: Phaser.Physics.Impact.ImpactSprite;
-    private _isInfected: boolean = false;
-    private _hasStoped: boolean = false;
+    private _lastMessageCooldown: number;
+    private _lastMessageTime: number;
+    private _textBubble: TextBubble;
     private _emotions: Emotions;
     private _speed: NpcSpeed;
-    private _textBubble: TextBubble;
-    private _messages?: [{ cooldown: number, message: string }];
-    private _lastMessageTime: number;
-    private _lastMessageCooldown: number;
-
+    
+    private _isInfected: boolean = false;
+    private _hasStoped: boolean = false;
 
     constructor(
         impact: Phaser.Physics.Impact.ImpactPhysics,
@@ -35,11 +35,11 @@ export class Character {
         this._menageWaypoints(data);
 
         this._lastMessageTime = Date.now() + (Math.random() * (MAX_MESSAGE_INITIAL_OFFSET - MIN_MESSAGE_INITIAL_OFFSET)) + MIN_MESSAGE_INITIAL_OFFSET;
-        this._lastMessageCooldown = 0;
-        this._messages = data.messages;
         this._instance = impact.add.sprite(data.startX * TILE_SIZE, data.startY * TILE_SIZE, data.sprite, 1);
         this._emotions = Emotions.getInstance(anims, impact);
         this._spriteName = data.sprite;
+        this._messages = data.messages;
+        this._lastMessageCooldown = 0;
         this.action = data.action;
 
         this._menageAnimations(anims, data, frames);
@@ -56,6 +56,10 @@ export class Character {
         return this._spriteName;
     }
 
+    get isInfected(): boolean {
+        return this._isInfected;
+    }
+
     set hasStoped(value: boolean) {
         this._hasStoped = value;
     }
@@ -64,7 +68,7 @@ export class Character {
         this._emotions.display(this.instance.x, this.instance.y, id, this);
     }
 
-    public infect(): void {
+    public tryToInfect(): void {
         if (Math.random() < 0.0085 && !this._isInfected) {
             this._isInfected = true;
             this.displayEmotion('hate');
