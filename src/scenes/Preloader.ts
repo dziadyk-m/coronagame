@@ -8,6 +8,7 @@ export class Preloader extends Phaser.Scene {
 
     preload() {
         this.load.image('tiles', 'assets/tilemaps/tiles/cute_tiles_32.png');
+        this.load.image('beach_tiles', 'assets/tilemaps/tiles/beach_tileset.png');
         this.load.tilemapTiledJSON('map', 'assets/tilemaps/json/smalltest.json');
 
         this.load.spritesheet('emotions', 'assets/sprites/emotions.png', { frameWidth: TILE_SIZE, frameHeight: TILE_SIZE });
