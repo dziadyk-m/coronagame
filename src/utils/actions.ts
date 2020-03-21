@@ -3,13 +3,18 @@ import { DataService } from '../services';
 
 export function checkForActions(): void {
     const dataService = DataService.getInstance();
+    const player = dataService.player;
     dataService.npcs.forEach(npc => {
-        if (isCloseEnough(dataService.player, npc, 60)) {
+        dataService.crowd_sound.setVolume(player.instance.y / 100);
+
+        if (isCloseEnough(player, npc, 60)) {
             npc.tryToInfect();
         }
-        if (shouldTriggerNPCIdleAction(dataService.player, npc)) {
+
+        if (shouldTriggerNPCIdleAction(player, npc)) {
             npc.idleAction();
         }
+
         if (npc.isInfected) {
             dataService.npcs.forEach(anotherNpc => {
                 if (npc.id !== anotherNpc.id && isCloseEnough(anotherNpc, npc, 90)) {

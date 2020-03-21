@@ -10,7 +10,7 @@ export class SoundService {
         this.game = game;
     }
 
-    public getSound(key: string): Phaser.Sound.BaseSound {
+    public getSound(key: string): WebAudioSound {
         const sound = this.game.sound.add(key) as WebAudioSound;
         return sound;
     }
@@ -24,8 +24,9 @@ export class SoundService {
         this._backgroundMusic.play();
     }
 
-    public static init(game: Phaser.Game): void {
+    public static init(game: Phaser.Game): SoundService {
         SoundService._instance = new SoundService(game);
+        return this._instance;
     }
 
     public static getInstance(): SoundService {

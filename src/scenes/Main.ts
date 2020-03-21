@@ -1,5 +1,5 @@
+import { tryToProvideAction, checkForActions, generateCrowdSound } from '../utils';
 import { DataService, DialogService, SoundService } from '../services';
-import { tryToProvideAction, checkForActions } from '../utils';
 import { COLLISION_BLOCKS, TILE_SIZE } from '../consts';
 import { Player, Character, GameObject } from '../core';
 import { NPC_DATA, GAME_OBJECTS_DATA } from '../data';
@@ -56,9 +56,10 @@ export class Main extends Phaser.Scene {
     }
 
     private _setBackgroundMusic(): void {
-        SoundService.init(this.game);
-        SoundService.getInstance().setBackgroundMusic('background_music');
-        SoundService.getInstance().playBackgroundMusic();
+        const soundService = SoundService.init(this.game);
+        soundService.setBackgroundMusic('background_music');
+        soundService.playBackgroundMusic();
+        generateCrowdSound();
     }
 
     private _createNpcsAndObjects(): void {
