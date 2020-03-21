@@ -33,7 +33,7 @@ export const simpleDialog = {
     getChoices: () => [
         DialogService.getInstance().createLabel("It's easy, I'm pretty sure about that. Yyyyy, 2."),
         DialogService.getInstance().createLabel('LoL, 3'),
-        DialogService.getInstance().createLabel('Wypierdalaj, zwyrolu...')
+        DialogService.getInstance().createLabel('Are you pervert?')
     ],
     getContent: () => null,
     actions: actions
