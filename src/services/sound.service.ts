@@ -1,6 +1,8 @@
 import WebAudioSound = Phaser.Sound.WebAudioSound;
 
 export class SoundService {
+    public crowd_sound: Phaser.Sound.WebAudioSound;
+
     private _backgroundMusic: WebAudioSound;
     private static _instance: SoundService;
 

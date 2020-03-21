@@ -8,8 +8,6 @@ export class DataService {
     public npcs: Character[] = [];
     public player: Player;
 
-    public crowd_sound: Phaser.Sound.WebAudioSound;
-
     public findNpcById(id: number): Character {
         return head(this.npcs.filter(npc => npc.id === id));
     }
