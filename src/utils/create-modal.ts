@@ -24,37 +24,3 @@ export function createModal(scene, question, getChoices, getContent = () => null
           .on('button.out',  (button, _groupName) => { button.getElement('background').setStrokeStyle(); });
     return dialog
 }
-
-let typingInterval = null;
-
-const type = (text: string, element: Node) => {
-
-    let textBuffer = text;
-    typingInterval = setInterval(() => {
-        if (textBuffer.length) {
-            const letter = textBuffer.slice(0, 1);
-            element.textContent += letter;
-            textBuffer = textBuffer.slice(1);
-            console.log(letter, textBuffer)
-        } else {
-            clearInterval(typingInterval);
-        }
-    }, 30)
-}
-
-export const openModal = (title: string, text: string) => {
-    clearInterval(typingInterval);
-    const modal = document.getElementById('modal');
-    modal.classList.add('modal__container--visible');
-    modal.querySelector('[data-title]').textContent = title;
-    modal.querySelector('[data-text-placeholder]').textContent = text;
-    const textElement = modal.querySelector('[data-text]')
-    textElement.textContent = '';
-    type(text, textElement);
-}
-
-export const closeModal = () => {
-    clearInterval(typingInterval);
-    const modal = document.getElementById('modal');
-    modal.classList.remove('modal__container--visible');
-}

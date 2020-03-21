@@ -6,7 +6,7 @@
     height: 100%;
     z-index: 100;
     background-color: rgba(0, 0, 0, 0.5);
-    pointer-events: none;
+    /* pointer-events: none; */
     opacity: 0;
     transition: all 0.3s ease-in;
 }
@@ -47,7 +47,9 @@
 
 .modal__title {
     margin: 1rem 0;
-
+    padding: 0.5rem 1rem;
+    background-color: #6797cc;
+    color: #fff;
 }
 
 .modal__content--center {
@@ -60,4 +62,24 @@
     top: initial;
     left: 50%;
     bottom: 0;
+}
+
+.modal__actions {
+    margin: 1rem 0;
+    text-align: center;
+}
+
+.modal__button {
+    border-radius: 0;
+    border: 2px solid #2f4966;
+    padding: 0.4rem 1.5rem;
+    font-size: 1.2rem;
+    background-color: #3d5f84;
+    color: #fff;
+    font-family: 'RedAlertInet';
+}
+
+.modal__button:hover {
+    background-color: #7a9ec6;
+    cursor: pointer;
 }
