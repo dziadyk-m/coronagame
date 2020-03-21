@@ -1,10 +1,23 @@
-﻿body {
-    margin: 0;
+﻿@font-face {
+  font-family: "RedAlertLan";
+  src: url("./assets/fonts/red_alert/red_alert__lan.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "RedAlertInet";
+    src: url("./assets/fonts/red_alert/red_alert__inet.ttf") format("truetype");
+  }
+  
+
+body {
+  margin: 0;
+  font-family: "RedAlertInet";
+  font-size: 20px;
 }
 
 canvas {
-    transform: translate(-50%, -50%);
-    position: absolute;
-    left: 50%;
-    top: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  left: 50%;
+  top: 50%;
 }

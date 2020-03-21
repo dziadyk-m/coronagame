@@ -62,10 +62,15 @@ module.exports = {
                 force: true
             },
             {
+                from: './src/styles',
+                to: './styles',
+                force: true
+            },
+            {
                 from: './app.css',
                 to: './app.css',
                 force: true
-            }
+            },
         ]),
         new HtmlWebpackPlugin({
             filename: 'index.html',
