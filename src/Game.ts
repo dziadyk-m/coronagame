@@ -1,6 +1,6 @@
 import 'phaser';
 
-import { RexUIPlugin } from 'phaser3-rex-plugins/templates/ui/ui-plugin.js';
+import RexUIPlugin from 'phaser3-rex-plugins/templates/ui/ui-plugin.js';
 import { DialogModalPlugin } from './plugins/DialogModalPlugin';
 import { Preloader } from './scenes/Preloader';
 import { Main } from './scenes/Main';
