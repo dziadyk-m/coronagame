@@ -83,6 +83,7 @@
 }
 
 .modal__button:hover {
-    background-color: #7a9ec6;
+    background-color: #c69978;
+    border-color: #dfb08e;
     cursor: pointer;
 }
