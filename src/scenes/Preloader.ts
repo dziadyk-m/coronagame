@@ -35,6 +35,7 @@ export class Preloader extends Phaser.Scene {
         });
 
         this.load.audio('background_music', 'assets/audio/background_music.mp3');
+        this.load.audio('crowd', 'assets/audio/crowd.mp3');
     }
 
     public create(): void {

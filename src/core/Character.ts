@@ -59,7 +59,9 @@ export class Character {
     }
 
     public move(): void {
-        const direction = !this._hasStoped ? this._directions.getStep(this._instance.x, this._instance.y) : 'stop'
+        const direction = !this._hasStoped && this._directions
+            ? this._directions.getStep(this._instance.x, this._instance.y)
+            : 'stop'
         const getCurrentSpeed = this._speed.getSpeed()
         switch (direction) {
             case Animations.UP: {
