@@ -1,4 +1,4 @@
-import { PLAYER_SPEED, PLAYER_DATA, CHARACTER_DEFAULT_FRAMES } from '../consts';
+import { PLAYER_SPEED, PLAYER_DATA } from '../consts';
 import { Character } from './Character';
 import { Animations } from '../enum';
 
@@ -14,6 +14,7 @@ export class Player extends Character {
         this._cursors = input.keyboard.createCursorKeys();
         this.instance.setMaxVelocity(300, 300);
         this.instance.setActiveCollision();
+        impact.world.on('collide', (x) => { console.log(x) });
     }
 
     public move(): void {
