@@ -9,12 +9,11 @@ export const NPC_DATA: ICharacterData[] = [
         startY: 6.5,
         waypoints: new MultiSteps(
             [
-                new SingleStep(0, 11),
+                new SingleStep(-4, 11),
                 new SingleStep(8, 11),
                 new SingleStep(8, 6),
                 new SingleStep(-4, 6),
-                new SingleStep(-4, 11),
-                new SingleStep(0, 11)
+                new SingleStep(-4, 11)
             ],
             true
         ),
@@ -26,7 +25,7 @@ export const NPC_DATA: ICharacterData[] = [
         }
     },
     {
-        sprite: 'npc_3',
+        sprite: 'npc_13',
         startX: 10.5,
         startY: 6.5,
         waypoints: new MultiSteps(
@@ -61,7 +60,7 @@ export const NPC_DATA: ICharacterData[] = [
         }
     },
     {
-        sprite: 'npc_1',
+        sprite: 'npc_12',
         startX: 10.5,
         startY: 6.5,
         waypoints: new MultiSteps(
@@ -93,12 +92,12 @@ export const NPC_DATA: ICharacterData[] = [
         }
     },
     {
-        sprite: 'npc_3',
+        sprite: 'npc_13',
         startX: 10.5,
         startY: 6.5,
         waypoints: new MultiSteps(
             [
-                new SingleStep(37, 27)
+                new SingleStep(37, 28)
             ],
             false,
             true
@@ -113,7 +112,7 @@ export const NPC_DATA: ICharacterData[] = [
         startY: 6.5,
         waypoints: new MultiSteps(
             [
-                new SingleStep(35, 27)
+                new SingleStep(35, 28)
             ],
             false,
             true
@@ -123,12 +122,12 @@ export const NPC_DATA: ICharacterData[] = [
         }
     },
     {
-        sprite: 'npc_2',
+        sprite: 'npc_5',
         startX: 10.5,
         startY: 6.5,
         waypoints: new MultiSteps(
             [
-                new SingleStep(39, 27)
+                new SingleStep(39, 28)
             ],
             false,
             true
@@ -174,7 +173,7 @@ export const NPC_DATA: ICharacterData[] = [
         }
     },
     {
-        sprite: 'npc_4',
+        sprite: 'npc_6',
         startX: 10.5,
         startY: 6.5,
         waypoints: new MultiSteps(
@@ -210,7 +209,7 @@ export const NPC_DATA: ICharacterData[] = [
         }
     },
     {   
-        sprite: 'npc_1',
+        sprite: 'npc_7',
         startX: 10.5,
         startY: 6.5,
         waypoints: new MultiSteps(
@@ -231,12 +230,12 @@ export const NPC_DATA: ICharacterData[] = [
         }
     },
     {
-        sprite: 'npc_3',
+        sprite: 'npc_8',
         startX: 10.5,
         startY: 6.5,
         waypoints: new MultiSteps(
             [
-                new SingleStep(118, 16)
+                new SingleStep(118, 17)
             ],
             false,
             true
@@ -246,12 +245,12 @@ export const NPC_DATA: ICharacterData[] = [
         }
     },
     {
-        sprite: 'npc_4',
+        sprite: 'npc_9',
         startX: 10.5,
         startY: 6.5,
         waypoints: new MultiSteps(
             [
-                new SingleStep(113, 16)
+                new SingleStep(114, 17)
             ],
             false,
             true
@@ -261,32 +260,16 @@ export const NPC_DATA: ICharacterData[] = [
         }
     },
     {
-        sprite: 'npc_4',
+        sprite: 'npc_10',
         startX: 10.5,
         startY: 6.5,
         waypoints: new MultiSteps(
             [
-                new SingleStep(112, 16),
-                new SingleStep(129, 16),
-                new SingleStep(129, 14),
-                new SingleStep(112, 14),
-                new SingleStep(112, 16)
-            ],
-            true
-        ),
-        action: () => {
-            DialogService.getInstance().createDialog(SIMPLE_DIALOG);
-        }
-    },
-    {
-        sprite: 'npc_3',
-        startX: 10.5,
-        startY: 6.5,
-        waypoints: new MultiSteps(
-            [
-                new SingleStep(133, 17),
-                new SingleStep(156, 17),
-                new SingleStep(133, 17)
+                new SingleStep(122, 17),
+                new SingleStep(129, 17),
+                new SingleStep(129, 15),
+                new SingleStep(122, 15),
+                new SingleStep(122, 17)
             ],
             true
         ),
@@ -300,9 +283,25 @@ export const NPC_DATA: ICharacterData[] = [
         startY: 6.5,
         waypoints: new MultiSteps(
             [
-                new SingleStep(184, 17),
-                new SingleStep(190, 17),
-                new SingleStep(184, 17)
+                new SingleStep(133, 18),
+                new SingleStep(156, 18),
+                new SingleStep(133, 18)
+            ],
+            true
+        ),
+        action: () => {
+            DialogService.getInstance().createDialog(SIMPLE_DIALOG);
+        }
+    },
+    {
+        sprite: 'npc_11',
+        startX: 10.5,
+        startY: 6.5,
+        waypoints: new MultiSteps(
+            [
+                new SingleStep(184, 18),
+                new SingleStep(190, 18),
+                new SingleStep(184, 18)
             ],
             false,
             true
@@ -312,14 +311,100 @@ export const NPC_DATA: ICharacterData[] = [
         }
     },
     {
-        sprite: 'npc_2',
+        sprite: 'npc_12',
         startX: 10.5,
         startY: 6.5,
         waypoints: new MultiSteps(
             [
-                new SingleStep(177, 17)
+                new SingleStep(177, 18)
             ],
             false,
+            true
+        ),
+        action: () => {
+            DialogService.getInstance().createDialog(SIMPLE_DIALOG);
+        }
+    },
+    {
+        sprite: 'fox',
+        startX: 10.5,
+        startY: 6.5,
+        waypoints: new MultiSteps(
+            [
+                new SingleStep(183, 26),
+                new SingleStep(197, 26),
+                new SingleStep(197, 28),
+                new SingleStep(183, 28),
+                new SingleStep(183, 26)
+            ],
+            true
+        ),
+        action: () => {
+            DialogService.getInstance().createDialog(SIMPLE_DIALOG);
+        }
+    },
+    {
+        sprite: 'fox',
+        startX: 10.5,
+        startY: 6.5,
+        waypoints: new MultiSteps(
+            [
+                new SingleStep(86, 10),
+                new SingleStep(108, 10),
+                new SingleStep(108, 6),
+                new SingleStep(86, 6),
+                new SingleStep(86, 10)
+            ],
+            true
+        ),
+        action: () => {
+            DialogService.getInstance().createDialog(SIMPLE_DIALOG);
+        }
+    },
+    {
+        sprite: 'npc_14',
+        startX: 10.5,
+        startY: 6.5,
+        waypoints: new MultiSteps(
+            [
+                new SingleStep(16, 27),
+                new SingleStep(31, 27),
+                new SingleStep(16, 27)
+            ],
+            true
+        ),
+        action: () => {
+            DialogService.getInstance().createDialog(SIMPLE_DIALOG);
+        }
+    },
+    {
+        sprite: 'npc_13',
+        startX: 10.5,
+        startY: 6.5,
+        waypoints: new MultiSteps(
+            [
+                new SingleStep(16, 24),
+                new SingleStep(31, 24),
+                new SingleStep(16, 24)
+            ],
+            true
+        ),
+        action: () => {
+            DialogService.getInstance().createDialog(SIMPLE_DIALOG);
+        }
+    },
+    {
+        sprite: 'fox',
+        startX: 10.5,
+        startY: 6.5,
+        waypoints: new MultiSteps(
+            [
+                new SingleStep(21, 22),
+                new SingleStep(33, 22),
+                new SingleStep(33, 19),
+                new SingleStep(21, 19),
+                new SingleStep(21, 22)
+            ],
             true
         ),
         action: () => {
