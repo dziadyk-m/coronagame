@@ -1,6 +1,8 @@
 import { PLAYER_SPEED, PLAYER_DATA } from '../consts';
+import { tryToProvideAction, isFarEnough } from '../utils';
 import { Character } from './Character';
 import { Animations } from '../enum';
+import { DataService } from '../services';
 
 export class Player extends Character {
     private _cursors: CursorKeys;
@@ -14,6 +16,14 @@ export class Player extends Character {
         this._cursors = input.keyboard.createCursorKeys();
         this.instance.setMaxVelocity(300, 300);
         this.instance.setActiveCollision();
+    }
+
+    public tryToInfect(): void {
+        DataService.getInstance().npcs.forEach(npc => {
+            if (isFarEnough(this, npc, 60)) {
+                npc.infect();
+            }
+        })
     }
 
     public move(): void {

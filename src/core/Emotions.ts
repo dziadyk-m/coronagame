@@ -1,54 +1,47 @@
 import { EMOTION_FRAMES, TILE_SIZE } from '../consts';
 import { IFrame } from '../models';
+import { DataService } from '../services';
+import { Character } from './Character';
 
 // Becuase there is no other way to hide sprite animation without destroung it
 export const OUT_OF_SREEN = 1000;
 
 export class Emotions {
-    private _instance: Phaser.Physics.Impact.ImpactSprite;
+    private _impact: Phaser.Physics.Impact.ImpactPhysics;
+    private _anims: Phaser.Animations.AnimationManager;
+
     private static _classInstance: Emotions;
 
     private constructor(
         anims: Phaser.Animations.AnimationManager,
         impact: Phaser.Physics.Impact.ImpactPhysics
     ) {
-        this._instance = impact.add.sprite(
-            -OUT_OF_SREEN,
-            -OUT_OF_SREEN,
-            'emotions',
-            0
-        );
-        this._createAnimations(anims);
-        this._instance.addListener('animationcomplete', () =>
-            this._instance.setOffset(OUT_OF_SREEN, OUT_OF_SREEN)
-        );
+        this._impact = impact;
+        this._anims = anims;
     }
 
-    get instance(): Phaser.Physics.Impact.ImpactSprite {
-        return this._instance;
+    public display(x: number, y: number, emotion: string, stoped: Character) {
+        this._createAnimation(emotion);
+
+        const instance = this._impact.add.sprite(x, y - 2 * TILE_SIZE, 'emotions');
+        stoped.hasStoped = true;
+        instance.addListener('animationcomplete', () => {
+            stoped.hasStoped = false;
+            instance.destroy();
+        });
+        instance.anims.play(`emotions_${emotion}`, false);
     }
 
-    public display(x: number, y: number, emotion: string) {
-        this._instance.setOffset(
-            -x - OUT_OF_SREEN,
-            -y + TILE_SIZE * 2 - OUT_OF_SREEN
-        );
-        this._instance.anims.play(emotion, false);
-    }
-
-    private _createAnimations(
-        animations: Phaser.Animations.AnimationManager
-    ): void {
-        EMOTION_FRAMES.forEach((data: IFrame) => {
-            animations.create({
-                key: `emotions_${data.key}`,
-                frames: animations.generateFrameNumbers('emotions', {
-                    start: data.animationStart,
-                    end: data.animationEnd
-                }),
-                frameRate: 10,
-                repeat: 0
-            });
+    private _createAnimation(key: string): void {
+        const frame = EMOTION_FRAMES.find((frame: IFrame) => frame.key === key)
+        this._anims.create({
+            key: `emotions_${key}`,
+            frames: this._anims.generateFrameNumbers('emotions', {
+                start: frame.animationStart,
+                end: frame.animationEnd
+            }),
+            frameRate: 10,
+            repeat: 0
         });
     }
 

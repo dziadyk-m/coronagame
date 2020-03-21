@@ -6,7 +6,8 @@ import { Animations } from '../enum';
 
 export class Character {
     public action: Function = () => {};
-    
+    public hasStoped = false;
+
     protected _directions: ICharacterMoves;
     protected _spriteName: string;
     protected _npcSpeed: number;
@@ -14,6 +15,8 @@ export class Character {
     private _instance: Phaser.Physics.Impact.ImpactSprite;
     private _emotions: Emotions;
     private _speed: NpcSpeed;
+
+    private _isInfected = false;
 
     constructor(
         impact: Phaser.Physics.Impact.ImpactPhysics,
@@ -40,7 +43,14 @@ export class Character {
     }
 
     public displayEmotion(id: string): void {
-        this._emotions.display(this.instance.x, this.instance.y, id);
+        this._emotions.display(this.instance.x, this.instance.y, id, this);
+    }
+
+    public infect(): void {
+        if (Math.random() < 0.5 && !this._isInfected) {
+            this._isInfected = true;
+            this.displayEmotion('hate');
+        }
     }
 
     private _menageWaypoints(data: ICharacterData) {
@@ -78,13 +88,13 @@ export class Character {
     }
 
     private _stop(): void {
-        this._instance.anims.play(`${this._spriteName}_idle`, true);
+        this._instance.anims.play(`${this._spriteName}_${Animations.IDLE}`, true);
         this.instance.setVelocityX(0);
         this.instance.setVelocityY(0);
     }
 
     public move(): void {
-        const direction = this._directions.getStep(this._instance.x, this._instance.y)
+        const direction = !this.hasStoped ? this._directions.getStep(this._instance.x, this._instance.y) : 'stop'
         const getCurrentSpeed = this._speed.getSpeed()
         switch (direction) {
             case Animations.UP: {
@@ -103,7 +113,7 @@ export class Character {
                 this._moveRight(getCurrentSpeed);
                 break;
             }
-            case "stop": {
+            case 'stop': {
                 this._stop();
                 break;
             }

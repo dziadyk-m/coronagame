@@ -37,7 +37,7 @@ export const NPC_DATA: ICharacterData[] = [
         action: () => {
             DataService.getInstance()
                 .findNpcById('npc_3')
-                .displayEmotion('emotions_cringe');
+                .displayEmotion('cringe');
         }
     },
     {

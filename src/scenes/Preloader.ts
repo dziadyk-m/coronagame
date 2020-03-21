@@ -7,7 +7,6 @@ export class Preloader extends Phaser.Scene {
             pack: {
                 files: [
                     { type: 'image', key: 'bar', url: './assets/images/loadBar.png' },
-                    { type: 'image', key: 'barBg', url: './assets/images/barBg.png' }
                 ]
             }
         });

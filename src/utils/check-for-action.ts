@@ -9,8 +9,8 @@ export function checkForDistance(player: Player, object: Character | GameObject)
     return Math.sqrt(a * a + b * b);
 }
 
-export function isFarEnough(player: Player, object: Character | GameObject): boolean {
-    return checkForDistance(player, object) < FAR_ENOUGH;
+export function isFarEnough(player: Player, object: Character | GameObject, howFar = FAR_ENOUGH): boolean {
+    return checkForDistance(player, object) < howFar;
 }
 
 // It's provided with normal for for break functionality
