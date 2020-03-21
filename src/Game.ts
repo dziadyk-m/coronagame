@@ -1,11 +1,11 @@
 import 'phaser';
 
+import RexUIPlugin from 'phaser3-rex-plugins/templates/ui/ui-plugin.js';
+import { DialogModalPlugin } from './plugins/DialogModalPlugin';
 import { Preloader } from './scenes/Preloader';
 import { Main } from './scenes/Main';
-import {DialogModalPlugin} from "./plugins/DialogModalPlugin";
-import RexUIPlugin from 'phaser3-rex-plugins/templates/ui/ui-plugin.js';
-let WEBGL_RENDERER = true;
 let CANVAS_RENDERER = true;
+let WEBGL_RENDERER = true;
 
 const config = {
     type: Phaser.CANVAS,
@@ -41,7 +41,7 @@ const config = {
     // TODO: Do we really want fullscrean?
     scale: {
         width: window.innerWidth,
-        height:  window.innerHeight
+        height: window.innerHeight
     }
 };
 
