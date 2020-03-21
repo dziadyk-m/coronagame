@@ -1,4 +1,5 @@
 import { TILE_SIZE } from "../consts";
+import {SoundService} from "../services/sound.service";
 
 export class Preloader extends Phaser.Scene {
     constructor() {
@@ -20,6 +21,9 @@ export class Preloader extends Phaser.Scene {
             key: 'rexuiplugin',
             sceneKey: 'rexUI'
         });
+
+        this.load.audio('background_music', 'assets/audio/background_music.mp3');
+
     }
 
     create() {
