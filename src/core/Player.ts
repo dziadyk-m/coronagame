@@ -14,7 +14,6 @@ export class Player extends Character {
         this._cursors = input.keyboard.createCursorKeys();
         this.instance.setMaxVelocity(300, 300);
         this.instance.setActiveCollision();
-        impact.world.on('collide', (x) => { console.log(x) });
     }
 
     public move(): void {

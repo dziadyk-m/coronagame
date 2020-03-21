@@ -8,10 +8,10 @@ export const CHARACTER_OFFSET = {
 };
 
 export const CHARACTER_DEFAULT_FRAMES: ICharacterFrames = {
-    up: { animationStart: 24, animationEnd: 31 },
-    down: { animationStart: 16, animationEnd: 23 },
-    left: { animationStart: 32, animationEnd: 39 },
     right: { animationStart: 8, animationEnd: 15 },
+    up: { animationStart: 16, animationEnd: 23 },
+    down: { animationStart: 24, animationEnd: 31 },
+    left: { animationStart: 32, animationEnd: 39 },
     idle: { animationStart: 24, animationEnd: 31, frameRate: 5 }
 };
 

@@ -8,4 +8,4 @@ export const PLAYER_DATA: ICharacterData = {
     waypoints: null
 };
 
-export const PLAYER_SPEED = 150;
+export const PLAYER_SPEED = 100;

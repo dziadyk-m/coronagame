@@ -12,8 +12,13 @@ export class Preloader extends Phaser.Scene {
 
         this.load.spritesheet('emotions', 'assets/sprites/emotions.png', { frameWidth: TILE_SIZE, frameHeight: TILE_SIZE });
 
-        this.load.spritesheet('test', 'assets/sprites/test.png', { frameWidth: 2 * TILE_SIZE, frameHeight: 2 * TILE_SIZE });
-        this.load.spritesheet('player', 'assets/sprites/test.png', { frameWidth: 2 * TILE_SIZE, frameHeight: 2 * TILE_SIZE });
+        this.load.spritesheet('npc_1', 'assets/sprites/npc_1.png', { frameWidth: 2 * TILE_SIZE, frameHeight: 2 * TILE_SIZE });
+        this.load.spritesheet('npc_2', 'assets/sprites/npc_2.png', { frameWidth: 2 * TILE_SIZE, frameHeight: 2 * TILE_SIZE });
+        this.load.spritesheet('npc_3', 'assets/sprites/npc_3.png', { frameWidth: 2 * TILE_SIZE, frameHeight: 2 * TILE_SIZE });
+        this.load.spritesheet('npc_4', 'assets/sprites/npc_4.png', { frameWidth: 2 * TILE_SIZE, frameHeight: 2 * TILE_SIZE });
+        this.load.spritesheet('npc_5', 'assets/sprites/npc_5.png', { frameWidth: 2 * TILE_SIZE, frameHeight: 2 * TILE_SIZE });
+        this.load.spritesheet('npc_6', 'assets/sprites/npc_6.png', { frameWidth: 2 * TILE_SIZE, frameHeight: 2 * TILE_SIZE });
+        this.load.spritesheet('player', 'assets/sprites/npc_1.png', { frameWidth: 2 * TILE_SIZE, frameHeight: 2 * TILE_SIZE });
 
         this.load.scenePlugin({
             url: 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexuiplugin.min.js',
