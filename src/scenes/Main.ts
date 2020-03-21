@@ -21,7 +21,7 @@ export class Main extends Phaser.Scene {
 
     public update(): void {
         this._dataService.player.move();
-        this._dataService.player.tryToInfect()
+        this._dataService.player.tryToProvideActions()
         this._moveNpcs();
     }
 

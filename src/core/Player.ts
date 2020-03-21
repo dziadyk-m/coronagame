@@ -18,7 +18,7 @@ export class Player extends Character {
         this.instance.setActiveCollision();
     }
 
-    public tryToInfect(): void {
+    public tryToProvideActions(): void {
         DataService.getInstance().npcs.forEach(npc => {
             if (isFarEnough(this, npc, 60)) {
                 npc.infect();
