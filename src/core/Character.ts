@@ -119,7 +119,6 @@ export class Character {
     }
 
     public update(): void {
-
         if (this._messages)
             this._saySentence();
     }
