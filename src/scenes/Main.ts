@@ -1,5 +1,5 @@
 import { Player, Character, GameObject, Emotions } from '../core';
-import { DataService, DialogService } from '../services';
+import {DataService, DialogService, SoundService} from '../services';
 import { NPC_DATA, GAME_OBJECTS_DATA } from '../data';
 import { tryToProvideAction } from '../utils';
 import { COLISION_BLOCKS } from '../consts';
@@ -17,6 +17,7 @@ export class Main extends Phaser.Scene {
     public create(): void {
         this._loadEntities();
         this._loadWorldData();
+        this._setBackgroundMusic();
         this._createNpcsAndObjects();
         this._createPlayer();
         this._actionHookes();
@@ -41,6 +42,12 @@ export class Main extends Phaser.Scene {
         this._collisionLayer.setCollisionBetween(COLISION_BLOCKS.start, COLISION_BLOCKS.stop);
         this.impact.world.setCollisionMapFromTilemapLayer(this._collisionLayer, { defaultCollidingSlope: 1 });
         this.cameras.main.setBounds(0, 0, this._gameMap.widthInPixels, this._gameMap.heightInPixels);
+    }
+
+    private _setBackgroundMusic() {
+        SoundService.init(this.game);
+        SoundService.getInstance().setBackgroundMusic('background_music');
+        SoundService.getInstance().playBackgroundMusic();
     }
 
     private _createNpcsAndObjects(): void {
