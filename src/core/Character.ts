@@ -1,4 +1,4 @@
-import { CHARACTER_DEFAULT_FRAMES, TILE_SIZE, CHARACTER_OFFSET } from '../consts';
+import { CHARACTER_DEFAULT_FRAMES, TILE_SIZE, CHARACTER_OFFSET, NPC_MODERATE_SPEED } from '../consts';
 import { ICharacterFrames, ICharacterData, ICharacterMoves } from '../models';
 import { TextBubble } from './TextBubble';
 import { NpcSpeed } from './NpcSpeed';
@@ -28,6 +28,7 @@ export class Character {
     
     private _isInfected: boolean = false;
     private _hasStoped: boolean = false;
+    private _constSpeed: boolean = false;
 
     constructor(
         impact: Phaser.Physics.Impact.ImpactPhysics,
@@ -46,6 +47,7 @@ export class Character {
         this._lastMessageCooldown = 0;
         this.action = data.action;
         this._id = data.id;
+        this._constSpeed = data.constantSpeed;
 
         this._menageAnimations(anims, data, frames);
         this._menagePhisics();
@@ -92,7 +94,9 @@ export class Character {
         const direction = !this._hasStoped && this._directions
             ? this._directions.getStep(this._instance.x, this._instance.y)
             : 'stop'
-        const getCurrentSpeed = this._speed.getSpeed()
+        const getCurrentSpeed = this._constSpeed
+            ? this._speed.getSpeed()
+            : NPC_MODERATE_SPEED;
         switch (direction) {
             case Animations.UP: {
                 this._moveUp(getCurrentSpeed);
