@@ -28,9 +28,9 @@ export const NPC_DATA: ICharacterData[] = [
         startX: 10.5,
         startY: 6.5,
         action: () => {
-            DataService.getInstance()
-                .findNpcById('test')
-                .displayEmotion('emotions_love2');
+            DialogService
+                .getInstance()
+                .createDialog(SIMPLE_DIALOG);
         }
     }
 ];

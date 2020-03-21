@@ -1,5 +1,4 @@
 import { TILE_SIZE } from "../consts";
-import {SoundService} from "../services/sound.service";
 
 export class Preloader extends Phaser.Scene {
     constructor() {

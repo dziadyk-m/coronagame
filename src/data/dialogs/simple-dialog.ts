@@ -19,11 +19,11 @@ const simple_dialog_2 = {
 const spimple_dialog_actions = [
     ({ dialog }) => {
         dialog.destroy();
-        DialogService.getInstance().createModal(simple_dialog_2);
+        DialogService.getInstance().createDialog(simple_dialog_2);
     },
     ({ dialog }) => {
         dialog.destroy();
-        DialogService.getInstance().createModal(simple_dialog_1);
+        DialogService.getInstance().createDialog(simple_dialog_1);
     },
     ({ dialog }) => { dialog.destroy(); }
 ];
