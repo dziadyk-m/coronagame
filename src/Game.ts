@@ -1,8 +1,6 @@
 import 'phaser';
 
-import RexUIPlugin from 'phaser3-rex-plugins/templates/ui/ui-plugin.js';
 import { Preloader } from './scenes/Preloader';
-import { DialogModalPlugin } from './plugins';
 import { Main } from './scenes/Main';
 
 const config = {
@@ -25,20 +23,6 @@ const config = {
     scale: {
         width: window.innerWidth,
         height: window.innerHeight
-    },
-    plugins: {
-        scene: [
-            {
-                key: 'dialogModalPlugin',
-                plugin: DialogModalPlugin,
-                start: true
-            },
-            {
-                key: 'rexUI',
-                plugin: RexUIPlugin,
-                mapping: 'rexUI'
-            }
-        ]
     }
 };
 

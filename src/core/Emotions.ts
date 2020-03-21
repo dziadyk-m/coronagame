@@ -21,7 +21,9 @@ export class Emotions {
     }
 
     public display(x: number, y: number, emotion: string, stoped: Character) {
-        this._createAnimation(emotion);
+        if (!this._anims.get(`emotions_${emotion}`)) {
+            this._createAnimation(emotion);
+        }
 
         const instance = this._impact.add.sprite(x, y - 2 * TILE_SIZE, 'emotions');
         stoped.hasStoped = true;

@@ -1,6 +1,5 @@
 import { ICharacterData, SingleStep, MultiSteps } from '../models';
 import { DialogService, DataService } from '../services';
-import { SIMPLE_DIALOG } from './dialogs';
 
 export const NPC_DATA: ICharacterData[] = [
     {
@@ -55,9 +54,7 @@ export const NPC_DATA: ICharacterData[] = [
             false,
             true
         ),
-        action: () => {
-            DialogService.getInstance().createDialog(SIMPLE_DIALOG);
-        }
+        action: () => {}
     },
     {
         sprite: 'npc_12',
@@ -71,9 +68,7 @@ export const NPC_DATA: ICharacterData[] = [
             false,
             true
         ),
-        action: () => {
-            DialogService.getInstance().createDialog(SIMPLE_DIALOG);
-        }
+        action: () => {}
     },
     {
         sprite: 'npc_2',
@@ -87,9 +82,7 @@ export const NPC_DATA: ICharacterData[] = [
             false,
             true
         ),
-        action: () => {
-            DialogService.getInstance().createDialog(SIMPLE_DIALOG);
-        }
+        action: () => {}
     },
     {
         sprite: 'npc_13',
@@ -102,9 +95,7 @@ export const NPC_DATA: ICharacterData[] = [
             false,
             true
         ),
-        action: () => {
-            DialogService.getInstance().createDialog(SIMPLE_DIALOG);
-        }
+        action: () => {}
     },
     {
         sprite: 'npc_4',
@@ -117,9 +108,7 @@ export const NPC_DATA: ICharacterData[] = [
             false,
             true
         ),
-        action: () => {
-            DialogService.getInstance().createDialog(SIMPLE_DIALOG);
-        }
+        action: () => {}
     },
     {
         sprite: 'npc_5',
@@ -132,9 +121,7 @@ export const NPC_DATA: ICharacterData[] = [
             false,
             true
         ),
-        action: () => {
-            DialogService.getInstance().createDialog(SIMPLE_DIALOG);
-        }
+        action: () => {}
     },
     {
         sprite: 'npc_2',
@@ -150,9 +137,7 @@ export const NPC_DATA: ICharacterData[] = [
             ],
             true
         ),
-        action: () => {
-            DialogService.getInstance().createDialog(SIMPLE_DIALOG);
-        }
+        action: () => {}
     },
     {
         sprite: 'npc_4',
@@ -168,9 +153,7 @@ export const NPC_DATA: ICharacterData[] = [
             ],
             true
         ),
-        action: () => {
-            DialogService.getInstance().createDialog(SIMPLE_DIALOG);
-        }
+        action: () => {}
     },
     {
         sprite: 'npc_6',
@@ -186,9 +169,7 @@ export const NPC_DATA: ICharacterData[] = [
             ],
             true
         ),
-        action: () => {
-            DialogService.getInstance().createDialog(SIMPLE_DIALOG);
-        }
+        action: () => {}
     },
     {
         sprite: 'npc_1',
@@ -204,9 +185,7 @@ export const NPC_DATA: ICharacterData[] = [
             ],
             true
         ),
-        action: () => {
-            DialogService.getInstance().createDialog(SIMPLE_DIALOG);
-        }
+        action: () => {}
     },
     {   
         sprite: 'npc_7',
@@ -225,9 +204,7 @@ export const NPC_DATA: ICharacterData[] = [
             ],
             true
         ),
-        action: () => {
-            DialogService.getInstance().createDialog(SIMPLE_DIALOG);
-        }
+        action: () => {}
     },
     {
         sprite: 'npc_8',
@@ -240,9 +217,7 @@ export const NPC_DATA: ICharacterData[] = [
             false,
             true
         ),
-        action: () => {
-            DialogService.getInstance().createDialog(SIMPLE_DIALOG);
-        }
+        action: () => {}
     },
     {
         sprite: 'npc_9',
@@ -255,9 +230,7 @@ export const NPC_DATA: ICharacterData[] = [
             false,
             true
         ),
-        action: () => {
-            DialogService.getInstance().createDialog(SIMPLE_DIALOG);
-        }
+        action: () => {}
     },
     {
         sprite: 'npc_10',
@@ -273,9 +246,7 @@ export const NPC_DATA: ICharacterData[] = [
             ],
             true
         ),
-        action: () => {
-            DialogService.getInstance().createDialog(SIMPLE_DIALOG);
-        }
+        action: () => {}
     },
     {
         sprite: 'npc_1',
@@ -289,9 +260,7 @@ export const NPC_DATA: ICharacterData[] = [
             ],
             true
         ),
-        action: () => {
-            DialogService.getInstance().createDialog(SIMPLE_DIALOG);
-        }
+        action: () => {}
     },
     {
         sprite: 'npc_11',
@@ -306,9 +275,7 @@ export const NPC_DATA: ICharacterData[] = [
             false,
             true
         ),
-        action: () => {
-            DialogService.getInstance().createDialog(SIMPLE_DIALOG);
-        }
+        action: () => {}
     },
     {
         sprite: 'npc_12',
@@ -321,9 +288,7 @@ export const NPC_DATA: ICharacterData[] = [
             false,
             true
         ),
-        action: () => {
-            DialogService.getInstance().createDialog(SIMPLE_DIALOG);
-        }
+        action: () => {}
     },
     {
         sprite: 'fox',
@@ -339,9 +304,7 @@ export const NPC_DATA: ICharacterData[] = [
             ],
             true
         ),
-        action: () => {
-            DialogService.getInstance().createDialog(SIMPLE_DIALOG);
-        }
+        action: () => {}
     },
     {
         sprite: 'fox',
@@ -357,9 +320,7 @@ export const NPC_DATA: ICharacterData[] = [
             ],
             true
         ),
-        action: () => {
-            DialogService.getInstance().createDialog(SIMPLE_DIALOG);
-        }
+        action: () => {}
     },
     {
         sprite: 'npc_14',
@@ -373,9 +334,7 @@ export const NPC_DATA: ICharacterData[] = [
             ],
             true
         ),
-        action: () => {
-            DialogService.getInstance().createDialog(SIMPLE_DIALOG);
-        }
+        action: () => {}
     },
     {
         sprite: 'npc_13',
@@ -389,9 +348,7 @@ export const NPC_DATA: ICharacterData[] = [
             ],
             true
         ),
-        action: () => {
-            DialogService.getInstance().createDialog(SIMPLE_DIALOG);
-        }
+        action: () => {}
     },
     {
         sprite: 'fox',
@@ -407,8 +364,6 @@ export const NPC_DATA: ICharacterData[] = [
             ],
             true
         ),
-        action: () => {
-            DialogService.getInstance().createDialog(SIMPLE_DIALOG);
-        }
+        action: () => {}
     }
 ];
