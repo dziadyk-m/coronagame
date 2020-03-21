@@ -49,7 +49,7 @@ export class Main extends Phaser.Scene {
         this._collisionLayer.setCollisionBetween(COLLISION_BLOCKS.start, COLLISION_BLOCKS.stop);
         this.impact.world.setCollisionMapFromTilemapLayer(this._collisionLayer);
 
-        this.cameras.main.setBounds(0, 0, this._gameMap.widthInPixels, this._gameMap.heightInPixels);
+        this.cameras.main.setBounds(0, TILE_SIZE, this._gameMap.widthInPixels, this._gameMap.heightInPixels);
         this._setBackgroundMusic();
     }
 
