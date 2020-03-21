@@ -35,7 +35,8 @@ export class Main extends Phaser.Scene {
         this._gameMap.createStaticLayer('background', gameTiles, 0, 0);
         this._gameMap.createStaticLayer('shadows_sea', beachTiles, 0, 0);  
         this._gameMap.createStaticLayer('shadows', gameTiles, 0, 0);
-        this._collisionLayer = this._gameMap.createStaticLayer('collision', gameTiles, 0, 0); // TODO: Refactor since we probably do not need this as a class variable
+        // TODO: Refactor since we probably do not need this as a class variable
+        this._collisionLayer = this._gameMap.createStaticLayer('collision', gameTiles, 0, 0);
         this._gameMap.createStaticLayer('floating', gameTiles, 0, 0);
         this._gameMap.createStaticLayer('overfloating', gameTiles, 0, 0);
 
@@ -80,12 +81,6 @@ export class Main extends Phaser.Scene {
             switch (key.keyCode) {
                 case 32 /* Space */:
                     tryToProvideAction(this._dataService.player, this._dataService.npcs, this._dataService.objects);
-                    break;
-                case 81 /* Q */:
-                    DialogService.getInstance().openModal(
-                        'Test modal', 
-                        `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.`,
-                    );
                     break;
                 case 27 /* Esc */:
                     DialogService.getInstance().closeModal();
