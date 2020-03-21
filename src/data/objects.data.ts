@@ -1,16 +1,16 @@
 import { IGameModel } from '../models';
+import { DialogService } from '../services';
 
 export const GAME_OBJECTS_DATA: IGameModel[] = [
     {
-        positionX: 16.5,
-        positionY: 5.5,
+        positionX: 15.5,
+        positionY: 6.5,
         id: 'golfIV1',
-        action: () => console.log('Hmm. What a beautiful VW Golf IV!')
-    },
-    {
-        positionX: 17.5,
-        positionY: 5.5,
-        id: 'golfIV1',
-        action: () => console.log('Hmm. What a beautiful VW Golf IV!')
+        action: () => {
+            DialogService.getInstance().openModal(
+                'Kosz na śmieci',
+                `Test ciążowy... Pozytywny.`
+            );
+        }
     }
 ];

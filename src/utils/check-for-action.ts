@@ -1,7 +1,7 @@
 import { Player, Character, GameObject } from '../core';
 import { combine } from './ramda';
 
-const FAR_ENOUGH = 45;
+const FAR_ENOUGH = 30;
 
 export function checkForDistance(player: Player, object: Character | GameObject): number {
     const a = player.instance.x - object.instance.x;
