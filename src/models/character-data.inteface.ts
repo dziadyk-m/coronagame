@@ -91,14 +91,17 @@ export class MultiSteps {
     private _steps : ICharacterMoves[];
     private _inLoop : boolean;
     private _currentStep : number;
+    private _stayAtEnd : boolean;
     
     constructor(
         stepsList : ICharacterMoves[],
-        endless: boolean
+        endless: boolean,
+        stop?: boolean
     ) {
       this._steps = stepsList;
       this._inLoop = endless;
       this._currentStep = 0;
+      this._stayAtEnd = stop;
     }
 
     public getPoint(): number[] {
@@ -106,6 +109,9 @@ export class MultiSteps {
     }
 
     public getStep(x : number, y : number) : string {
+        if (this._currentStep == this._steps.length && this._stayAtEnd) {
+            return "stop"
+        }
         const nextDirection = this._steps[this._currentStep].getStep(x, y)
         if (nextDirection == "end") {
             this._currentStep++;
