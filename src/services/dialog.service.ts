@@ -6,7 +6,6 @@ export class DialogService {
 
     constructor(sceneObject) {
         this.scene = sceneObject.scene;
-        console.log(`Scene init:`, this.scene)
     }
 
     createModal = ({ question, getChoices, getContent = () => null, actions = [(props) => {}] }) => {
@@ -14,7 +13,6 @@ export class DialogService {
     }
 
     createLabel = (text: String) => {
-        console.log(text)
         return this.scene.rexUI.add.label({
             background: this.scene.rexUI.add.roundRectangle(0, 0, 200, 40, 20, 0x64B5F6),
             width: 100,

@@ -38,7 +38,6 @@ export const createModal = (scene, question, getChoices, getContent = () => null
     dialog
         .on('button.click',  (button, groupName, index) => actions[index]({ dialog, button, groupName, index, scene }), scene)
         .on('button.over', (button, groupName, index) => {
-            console.log(button)
             button.getElement('background').setStrokeStyle(2, 0xffffff);
         })
         .on('button.out',  (button, groupName, index) => {
