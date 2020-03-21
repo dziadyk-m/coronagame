@@ -3,6 +3,10 @@ import { ICharacterFrames, ICharacterData, ICharacterMoves } from '../models';
 import { NpcSpeed } from './NpcSpeed';
 import { Emotions } from './Emotions';
 import { Animations } from '../enum';
+import { TextBubble } from './TextBubble';
+
+const MIN_MESSAGE_INITIAL_OFFSET = 2000;
+const MAX_MESSAGE_INITIAL_OFFSET = 4000;
 
 export class Character {
     public action: Function = () => {};
@@ -14,6 +18,10 @@ export class Character {
     private _instance: Phaser.Physics.Impact.ImpactSprite;
     private _emotions: Emotions;
     private _speed: NpcSpeed;
+    private _textBubble: TextBubble;
+    private _messages?: [{ cooldown: number, message: string }];
+    private _lastMessageTime: number;
+    private _lastMessageCooldown: number;
 
     constructor(
         impact: Phaser.Physics.Impact.ImpactPhysics,
@@ -23,12 +31,17 @@ export class Character {
     ) {
         this._menageWaypoints(data);
 
+        this._lastMessageTime = Date.now() + (Math.random() * (MAX_MESSAGE_INITIAL_OFFSET - MIN_MESSAGE_INITIAL_OFFSET)) + MIN_MESSAGE_INITIAL_OFFSET;
+        this._lastMessageCooldown = 0;
+        this._messages = data.messages;
         this._instance = impact.add.sprite(data.startX * TILE_SIZE, data.startY * TILE_SIZE, data.sprite, 1);
         this._emotions = Emotions.getInstance(anims, impact);
         this._spriteName = data.sprite;
         this.action = data.action;
         this._createAnimations(anims, data.sprite, frames);
         this._menagePhisics();
+
+        this._textBubble = new TextBubble(this._instance, impact.scene);
     }
 
     get instance(): Phaser.Physics.Impact.ImpactSprite {
@@ -108,6 +121,27 @@ export class Character {
                 break;
             }
         }
+        this._textBubble.update();
+    }
+
+    public update(): void {
+
+        if (this._messages)
+            this._saySentence();
+    }
+
+    private _saySentence = () => {
+        const now = Date.now();
+        const messageLength = 3000;
+
+        const deltaTime = now - this._lastMessageTime;
+        const requiredDelay = messageLength + this._lastMessageCooldown;
+        if (deltaTime > requiredDelay) {
+            const message = this._messages[0]
+            this._lastMessageTime = now;
+            this._lastMessageCooldown = message.cooldown;
+            this._textBubble.showMessage(message.message, messageLength);
+        }        
     }
 
     private _menagePhisics(): void {
