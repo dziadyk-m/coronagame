@@ -31,7 +31,7 @@ export class Emotions {
     public display(x: number, y: number, emotion: string) {
         this._instance.setOffset(
             -x - OUT_OF_SREEN,
-            -y + TILE_SIZE - OUT_OF_SREEN
+            -y + TILE_SIZE * 2 - OUT_OF_SREEN
         );
         this._instance.anims.play(emotion, false);
     }

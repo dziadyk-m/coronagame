@@ -4,7 +4,7 @@ import { SIMPLE_DIALOG } from './dialogs';
 
 export const NPC_DATA: ICharacterData[] = [
     {
-        sprite: 'npc_2',
+        sprite: 'fox',
         startX: 10.5,
         startY: 6.5,
         waypoints: new MultiSteps(
@@ -36,7 +36,7 @@ export const NPC_DATA: ICharacterData[] = [
         ),
         action: () => {
             DataService.getInstance()
-                .findNpcById('monster')
+                .findNpcById('npc_3')
                 .displayEmotion('emotions_cringe');
         }
     },
