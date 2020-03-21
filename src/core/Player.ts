@@ -41,6 +41,7 @@ export class Player extends Character {
             this.instance.anims.play(`${this._spriteName}_${Animations.DOWN}`, true);
         } else {
             this.instance.anims.stop();
+            this.instance.anims.play(`${this._spriteName}_${Animations.IDLE}`, true);
         }
     }
 }

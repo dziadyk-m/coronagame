@@ -12,7 +12,7 @@ export const CHARACTER_DEFAULT_FRAMES: ICharacterFrames = {
     up: { animationStart: 16, animationEnd: 23 },
     down: { animationStart: 24, animationEnd: 31 },
     left: { animationStart: 32, animationEnd: 39 },
-    idle: { animationStart: 24, animationEnd: 31, frameRate: 5 }
+    idle: { animationStart: 0, animationEnd: 1, frameRate: 5 }
 };
 
 export const EMOTION_FRAMES: IFrame[] = [
