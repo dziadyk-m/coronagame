@@ -1,18 +1,21 @@
-import { isCloseEnough } from "./check-for-action";
-import { DataService } from "../services";
+import { isCloseEnough, shouldTriggerNPCIdleAction } from './check-for-action';
+import { DataService } from '../services';
 
-export function checkForInfection(): void {
+export function checkForActions(): void {
     const dataService = DataService.getInstance();
     dataService.npcs.forEach(npc => {
         if (isCloseEnough(dataService.player, npc, 60)) {
             npc.tryToInfect();
         }
+        if (shouldTriggerNPCIdleAction(dataService.player, npc)) {
+            npc.idleAction();
+        }
         if (npc.isInfected) {
-            dataService.npcs.forEach(anotherNpc => { 
+            dataService.npcs.forEach(anotherNpc => {
                 if (npc !== anotherNpc && isCloseEnough(anotherNpc, npc, 90)) {
                     anotherNpc.tryToInfect();
                 }
             });
         }
-    })
+    });
 }

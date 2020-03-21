@@ -10,6 +10,8 @@ const MAX_MESSAGE_INITIAL_OFFSET = 4000;
 
 export class Character {
     public action: Function = () => {};
+    public idleAction: Function = () => {};
+    public isIdleActionDone: boolean = false;
     
     protected _directions: ICharacterMoves;
     protected _spriteName: string;
@@ -36,6 +38,7 @@ export class Character {
 
         this._lastMessageTime = Date.now() + (Math.random() * (MAX_MESSAGE_INITIAL_OFFSET - MIN_MESSAGE_INITIAL_OFFSET)) + MIN_MESSAGE_INITIAL_OFFSET;
         this._instance = impact.add.sprite(data.startX * TILE_SIZE, data.startY * TILE_SIZE, data.sprite, 1);
+        this.idleAction = this.setIsIdleDoneHof(data.idleAction);
         this._emotions = Emotions.getInstance(anims, impact);
         this._spriteName = data.sprite;
         this._messages = data.messages;
@@ -73,6 +76,10 @@ export class Character {
             this._isInfected = true;
             this.displayEmotion('hate');
         }
+    }
+
+    private setIsIdleDoneHof(fn: Function = () => {}): Function {
+        return () => { fn(); this.isIdleActionDone = true;}
     }
 
     public move(): void {

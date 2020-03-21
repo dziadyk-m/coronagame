@@ -2,6 +2,7 @@ import { TILE_SIZE } from '../consts';
 
 export interface ICharacterData {
     action: Function;
+    idleAction?: Function;
     waypoints: ICharacterMoves;
     sprite: string;
     startX: number;

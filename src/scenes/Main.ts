@@ -2,7 +2,7 @@ import {DataService, DialogService, SoundService} from '../services';
 import { COLLISION_BLOCKS, TILE_SIZE } from '../consts';
 import { Player, Character, GameObject } from '../core';
 import { NPC_DATA, GAME_OBJECTS_DATA } from '../data';
-import { checkForInfection } from '../utils/infection';
+import { checkForActions } from '../utils/infection';
 import { tryToProvideAction } from '../utils';
 
 export class Main extends Phaser.Scene {
@@ -95,6 +95,6 @@ export class Main extends Phaser.Scene {
     }
     
     private _tryToProvideActions(): void {
-        checkForInfection();
+        checkForActions();
     }
 }
