@@ -8,6 +8,7 @@ export interface ICharacterData {
     sprite: string;
     startX: number;
     startY: number;
+    constantSpeed?: boolean;
     messages?: [{
         cooldown: number;
         message: string;
