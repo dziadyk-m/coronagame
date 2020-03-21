@@ -1,4 +1,4 @@
-import { CHARACTER_DEFAULT_FRAMES, TILE_SIZE } from '../consts';
+import { CHARACTER_DEFAULT_FRAMES, TILE_SIZE, CHARACTER_OFFSET } from '../consts';
 import { ICharacterFrames, ICharacterData } from '../models';
 import { Emotions } from './Emotions';
 import { Animations } from '../enum';
@@ -17,11 +17,11 @@ export class Character {
         frames?: ICharacterFrames
     ) {
         this._instance = impact.add.sprite(data.startX * TILE_SIZE, data.startY * TILE_SIZE, data.sprite, 1);
-        this._createAnimations(anims, data.sprite, frames);
         this._emotions = Emotions.getInstance(anims, impact);
-        this._instance.setFixedCollision();
         this._spriteName = data.sprite;
         this.action = data.action;
+        this._createAnimations(anims, data.sprite, frames);
+        this._menagePhisics();
     }
 
     get instance(): Phaser.Physics.Impact.ImpactSprite {
@@ -38,6 +38,16 @@ export class Character {
 
     public move(): void {
         this._instance.anims.play(`${this._spriteName}_${Animations.IDLE}`, true);
+    }
+
+    private _menagePhisics(): void {
+        this.instance.setOffset(
+            CHARACTER_OFFSET.x,
+            CHARACTER_OFFSET.y,
+            CHARACTER_OFFSET.h,
+            CHARACTER_OFFSET.w
+        );
+        this._instance.setFixedCollision();
     }
 
     private _createAnimations(
