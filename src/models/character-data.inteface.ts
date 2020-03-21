@@ -7,6 +7,10 @@ export interface ICharacterData {
     sprite: string;
     startX: number;
     startY: number;
+    messages?: [{
+        cooldown: number;
+        message: string;
+    }]
 }
 
 export interface ICharacterMoves {

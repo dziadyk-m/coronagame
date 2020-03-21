@@ -23,6 +23,9 @@ export const NPC_DATA: ICharacterData[] = [
             );
         },
         idleAction: () => console.log('fox is near!'),
+        messages: [
+            { cooldown: 5000, message: '*Cough*' }
+        ]
     },
     {
         sprite: 'npc_13',
@@ -40,8 +43,8 @@ export const NPC_DATA: ICharacterData[] = [
         ),
         action: () => {
             DataService.getInstance()
-                .findNpcById('npc_3')
-                .displayEmotion('cringe');
+                .findNpcById('npc_13')
+                .displayEmotion('love');
         },
         idleAction: () => console.log('npc_13 is near!'),
     },
@@ -49,28 +52,27 @@ export const NPC_DATA: ICharacterData[] = [
         sprite: 'npc_4',
         startX: 10.5,
         startY: 6.5,
-        waypoints: new MultiSteps(
-            [
-                new SingleStep(26, 18)
-            ],
-            false,
-            true
-        ),
-        action: () => {}
+        waypoints: new MultiSteps([new SingleStep(26, 18)], false, true),
+        action: () => {
+            DataService.getInstance()
+                .findNpcById('npc_4')
+                .displayEmotion('love2');
+        }
     },
     {
         sprite: 'npc_12',
         startX: 10.5,
         startY: 6.5,
         waypoints: new MultiSteps(
-            [
-                new SingleStep(2, 25),
-                new SingleStep(4, 25)
-            ],
+            [new SingleStep(2, 25), new SingleStep(4, 25)],
             false,
             true
         ),
-        action: () => {},
+        action: () => {
+            DataService.getInstance()
+                .findNpcById('npc_12')
+                .displayEmotion('cringe');
+        },
         idleAction: () => console.log('npc_12 is near!'),
     },
     {
@@ -78,10 +80,7 @@ export const NPC_DATA: ICharacterData[] = [
         startX: 10.5,
         startY: 6.5,
         waypoints: new MultiSteps(
-            [
-                new SingleStep(8, 25),
-                new SingleStep(6, 25)
-            ],
+            [new SingleStep(8, 25), new SingleStep(6, 25)],
             false,
             true
         ),
@@ -91,40 +90,30 @@ export const NPC_DATA: ICharacterData[] = [
         sprite: 'npc_13',
         startX: 10.5,
         startY: 6.5,
-        waypoints: new MultiSteps(
-            [
-                new SingleStep(37, 28)
-            ],
-            false,
-            true
-        ),
-        action: () => {}
+        waypoints: new MultiSteps([new SingleStep(37, 28)], false, true),
+        action: () => {
+            DataService.getInstance()
+                .findNpcById('npc_13')
+                .displayEmotion('haha');
+        }
     },
     {
         sprite: 'npc_4',
         startX: 10.5,
         startY: 6.5,
-        waypoints: new MultiSteps(
-            [
-                new SingleStep(35, 28)
-            ],
-            false,
-            true
-        ),
+        waypoints: new MultiSteps([new SingleStep(35, 28)], false, true),
         action: () => {}
     },
     {
         sprite: 'npc_5',
         startX: 10.5,
         startY: 6.5,
-        waypoints: new MultiSteps(
-            [
-                new SingleStep(39, 28)
-            ],
-            false,
-            true
-        ),
-        action: () => {}
+        waypoints: new MultiSteps([new SingleStep(39, 28)], false, true),
+        action: () => {
+            DataService.getInstance()
+                .findNpcById('npc_5')
+                .displayEmotion('haha');
+        }
     },
     {
         sprite: 'npc_2',
@@ -140,7 +129,11 @@ export const NPC_DATA: ICharacterData[] = [
             ],
             true
         ),
-        action: () => {}
+        action: () => {
+            DataService.getInstance()
+                .findNpcById('npc_2')
+                .displayEmotion('wow');
+        }
     },
     {
         sprite: 'npc_4',
@@ -156,7 +149,11 @@ export const NPC_DATA: ICharacterData[] = [
             ],
             true
         ),
-        action: () => {}
+        action: () => {
+            DataService.getInstance()
+                .findNpcById('npc_4')
+                .displayEmotion('wow');
+        }
     },
     {
         sprite: 'npc_6',
@@ -172,7 +169,11 @@ export const NPC_DATA: ICharacterData[] = [
             ],
             true
         ),
-        action: () => {}
+        action: () => {
+            DataService.getInstance()
+                .findNpcById('npc_6')
+                .displayEmotion('what');
+        }
     },
     {
         sprite: 'npc_1',
@@ -188,9 +189,13 @@ export const NPC_DATA: ICharacterData[] = [
             ],
             true
         ),
-        action: () => {}
+        action: () => {
+            DataService.getInstance()
+                .findNpcById('npc_1')
+                .displayEmotion('what');
+        }
     },
-    {   
+    {
         sprite: 'npc_7',
         startX: 10.5,
         startY: 6.5,
@@ -207,33 +212,33 @@ export const NPC_DATA: ICharacterData[] = [
             ],
             true
         ),
-        action: () => {}
+        action: () => {
+            DataService.getInstance()
+                .findNpcById('npc_7')
+                .displayEmotion('idk');
+        }
     },
     {
         sprite: 'npc_8',
         startX: 10.5,
         startY: 6.5,
-        waypoints: new MultiSteps(
-            [
-                new SingleStep(118, 17)
-            ],
-            false,
-            true
-        ),
-        action: () => {}
+        waypoints: new MultiSteps([new SingleStep(118, 17)], false, true),
+        action: () => {
+            DataService.getInstance()
+                .findNpcById('npc_8')
+                .displayEmotion('idk');
+        }
     },
     {
         sprite: 'npc_9',
         startX: 10.5,
         startY: 6.5,
-        waypoints: new MultiSteps(
-            [
-                new SingleStep(114, 17)
-            ],
-            false,
-            true
-        ),
-        action: () => {}
+        waypoints: new MultiSteps([new SingleStep(114, 17)], false, true),
+        action: () => {
+            DataService.getInstance()
+                .findNpcById('npc_9')
+                .displayEmotion('yes');
+        }
     },
     {
         sprite: 'npc_10',
@@ -249,7 +254,11 @@ export const NPC_DATA: ICharacterData[] = [
             ],
             true
         ),
-        action: () => {}
+        action: () => {
+            DataService.getInstance()
+                .findNpcById('npc_10')
+                .displayEmotion('yes');
+        }
     },
     {
         sprite: 'npc_1',
@@ -263,7 +272,11 @@ export const NPC_DATA: ICharacterData[] = [
             ],
             true
         ),
-        action: () => {}
+        action: () => {
+            DataService.getInstance()
+                .findNpcById('npc_1')
+                .displayEmotion('oh_yes');
+        }
     },
     {
         sprite: 'npc_11',
@@ -278,20 +291,22 @@ export const NPC_DATA: ICharacterData[] = [
             false,
             true
         ),
-        action: () => {}
+        action: () => {
+            DataService.getInstance()
+                .findNpcById('npc_11')
+                .displayEmotion('cringe');
+        }
     },
     {
         sprite: 'npc_12',
         startX: 10.5,
         startY: 6.5,
-        waypoints: new MultiSteps(
-            [
-                new SingleStep(177, 18)
-            ],
-            false,
-            true
-        ),
-        action: () => {}
+        waypoints: new MultiSteps([new SingleStep(177, 18)], false, true),
+        action: () => {
+            DataService.getInstance()
+                .findNpcById('npc_12')
+                .displayEmotion('cringe');
+        }
     },
     {
         sprite: 'fox',
@@ -307,7 +322,11 @@ export const NPC_DATA: ICharacterData[] = [
             ],
             true
         ),
-        action: () => {}
+        action: () => {
+            DataService.getInstance()
+                .findNpcById('fox')
+                .displayEmotion('cringe');
+        }
     },
     {
         sprite: 'fox',
@@ -323,7 +342,11 @@ export const NPC_DATA: ICharacterData[] = [
             ],
             true
         ),
-        action: () => {}
+        action: () => {
+            DataService.getInstance()
+                .findNpcById('fox')
+                .displayEmotion('oh_yes');
+        }
     },
     {
         sprite: 'npc_14',
@@ -351,7 +374,11 @@ export const NPC_DATA: ICharacterData[] = [
             ],
             true
         ),
-        action: () => {}
+        action: () => {
+            DataService.getInstance()
+                .findNpcById('npc_13')
+                .displayEmotion('oh_no');
+        }
     },
     {
         sprite: 'fox',
@@ -367,6 +394,10 @@ export const NPC_DATA: ICharacterData[] = [
             ],
             true
         ),
-        action: () => {}
+        action: () => {
+            DataService.getInstance()
+                .findNpcById('fox')
+                .displayEmotion('eek');
+        }
     }
 ];
