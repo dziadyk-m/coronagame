@@ -24,3 +24,15 @@ export function createModal(scene, question, getChoices, getContent = () => null
           .on('button.out',  (button, _groupName) => { button.getElement('background').setStrokeStyle(); });
     return dialog
 }
+
+export const openModal = (title: string, content: string) => {
+    const modal = document.getElementById('modal');
+    modal.classList.add('modal__container--visible');
+    modal.querySelector('[data-title]').textContent = title;
+    modal.querySelector('[data-content]').textContent = content;
+}
+
+export const closeModal = () => {
+    const modal = document.getElementById('modal');
+    modal.classList.remove('modal__container--visible');
+}

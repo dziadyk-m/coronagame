@@ -3,6 +3,7 @@
         <meta charset="utf-8" />
         <title>CoronaGame</title>
         <link rel="stylesheet" href="./app.css" type="text/css" />
+        <link rel="stylesheet" href="./styles/modal.css" type="text/css" />
     </head>
     <script>
         // This is necessary to work. DON'T REMOVE
@@ -13,6 +14,12 @@
     <body class="body">
         <div id="canvas"></div>
         <!-- Script swill be injected here -->
+        <div id="modal" class="modal__container">
+            <div class="modal__content modal__content--center">
+                <h3 class="modal__title" data-title></h3>
+                <p data-content></p>
+            </div>
+        </div>
     </body>
 
 </html>
