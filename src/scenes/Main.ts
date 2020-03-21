@@ -15,8 +15,7 @@ export class Main extends Phaser.Scene {
     }
 
     public create(): void {
-        this._loadEntities();
-        this._loadWorldData();
+        this._loadEntitiesAndWorldData();
         this._actionHookes();
     }
 
@@ -25,30 +24,29 @@ export class Main extends Phaser.Scene {
         this._moveNpcs();
     }
 
-    private _loadEntities(): void {
+    private _loadEntitiesAndWorldData(): void {
         this._gameMap = this.make.tilemap({ key: 'map' });
         const gameTiles = this._gameMap.addTilesetImage('tilemap2x', 'tiles');
         const beachTiles = this._gameMap.addTilesetImage('beach_tileset', 'beach_tiles');
 
+        this._collisionLayer = this._gameMap.createStaticLayer('main_collisions', gameTiles, 0, 0); // TODO: Refactor since we probably do not need this as a class variable
         this._gameMap.createStaticLayer('underfloating', beachTiles, 0, 0);  
         this._gameMap.createStaticLayer('background_sea', beachTiles, 0, 0);      
         this._gameMap.createStaticLayer('background', gameTiles, 0, 0);
         this._gameMap.createStaticLayer('shadows_sea', beachTiles, 0, 0);  
         this._gameMap.createStaticLayer('shadows', gameTiles, 0, 0);
-        // TODO: Refactor since we probably do not need this as a class variable
-
-        this._createNpcsAndObjects();
-        this._createPlayer();
-
-        this._collisionLayer = this._gameMap.createStaticLayer('collision', gameTiles, 0, 0);
+        
+        this._gameMap.createStaticLayer('collision', gameTiles, 0, 0);
+        this._gameMap.createStaticLayer('collision_sea', beachTiles, 0, 0);
         this._gameMap.createStaticLayer('floating', gameTiles, 0, 0);
         this._gameMap.createStaticLayer('overfloating', gameTiles, 0, 0);
 
-    }
-
-    private _loadWorldData(): void {
+        this._createNpcsAndObjects();
+        this._createPlayer();
+    
         this._collisionLayer.setCollisionBetween(COLLISION_BLOCKS.start, COLLISION_BLOCKS.stop);
         this.impact.world.setCollisionMapFromTilemapLayer(this._collisionLayer);
+
         this.cameras.main.setBounds(0, 0, this._gameMap.widthInPixels, this._gameMap.heightInPixels);
         this._setBackgroundMusic();
     }
