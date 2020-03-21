@@ -1,7 +1,6 @@
+import { DataService, DialogService } from '../services';
 import { ICharacterData } from '../models';
-import { DataService } from '../services';
-import {DialogService} from "../services/dialog.service";
-import {simpleDialog} from "../dialogs/SimpleDialog";
+import { SIMPLE_DIALOG } from './dialogs';
 
 export const NPC_DATA: ICharacterData[] = [
     {
@@ -9,13 +8,9 @@ export const NPC_DATA: ICharacterData[] = [
         startX: 7.5,
         startY: 9.5,
         action: () => {
-            console.log('Hello im skeleton');
-            DataService.getInstance()
-                .findNpcById('skeleton')
-                .displayEmotion('emotions_wow');
             DialogService
                 .getInstance()
-                .createModal(simpleDialog)
+                .createModal(SIMPLE_DIALOG)
 
         }
     },
@@ -24,13 +19,9 @@ export const NPC_DATA: ICharacterData[] = [
         startX: 10.5,
         startY: 9.5,
         action: () => {
-            console.log('Hello im monster');
             DataService.getInstance()
                 .findNpcById('monster')
                 .displayEmotion('emotions_cringe');
-            DialogService
-                .getInstance()
-                .createModal(simpleDialog)
         }
     }
 ];

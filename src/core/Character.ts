@@ -6,6 +6,7 @@ import { Animations } from '../enum';
 export class Character {
     public action: Function = () => {};
     protected _spriteName: string;
+    
     private _instance: Phaser.Physics.Impact.ImpactSprite;
     private _emotions: Emotions;
 
@@ -13,14 +14,13 @@ export class Character {
         impact: Phaser.Physics.Impact.ImpactPhysics,
         anims: Phaser.Animations.AnimationManager,
         data: ICharacterData,
-        emotions: Emotions,
         frames?: ICharacterFrames
     ) {
         this._instance = impact.add.sprite(data.startX * TILE_SIZE, data.startY * TILE_SIZE, data.sprite, 1);
         this._createAnimations(anims, data.sprite, frames);
+        this._emotions = new Emotions(anims, impact);
         this._instance.setFixedCollision();
         this._spriteName = data.sprite;
-        this._emotions = emotions;
         this.action = data.action;
     }
 

@@ -1,10 +1,8 @@
 import { Player, Character, GameObject, Emotions } from '../core';
-import { DialogService } from "../services/dialog.service";
+import { DataService, DialogService } from '../services';
 import { NPC_DATA, GAME_OBJECTS_DATA } from '../data';
 import { tryToProvideAction } from '../utils';
 import { COLISION_BLOCKS } from '../consts';
-import { DataService } from '../services';
-
 
 export class Main extends Phaser.Scene {
     private _collisionLayer: Phaser.Tilemaps.StaticTilemapLayer;
@@ -17,10 +15,10 @@ export class Main extends Phaser.Scene {
     }
 
     public create(): void {
-        DialogService.init(this.scene);
         this._loadEntities();
         this._loadWorldData();
-        this._createNpcsAndObjectsAndPlayer();
+        this._createNpcsAndObjects();
+        this._createPlayer();
         this._actionHookes();
     }
 
@@ -32,7 +30,7 @@ export class Main extends Phaser.Scene {
     private _loadEntities(): void {
         this._gameMap = this.make.tilemap({ key: 'map' });
         const gameTiles = this._gameMap.addTilesetImage('tilemap2x', 'tiles');
-        this._gameMap.createStaticLayer('background', gameTiles, 0, 0);    
+        this._gameMap.createStaticLayer(0, gameTiles, 0, 0);
         this._collisionLayer = this._gameMap.createStaticLayer('collision', gameTiles, 0, 0);
         this._gameMap.createStaticLayer('shadows', gameTiles, 0, 0);
         this._gameMap.createStaticLayer('floating', gameTiles, 0, 0);
@@ -45,15 +43,17 @@ export class Main extends Phaser.Scene {
         this.cameras.main.setBounds(0, 0, this._gameMap.widthInPixels, this._gameMap.heightInPixels);
     }
 
-    private _createNpcsAndObjectsAndPlayer(): void {
-        const emotions = new Emotions(this.anims, this.impact);
+    private _createNpcsAndObjects(): void {
         NPC_DATA.forEach(npcData => { this._dataService.npcs.push(
-            new Character(this.impact, this.anims, npcData, emotions));
+            new Character(this.impact, this.anims, npcData));
         });
         GAME_OBJECTS_DATA.forEach(objectData => {
             this._dataService.objects.push(new GameObject(objectData));
         });
-        this._dataService.player = new Player(this.impact, this.anims, this.input, emotions);
+    }
+
+    private _createPlayer(): void {
+        this._dataService.player = new Player(this.impact, this.anims, this.input,);
         this.cameras.main.startFollow(this._dataService.player.instance);
     }
 
@@ -62,14 +62,11 @@ export class Main extends Phaser.Scene {
     }
 
     private _actionHookes() {
+        DialogService.init(this.scene);
         this.input.keyboard.on('keydown', (key: Phaser.Input.Keyboard.Key) => {
             switch (key.keyCode) {
                 case 32 /* Space */:
-                    tryToProvideAction(
-                        this._dataService.player,
-                        this._dataService.npcs,
-                        this._dataService.objects
-                    );
+                    tryToProvideAction(this._dataService.player, this._dataService.npcs, this._dataService.objects);
                     break;
             }
         });

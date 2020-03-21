@@ -1,5 +1,4 @@
 import { TILE_SIZE } from "../consts";
-import {DialogService} from "../services/dialog.service";
 
 export class Preloader extends Phaser.Scene {
     constructor() {
@@ -21,9 +20,6 @@ export class Preloader extends Phaser.Scene {
             key: 'rexuiplugin',
             sceneKey: 'rexUI'
         });
-
-
-
     }
 
     create() {
