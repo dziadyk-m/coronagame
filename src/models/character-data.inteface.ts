@@ -4,6 +4,7 @@ export interface ICharacterData {
     action: Function;
     idleAction?: Function;
     waypoints: ICharacterMoves;
+    id: number;
     sprite: string;
     startX: number;
     startY: number;

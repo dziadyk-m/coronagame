@@ -1,7 +1,5 @@
 import { PLAYER_SPEED, PLAYER_DATA } from '../consts';
-import { DataService } from '../services';
 import { Character } from './Character';
-import { isCloseEnough } from '../utils';
 import { Animations } from '../enum';
 
 export class Player extends Character {

@@ -1,9 +1,8 @@
-import {DataService, DialogService, SoundService} from '../services';
+import { DataService, DialogService, SoundService } from '../services';
+import { tryToProvideAction, checkForActions } from '../utils';
 import { COLLISION_BLOCKS, TILE_SIZE } from '../consts';
 import { Player, Character, GameObject } from '../core';
 import { NPC_DATA, GAME_OBJECTS_DATA } from '../data';
-import { checkForActions } from '../utils/infection';
-import { tryToProvideAction } from '../utils';
 
 export class Main extends Phaser.Scene {
     private _collisionLayer: Phaser.Tilemaps.StaticTilemapLayer;

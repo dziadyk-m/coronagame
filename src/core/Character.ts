@@ -24,6 +24,7 @@ export class Character {
     private _textBubble: TextBubble;
     private _emotions: Emotions;
     private _speed: NpcSpeed;
+    private _id: number;
     
     private _isInfected: boolean = false;
     private _hasStoped: boolean = false;
@@ -44,6 +45,7 @@ export class Character {
         this._messages = data.messages;
         this._lastMessageCooldown = 0;
         this.action = data.action;
+        this._id = data.id;
 
         this._menageAnimations(anims, data, frames);
         this._menagePhisics();
@@ -51,6 +53,10 @@ export class Character {
         this._textBubble = new TextBubble(this._instance, impact.scene);
     }
 
+    get id(): number {
+        return this._id;
+    }
+    
     get instance(): Phaser.Physics.Impact.ImpactSprite {
         return this._instance;
     }

@@ -12,7 +12,7 @@ export function checkForActions(): void {
         }
         if (npc.isInfected) {
             dataService.npcs.forEach(anotherNpc => {
-                if (npc !== anotherNpc && isCloseEnough(anotherNpc, npc, 90)) {
+                if (npc.id !== anotherNpc.id && isCloseEnough(anotherNpc, npc, 90)) {
                     anotherNpc.tryToInfect();
                 }
             });
