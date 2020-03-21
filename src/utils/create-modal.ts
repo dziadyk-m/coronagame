@@ -1,4 +1,4 @@
-export function createModal(scene, question, getChoices, getContent = () => null, actions = [(_) => {}]) {
+export function createDialog(scene, question, getChoices, getContent = () => null, actions = [(_) => {}]) {
     const x = scene.game.config.width / 2;
     const y = scene.game.config.height - 220;
     const dialog = scene.rexUI.add.dialog({
