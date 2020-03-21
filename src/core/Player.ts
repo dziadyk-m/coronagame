@@ -23,6 +23,9 @@ export class Player extends Character {
             if (isFarEnough(this, npc, 60)) {
                 npc.infect();
             }
+            if (isFarEnough(this, npc, 40)) {
+                npc.idleAction();
+            }
         })
     }
 

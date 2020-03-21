@@ -21,7 +21,8 @@ export const NPC_DATA: ICharacterData[] = [
                 'Test modal',
                 `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.`
             );
-        }
+        },
+        idleAction: () => console.log('fox is near!'),
     },
     {
         sprite: 'npc_13',
@@ -41,7 +42,8 @@ export const NPC_DATA: ICharacterData[] = [
             DataService.getInstance()
                 .findNpcById('npc_3')
                 .displayEmotion('cringe');
-        }
+        },
+        idleAction: () => console.log('npc_13 is near!'),
     },
     {
         sprite: 'npc_4',
@@ -68,7 +70,8 @@ export const NPC_DATA: ICharacterData[] = [
             false,
             true
         ),
-        action: () => {}
+        action: () => {},
+        idleAction: () => console.log('npc_12 is near!'),
     },
     {
         sprite: 'npc_2',

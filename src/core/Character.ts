@@ -6,6 +6,7 @@ import { Animations } from '../enum';
 
 export class Character {
     public action: Function = () => {};
+    public idleAction: Function = () => {};
     
     protected _directions: ICharacterMoves;
     protected _spriteName: string;
@@ -16,7 +17,6 @@ export class Character {
     private _hasStoped: boolean = false;
     private _emotions: Emotions;
     private _speed: NpcSpeed;
-
 
     constructor(
         impact: Phaser.Physics.Impact.ImpactPhysics,
@@ -30,6 +30,7 @@ export class Character {
         this._emotions = Emotions.getInstance(anims, impact);
         this._spriteName = data.sprite;
         this.action = data.action;
+        this.idleAction = data.idleAction;
 
         this._menageAnimations(anims, data, frames);
         this._menagePhisics();
