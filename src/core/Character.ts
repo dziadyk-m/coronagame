@@ -1,5 +1,5 @@
 import { CHARACTER_DEFAULT_FRAMES, TILE_SIZE, CHARACTER_OFFSET } from '../consts';
-import { ICharacterFrames, ICharacterData } from '../models';
+import { ICharacterFrames, ICharacterData, ICharacterMoves } from '../models';
 import { Emotions } from './Emotions';
 import { Animations } from '../enum';
 import { HUMAN_FRAMES, NPC_SLOW_SPEED, NPC_MODERATE_SPEED, NPC_SPRINT_SPEED, NPC_STOPPED } from '../consts/human-consts';
@@ -56,12 +56,14 @@ export class Character {
     private _emotions: Emotions;
     protected _isMovingToGoal: boolean;
     protected _npcSpeed: number;
+    protected _directions: ICharacterMoves;
     private __speed: NpcSpeed;
 
     constructor(
         impact: Phaser.Physics.Impact.ImpactPhysics,
         anims: Phaser.Animations.AnimationManager,
         data: ICharacterData,
+        directions: ICharacterMoves,
         frames?: ICharacterFrames
     ) {
         this._instance = impact.add.sprite(data.startX * TILE_SIZE, data.startY * TILE_SIZE, data.sprite, 1);
@@ -71,7 +73,8 @@ export class Character {
         this._createAnimations(anims, data.sprite, frames);
         this._menagePhisics();
         this._isMovingToGoal = false;
-        this.__speed = new NpcSpeed()
+        this.__speed = new NpcSpeed();
+        this._directions = directions;
     }
 
     get instance(): Phaser.Physics.Impact.ImpactSprite {
@@ -116,25 +119,26 @@ export class Character {
     }
 
     public move(): void {
+        const direction = this._directions.getStep(this._instance.x, this._instance.y)
         const getCurrentSpeed = this.__speed.getSpeed()
-        switch (Math.floor(Math.random() * (5))) {
-            case 0: {
+        switch (direction) {
+            case "up": {
                 this._moveUp(getCurrentSpeed);
                 break;
             }
-            case 1: {
+            case "down": {
                 this._moveDown(getCurrentSpeed);
                 break;
             }
-            case 2: {
+            case "left": {
                 this._moveLeft(getCurrentSpeed);
                 break;
             }
-            case 3: {
+            case "right": {
                 this._moveRight(getCurrentSpeed);
                 break;
             }
-            case 4: {
+            case "stop": {
                 this._stop();
                 break;
             }
