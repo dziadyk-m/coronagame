@@ -32,9 +32,14 @@ export class Main extends Phaser.Scene {
     private _loadEntities(): void {
         this._gameMap = this.make.tilemap({ key: 'map' });
         const gameTiles = this._gameMap.addTilesetImage('tilemap2x', 'tiles');
-        this._gameMap.createStaticLayer('background', gameTiles, 0, 0);    
-        this._collisionLayer = this._gameMap.createStaticLayer('collision', gameTiles, 0, 0);
+        const beachTiles = this._gameMap.addTilesetImage('beach_tileset', 'beach_tiles');
+
+        this._gameMap.createStaticLayer('underfloating', beachTiles, 0, 0);  
+        this._gameMap.createStaticLayer('background_sea', beachTiles, 0, 0);      
+        this._gameMap.createStaticLayer('background', gameTiles, 0, 0);
+        this._gameMap.createStaticLayer('shadows_sea', beachTiles, 0, 0);  
         this._gameMap.createStaticLayer('shadows', gameTiles, 0, 0);
+        this._collisionLayer = this._gameMap.createStaticLayer('collision', gameTiles, 0, 0); // TODO: Refactor since we probably do not need this as a class variable
         this._gameMap.createStaticLayer('floating', gameTiles, 0, 0);
         this._gameMap.createStaticLayer('overfloating', gameTiles, 0, 0);
     }
