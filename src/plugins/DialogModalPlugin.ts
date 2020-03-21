@@ -1,12 +1,6 @@
-import scene = Phaser.Cameras.Sprite3D.scene;
-import PluginManager = Phaser.Plugins.PluginManager;
-import Scene = Phaser.Scene;
-import Systems = Phaser.Scenes.Systems;
 import BasePlugin = Phaser.Plugins.BasePlugin;
 
-
 export class DialogModalPlugin extends BasePlugin {
-
     constructor(PluginManager: Phaser.Game) {
         super(PluginManager);
         this.createDialog('plugin loaded');
@@ -20,11 +14,11 @@ export class DialogModalPlugin extends BasePlugin {
         const eventEmitter = this.systems.events;
         eventEmitter.on('shutdown', this.shutdown, this);
         eventEmitter.on('destroy', this.destroy, this);
-        console.log('Dialog modal events set.')
+        console.log('Dialog modal events set.');
     }
 
     shutdown() {
-        console.log('Shutdown hook.')
+        console.log('Shutdown hook.');
     }
 
     destroy() {

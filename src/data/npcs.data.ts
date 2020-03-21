@@ -10,8 +10,7 @@ export const NPC_DATA: ICharacterData[] = [
         action: () => {
             DialogService
                 .getInstance()
-                .createModal(SIMPLE_DIALOG)
-
+                .createModal(SIMPLE_DIALOG);
         }
     },
     {
