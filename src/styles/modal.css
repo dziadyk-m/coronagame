@@ -24,7 +24,7 @@
     left: 50%;
     top: 50%;
     padding: 1rem 2rem;
-    border: 4px solid #193d82;
+    border: 4px solid #6797cc;
     background-color: #4677ac;
     color: #e0e9f9;
     box-shadow: 30px 40px 20px rgba(0, 0, 0, 0.47);
@@ -73,12 +73,13 @@
 
 .modal__button {
     border-radius: 0;
-    border: 2px solid #2f4966;
+    border: 2px solid #cc9c79;
     padding: 0.4rem 1.5rem;
     font-size: 1.2rem;
-    background-color: #3d5f84;
+    background-color: #ae8958;
     color: #fff;
     font-family: 'RedAlertInet';
+    box-shadow: 5px 5px 5px #0000003b;
 }
 
 .modal__button:hover {
