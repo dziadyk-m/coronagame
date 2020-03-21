@@ -73,7 +73,6 @@ export class Main extends Phaser.Scene {
         this.input.keyboard.on('keydown', (key: Phaser.Input.Keyboard.Key) => {
             switch (key.keyCode) {
                 case 32 /* Space */:
-                    openModal('test', 'some inf');
                     tryToProvideAction(this._dataService.player, this._dataService.npcs, this._dataService.objects);
                     break;
                 case 81 /* Q */:

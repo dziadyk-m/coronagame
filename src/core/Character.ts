@@ -18,7 +18,7 @@ export class Character {
     ) {
         this._instance = impact.add.sprite(data.startX * TILE_SIZE, data.startY * TILE_SIZE, data.sprite, 1);
         this._createAnimations(anims, data.sprite, frames);
-        this._emotions = new Emotions(anims, impact);
+        this._emotions = Emotions.getInstance(anims, impact);
         this._instance.setFixedCollision();
         this._spriteName = data.sprite;
         this.action = data.action;
