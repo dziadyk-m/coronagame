@@ -1,5 +1,3 @@
-import {createLabel} from "./createLabel";
-
 
 export const createModal = (scene, question, getChoices, getContent = () => null, actions = [(props) => {}]) => {
     const x = scene.game.config.width / 2;

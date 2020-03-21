@@ -2,9 +2,8 @@ import { Player, Character, GameObject } from "../core";
 import { NPC_DATA, GAME_OBJECTS_DATA } from "../data";
 import { tryToProvideAction } from "../utils";
 import { COLISION_BLOCKS } from "../consts";
-import {createLabel} from "../utils/createLabel";
-import {createModal} from "../utils/createModal";
 import { DataService } from "../services";
+import {DialogService} from "../services/dialog.service";
 
 export class Main extends Phaser.Scene {
     private _collisionLayer: Phaser.Tilemaps.StaticTilemapLayer;
@@ -17,12 +16,12 @@ export class Main extends Phaser.Scene {
     }
 
     public create(): void {
+        DialogService.init(this.scene);
         this._loadEntities();
         this._loadWorldData();
         this._createNpcsAndObjects();
         this._createPlayer();
         this._actionHookes();
-        this._createModal();
     }
     
     public update(): void {
@@ -49,36 +48,6 @@ export class Main extends Phaser.Scene {
     private _createPlayer(): void {
         this._dataService.player = new Player(this.impact, this.anims, this.input);
         this.cameras.main.startFollow(this._dataService.player.instance);
-    }
-
-    private _createModal() {
-        createModal(
-            this,
-            'Person1\n Tell me: 1+1+1 = ',
-            () => [createLabel(this, "It's easy, I'm pretty sure about that. Yyyyy, 2."), createLabel(this, 'LoL, 3'), createLabel(this, 'Wypierdalaj, zwyrolu...')],
-            () => null,
-            [
-                ({ dialog, scene }) => {
-                    dialog.destroy();
-                    createModal(
-                        scene,
-                        'Person1\n you stupid boi...',
-                        () => [createLabel(this, "Fuck off you stupid freak.")],
-                    () => null,
-                        [({ dialog }) => dialog.destroy()])
-                },
-                ({ dialog, scene }) => {
-                    dialog.destroy();
-                    createModal(
-                        scene,
-                        'Person1\n Wow, goooood jobuuuuu!',
-                        () => [createLabel(this, "Easy.")],
-                        () => null,
-                        [({ dialog }) => dialog.destroy()])
-                },
-                ({ dialog }) => { dialog.destroy() }
-            ]
-        );
     }
 
     private _createNpcsAndObjects(): void {
