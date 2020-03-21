@@ -29,8 +29,24 @@
     color: #e0e9f9;
 }
 
+.modal__text-wrapper {
+    position: relative;
+    overflow: hidden;
+}
+
+.modal__text-wrapper [data-text-placeholder] {
+    visibility: hidden;
+}
+
+.modal__text-wrapper [data-text] {
+    position: absolute;
+    color: #fff;
+    left: 0;
+    top: 0;
+}
+
 .modal__title {
-    margin: 1rem 0 2rem 0;
+    margin: 1rem 0;
 
 }
 
