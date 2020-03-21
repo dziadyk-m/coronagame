@@ -36,12 +36,14 @@ export class Main extends Phaser.Scene {
         this._gameMap.createStaticLayer('shadows_sea', beachTiles, 0, 0);  
         this._gameMap.createStaticLayer('shadows', gameTiles, 0, 0);
         // TODO: Refactor since we probably do not need this as a class variable
+
+        this._createNpcsAndObjects();
+        this._createPlayer();
+
         this._collisionLayer = this._gameMap.createStaticLayer('collision', gameTiles, 0, 0);
         this._gameMap.createStaticLayer('floating', gameTiles, 0, 0);
         this._gameMap.createStaticLayer('overfloating', gameTiles, 0, 0);
 
-        this._createNpcsAndObjects();
-        this._createPlayer();
     }
 
     private _loadWorldData(): void {
@@ -83,7 +85,7 @@ export class Main extends Phaser.Scene {
                     tryToProvideAction(this._dataService.player, this._dataService.npcs, this._dataService.objects);
                     break;
                 case 27 /* Esc */:
-                    DialogService.getInstance().closeModal();
+                    DialogService.getInstance().closeAllModals();
                     break;
             }
         });

@@ -11,7 +11,7 @@ export class DialogService {
     constructor(sceneObject) {
         this._scene = sceneObject.scene;
         DialogService._modal = document.getElementById('modal');
-        DialogService._modal.querySelector('[data-action="close"]').addEventListener('click', this.closeModal);
+        DialogService._modal.querySelector('[data-action="close"]').addEventListener('click', this.closeAllModals);
     }
 
     public static init(scene): void {
@@ -39,7 +39,7 @@ export class DialogService {
         this._type(text, textElement);
     }
     
-    public closeModal = (): void => {
+    public closeAllModals = (): void => {
         clearInterval(DialogService._typingInterval);
         DialogService._modal.classList.remove('modal__container--visible');
         DialogService._dialog && DialogService._dialog.destroy();

@@ -6,7 +6,7 @@ import { DialogModalPlugin } from './plugins';
 import { Main } from './scenes/Main';
 
 const config = {
-    type: Phaser.CANVAS,
+    type: Phaser.WEBGL,
     width: 800,
     height: 600,
     backgroundColor: '#2d2d2d',
