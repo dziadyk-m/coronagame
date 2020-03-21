@@ -1,27 +1,27 @@
-import Scene = Phaser.Scene;
 import WebAudioSound = Phaser.Sound.WebAudioSound;
+import Scene = Phaser.Scene;
 
 export class SoundService {
+    private _backgroundMusic: WebAudioSound;
     private static _instance: SoundService;
-    private backgroundMusic: WebAudioSound;
-    readonly _game: Scene;
+    readonly game: Scene;
 
     constructor(game) {
-        this._game = game;
+        this.game = game;
     }
 
-    public playSound(key: string) {
-        const sound = this._game.sound.add(key);
+    public playSound(key: string): void {
+        const sound = this.game.sound.add(key);
         sound.play()
     }
 
-    public setBackgroundMusic(key: string) {
-        this.backgroundMusic = this._game.sound.add(key) as WebAudioSound;
-        this.backgroundMusic.loop = true
+    public setBackgroundMusic(key: string): void {
+        this._backgroundMusic = this.game.sound.add(key) as WebAudioSound;
+        this._backgroundMusic.loop = true
     }
 
-    public playBackgroundMusic() {
-        this.backgroundMusic.play();
+    public playBackgroundMusic(): void {
+        this._backgroundMusic.play();
     }
 
     public static init(game): void {
