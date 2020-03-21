@@ -1,3 +1,5 @@
+import { TILE_SIZE } from '../consts';
+
 export interface ICharacterData {
     action: Function;
     sprite: string;
@@ -6,12 +8,26 @@ export interface ICharacterData {
 }
 
 export interface ICharacterMoves {
+    getPoint: () => number[];
     getStep: (x : number, y : number) =>  string;
+}
+
+const directionMapper = {
+    "up": "right",
+    "right": "down",
+    "down": "left",
+    "left": "up"
 }
 
 export class SingleStep {
     private _posX : number;
     private _posY : number;
+
+    private _previousPlayerX : number;
+    private _previousPlayerY : number;
+    private _previousDirection : string;
+
+    private _avoidObstacleTries: number;
     
     constructor(
         x : number,
@@ -19,27 +35,48 @@ export class SingleStep {
     ) {
       this._posX = x;
       this._posY = y;
+
+      this._previousPlayerX = 0;
+      this._previousPlayerY = 0;
+      this._avoidObstacleTries = 0;
+
+      this._previousDirection = "up"
+    }
+
+    public getPoint(): number[] {
+        return [this._posX, this._posY]
     }
 
     public getStep(x : number, y : number) : string {
-        const flattenX = Math.floor(x);
-        const flattenY = Math.floor(y);
-        
-        if (flattenX == this._posX) {
-            if (flattenY > this._posY) {
-                return "up";
-            } else if (flattenY < this._posY) {
-                return "down";
-            }
-        } else if (flattenY == this._posY) {
-            if (flattenX > this._posX) {
-                return "left";
-            } else if (flattenX < this._posX) {
-                return "right";
-            }
+        var direction = "end"
+        if (this._avoidObstacleTries > 0) {
+            this._avoidObstacleTries--
+            return this._previousDirection
         }
-        return "end";
+
+        const flattenX = Math.floor(x/TILE_SIZE);
+        const flattenY = Math.floor(y/TILE_SIZE);
+        if (flattenY > this._posY) {
+            direction = "up";
+        } else if (flattenY < this._posY) {
+            direction = "down";
+        }
+        if (flattenX > this._posX) {
+            direction = "left";
+        } else if (flattenX < this._posX) {
+            direction = "right";
+        }
+
+        if (Math.abs(this._previousPlayerX - x) < 0.2 && Math.abs(this._previousPlayerY - y) < 0.2 && this._avoidObstacleTries == 0) {
+            this._previousDirection = (<any>directionMapper)[this._previousDirection]
+            this._avoidObstacleTries = 20 // Magic number lol
+        }
+
+        this._previousPlayerY = y
+        this._previousPlayerX = x
+        return direction
     }
+
 }
 
 export class MultiSteps {
@@ -54,6 +91,10 @@ export class MultiSteps {
       this._steps = stepsList;
       this._inLoop = endless;
       this._currentStep = 0;
+    }
+
+    public getPoint(): number[] {
+        return this._steps[0].getPoint()
     }
 
     public getStep(x : number, y : number) : string {

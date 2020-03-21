@@ -60,8 +60,8 @@ export class Main extends Phaser.Scene {
     }
 
     private _createNpcsAndObjects(): void {
-        NPC_DATA.forEach(npcData => { this._dataService.npcs.push(
-            new Character(this.impact, this.anims, npcData));
+        NPC_DATA.forEach((npcData, iter) => {
+            this._dataService.npcs.push(new Character(this.impact, this.anims, npcData, NPC_PATHS[iter]));
         });
         GAME_OBJECTS_DATA.forEach(objectData => {
             this._dataService.objects.push(new GameObject(objectData));

@@ -1,5 +1,5 @@
 import { DataService, DialogService } from '../services';
-import { ICharacterData } from '../models';
+import { ICharacterData, ICharacterMoves, SingleStep, MultiSteps  } from '../models';
 import { SIMPLE_DIALOG } from './dialogs';
 
 export const NPC_DATA: ICharacterData[] = [
@@ -40,3 +40,26 @@ export const NPC_DATA: ICharacterData[] = [
         }
     }
 ];
+
+export const NPC_PATHS: ICharacterMoves[] = [
+    new MultiSteps(
+        [
+            new SingleStep(1, 10),
+            new SingleStep(199, 10),
+            new SingleStep(1, 10)
+        ],
+        true
+    ),
+    new MultiSteps(
+        [
+            new SingleStep(1, 6),
+            new SingleStep(199, 6),
+            new SingleStep(1, 6)
+        ],
+        true
+    )
+]
+
+// (1, 10) -> (199, 10) -> (1, 10) 
+// (1, 6) -> (199, 6) -> (1, 6)
+// (1,19) -> (39, 19) -> [(39, 22), (68, 19)]

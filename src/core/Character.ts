@@ -28,7 +28,7 @@ class NpcSpeed {
         
         switch (this._currentPeace) {
             case NPC_STOPPED: {
-                this._staminaLevel += 10;
+                this._staminaLevel += 5;
                 break;
             }
             case NPC_SLOW_SPEED: {
@@ -36,7 +36,7 @@ class NpcSpeed {
                 break;
             }
             case NPC_SPRINT_SPEED: {
-                this._staminaLevel -= 10;
+                this._staminaLevel -= 20;
                 break;
             }
         }
@@ -63,9 +63,14 @@ export class Character {
         impact: Phaser.Physics.Impact.ImpactPhysics,
         anims: Phaser.Animations.AnimationManager,
         data: ICharacterData,
-        directions: ICharacterMoves,
+        directions?: ICharacterMoves,
         frames?: ICharacterFrames
     ) {
+        if (directions != null) {
+            const startPoint = directions.getPoint()
+            data.startX = startPoint[0]
+            data.startY = startPoint[1]
+        }
         this._instance = impact.add.sprite(data.startX * TILE_SIZE, data.startY * TILE_SIZE, data.sprite, 1);
         this._emotions = Emotions.getInstance(anims, impact);
         this._spriteName = data.sprite;
@@ -90,13 +95,13 @@ export class Character {
     }
     private _moveUp(speed: number): void {
         this._instance.anims.play(`${this._spriteName}_up`, true);
-        this.instance.setVelocityY(speed);
+        this.instance.setVelocityY(-speed);
         this.instance.setVelocityX(0);
     }
 
     private _moveDown(speed: number): void {
         this._instance.anims.play(`${this._spriteName}_down`, true);
-        this.instance.setVelocityY(-speed);
+        this.instance.setVelocityY(+speed);
         this.instance.setVelocityX(0);
     }
 

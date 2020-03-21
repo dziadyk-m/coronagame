@@ -9,6 +9,6 @@ export const HUMAN_FRAMES: ICharacterFrames = {
 };
 
 export const NPC_STOPPED: number =  0;
-export const NPC_SLOW_SPEED: number =  100;
-export const NPC_MODERATE_SPEED: number =  150;
+export const NPC_SLOW_SPEED: number =  25;
+export const NPC_MODERATE_SPEED: number =  75;
 export const NPC_SPRINT_SPEED: number =  200;
