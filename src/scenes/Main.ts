@@ -17,9 +17,6 @@ export class Main extends Phaser.Scene {
     public create(): void {
         this._loadEntities();
         this._loadWorldData();
-        this._setBackgroundMusic();
-        this._createNpcsAndObjects();
-        this._createPlayer();
         this._actionHookes();
     }
 
@@ -34,17 +31,22 @@ export class Main extends Phaser.Scene {
         this._gameMap.createStaticLayer(0, gameTiles, 0, 0);
         this._collisionLayer = this._gameMap.createStaticLayer('collision', gameTiles, 0, 0);
         this._gameMap.createStaticLayer('shadows', gameTiles, 0, 0);
+        
+        this._createNpcsAndObjects();
+        this._createPlayer();
+        
         this._gameMap.createStaticLayer('floating', gameTiles, 0, 0);
         this._gameMap.createStaticLayer('overfloating', gameTiles, 0, 0);
     }
 
     private _loadWorldData(): void {
         this._collisionLayer.setCollisionBetween(COLISION_BLOCKS.start, COLISION_BLOCKS.stop);
-        this.impact.world.setCollisionMapFromTilemapLayer(this._collisionLayer, { defaultCollidingSlope: 1 });
+        this.impact.world.setCollisionMapFromTilemapLayer(this._collisionLayer);
         this.cameras.main.setBounds(0, 0, this._gameMap.widthInPixels, this._gameMap.heightInPixels);
+        this._setBackgroundMusic();
     }
 
-    private _setBackgroundMusic() {
+    private _setBackgroundMusic(): void {
         SoundService.init(this.game);
         SoundService.getInstance().setBackgroundMusic('background_music');
         SoundService.getInstance().playBackgroundMusic();
