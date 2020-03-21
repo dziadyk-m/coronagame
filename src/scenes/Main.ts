@@ -1,6 +1,6 @@
 import {DataService, DialogService, SoundService} from '../services';
 import { Player, Character, GameObject } from '../core';
-import { NPC_DATA, GAME_OBJECTS_DATA, NPC_PATHS } from '../data';
+import { NPC_DATA, GAME_OBJECTS_DATA } from '../data';
 import { tryToProvideAction } from '../utils';
 import { COLLISION_BLOCKS } from '../consts';
 
@@ -58,8 +58,8 @@ export class Main extends Phaser.Scene {
     }
 
     private _createNpcsAndObjects(): void {
-        NPC_DATA.forEach((npcData, iter) => {
-            this._dataService.npcs.push(new Character(this.impact, this.anims, npcData, NPC_PATHS[iter]));
+        NPC_DATA.forEach((npcData) => {
+            this._dataService.npcs.push(new Character(this.impact, this.anims, npcData));
         });
         GAME_OBJECTS_DATA.forEach(objectData => {
             this._dataService.objects.push(new GameObject(objectData));

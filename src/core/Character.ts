@@ -1,85 +1,34 @@
 import { CHARACTER_DEFAULT_FRAMES, TILE_SIZE, CHARACTER_OFFSET } from '../consts';
 import { ICharacterFrames, ICharacterData, ICharacterMoves } from '../models';
+import { NpcSpeed } from './NpcSpeed';
 import { Emotions } from './Emotions';
 import { Animations } from '../enum';
-import { HUMAN_FRAMES, NPC_SLOW_SPEED, NPC_MODERATE_SPEED, NPC_SPRINT_SPEED, NPC_STOPPED } from '../consts/human-consts';
-
-
-
-class NpcSpeed {
-    protected _currentPeace: number;
-    protected _staminaLevel: number;
-    protected _inRush: boolean;
-
-    constructor(){
-        this._currentPeace = NPC_MODERATE_SPEED;
-        this._staminaLevel = 100;
-        this._inRush = false;
-    }
-
-    public getSpeed(): number {
-        if (this._staminaLevel > 90) {
-            this._currentPeace = [NPC_SPRINT_SPEED, NPC_MODERATE_SPEED][Math.floor(Math.random() * 2)]
-        } else if (this._staminaLevel > 40) {
-            this._currentPeace = [NPC_MODERATE_SPEED, NPC_SLOW_SPEED][Math.floor(Math.random() * 2)]
-        } else {
-            this._currentPeace = [NPC_SLOW_SPEED, NPC_STOPPED][Math.floor(Math.random() * 2)]
-        }
-        
-        switch (this._currentPeace) {
-            case NPC_STOPPED: {
-                this._staminaLevel += 5;
-                break;
-            }
-            case NPC_SLOW_SPEED: {
-                this._staminaLevel += 2;
-                break;
-            }
-            case NPC_SPRINT_SPEED: {
-                this._staminaLevel -= 20;
-                break;
-            }
-        }
-
-        if (this._staminaLevel > 100) {
-            this._staminaLevel = 100
-        }
-        return this._currentPeace
-    }
-}
 
 export class Character {
     public action: Function = () => {};
+    
+    protected _directions: ICharacterMoves;
     protected _spriteName: string;
+    protected _npcSpeed: number;
     
     private _instance: Phaser.Physics.Impact.ImpactSprite;
     private _emotions: Emotions;
-    protected _isMovingToGoal: boolean;
-    protected _npcSpeed: number;
-    protected _directions: ICharacterMoves;
-    private __speed: NpcSpeed;
+    private _speed: NpcSpeed;
 
     constructor(
         impact: Phaser.Physics.Impact.ImpactPhysics,
         anims: Phaser.Animations.AnimationManager,
         data: ICharacterData,
-        directions?: ICharacterMoves,
         frames?: ICharacterFrames
     ) {
-        if (directions != null) {
-            const startPoint = directions.getPoint()
-            data.startX = startPoint[0]
-            data.startY = startPoint[1]
-        }
+        this._menageWaypoints(data);
+
         this._instance = impact.add.sprite(data.startX * TILE_SIZE, data.startY * TILE_SIZE, data.sprite, 1);
         this._emotions = Emotions.getInstance(anims, impact);
         this._spriteName = data.sprite;
         this.action = data.action;
         this._createAnimations(anims, data.sprite, frames);
         this._menagePhisics();
-        this._isMovingToGoal = false;
-        this.__speed = new NpcSpeed();
-        this._directions = directions;
     }
 
     get instance(): Phaser.Physics.Impact.ImpactSprite {
@@ -93,26 +42,37 @@ export class Character {
     public displayEmotion(id: string): void {
         this._emotions.display(this.instance.x, this.instance.y, id);
     }
+
+    private _menageWaypoints(data: ICharacterData) {
+        if (data.waypoints != null) {
+            const startPoint = data.waypoints.getPoint()
+            data.startX = startPoint[0]
+            data.startY = startPoint[1]
+        }
+        this._directions = data.waypoints;
+        this._speed = new NpcSpeed();
+    }
+
     private _moveUp(speed: number): void {
-        this._instance.anims.play(`${this._spriteName}_up`, true);
+        this._instance.anims.play(`${this._spriteName}_${Animations.UP}`, true);
         this.instance.setVelocityY(-speed);
         this.instance.setVelocityX(0);
     }
 
     private _moveDown(speed: number): void {
-        this._instance.anims.play(`${this._spriteName}_down`, true);
+        this._instance.anims.play(`${this._spriteName}_${Animations.DOWN}`, true);
         this.instance.setVelocityY(+speed);
         this.instance.setVelocityX(0);
     }
 
     private _moveLeft(speed: number): void {
-        this._instance.anims.play(`${this._spriteName}_left`, true);
+        this._instance.anims.play(`${this._spriteName}_${Animations.LEFT}`, true);
         this.instance.setVelocityX(-speed);
         this.instance.setVelocityY(0);
     }
 
     private _moveRight(speed: number): void {
-        this._instance.anims.play(`${this._spriteName}_right`, true);
+        this._instance.anims.play(`${this._spriteName}_${Animations.RIGHT}`, true);
         this.instance.setVelocityX(speed);
         this.instance.setVelocityY(0);
     }
@@ -125,21 +85,21 @@ export class Character {
 
     public move(): void {
         const direction = this._directions.getStep(this._instance.x, this._instance.y)
-        const getCurrentSpeed = this.__speed.getSpeed()
+        const getCurrentSpeed = this._speed.getSpeed()
         switch (direction) {
-            case "up": {
+            case Animations.UP: {
                 this._moveUp(getCurrentSpeed);
                 break;
             }
-            case "down": {
+            case Animations.DOWN: {
                 this._moveDown(getCurrentSpeed);
                 break;
             }
-            case "left": {
+            case Animations.LEFT: {
                 this._moveLeft(getCurrentSpeed);
                 break;
             }
-            case "right": {
+            case Animations.RIGHT: {
                 this._moveRight(getCurrentSpeed);
                 break;
             }
