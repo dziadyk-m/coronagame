@@ -5,6 +5,7 @@ export class DataService {
     private static instance: DataService;
 
     public shouldDisplayInfection = false;
+    public infectedNpcs = 0;
     public objects: GameObject[] = [];
     public npcs: Character[] = [];
     public player: Player;

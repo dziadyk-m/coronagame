@@ -38,6 +38,7 @@ export class Main extends Phaser.Scene {
         this._tryToProvideActions()
         this._moveNpcs();
         this._dataService.npcs.forEach(npc => npc.update());
+        this._dataService.player.update();
     }
 
     private _loadEntitiesAndWorldData(): void {

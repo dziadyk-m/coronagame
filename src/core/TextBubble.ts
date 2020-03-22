@@ -9,8 +9,7 @@ export class TextBubble {
 
         this._parent = parent;
         this.visible = false;
-        const { x, y } = 
-        this._text = scene.add.text(parent.x, parent.y, 'gfsdafdsfsdf', { 
+        this._text = scene.add.text(parent.x, parent.y, '', { 
             wordWrap: { width: MAX_BUBBLE_WIDTH },
             fontSize: '0.85rem',
             backgroundColor: '#fff',

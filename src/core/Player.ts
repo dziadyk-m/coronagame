@@ -1,9 +1,11 @@
 import { PLAYER_SPEED, PLAYER_DATA } from '../consts';
 import { Character } from './Character';
 import { Animations } from '../enum';
+import { DataService } from '../services';
 
 export class Player extends Character {
     private _cursors: CursorKeys;
+    private _infected: number;
 
     constructor(
         impact: Phaser.Physics.Impact.ImpactPhysics,
@@ -14,6 +16,15 @@ export class Player extends Character {
         this._cursors = input.keyboard.createCursorKeys();
         this.instance.setMaxVelocity(300, 300);
         this.instance.setActiveCollision();
+        this._infected = 0;
+    }
+
+    public update = () => {
+        if (this._infected !== DataService.getInstance().infectedNpcs) {
+            this._infected = DataService.getInstance().infectedNpcs
+            this.textBubble.showMessage(`Infected: ${this._infected}`, 2000);
+        }
+        this.textBubble.update();
     }
 
     public move(): void {

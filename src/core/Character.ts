@@ -22,17 +22,18 @@ export class Character {
     private _instance: Phaser.Physics.Impact.ImpactSprite;
     private _lastMessageCooldown: number;
     private _lastMessageTime: number;
-    private _textBubble: TextBubble;
     private _emotions: Emotions;
     private _speed: NpcSpeed;
     private _id: number;
     private _stickyEmotion: Phaser.Physics.Impact.ImpactSprite;
-
+    
     private _isInfected: boolean = false;
     private _isImmuneToVirus: boolean = false;
     private _hasStoped: boolean = false;
     private _constSpeed: boolean = false;
-
+    
+    protected textBubble: TextBubble;
+    
     constructor(
         impact: Phaser.Physics.Impact.ImpactPhysics,
         anims: Phaser.Animations.AnimationManager,
@@ -56,7 +57,7 @@ export class Character {
         this._menageAnimations(anims, data, frames);
         this._menagePhisics();
 
-        this._textBubble = new TextBubble(this._instance, impact.scene);
+        this.textBubble = new TextBubble(this._instance, impact.scene);
     }
 
     get id(): number {
@@ -90,6 +91,7 @@ export class Character {
     public tryToInfect(): void {
         if (!this._isImmuneToVirus && Math.random() < 0.0085 && !this._isInfected) {
             this._isInfected = true;
+            DataService.getInstance().infectedNpcs++;
             if (DataService.getInstance().shouldDisplayInfection) {
                 this.displayEmotion('hate', true);
             }
@@ -151,7 +153,7 @@ export class Character {
                 break;
             }
         }
-        this._textBubble.update();
+        this.textBubble.update();
         this._udpateStickyEmotion();
     }
 
@@ -177,12 +179,12 @@ export class Character {
             const message = this._messages[0]
             this._lastMessageTime = now;
             this._lastMessageCooldown = message.cooldown;
-            this._textBubble.showMessage(message.message, messageLength);
+            this.textBubble.showMessage(message.message, messageLength);
         }        
     }
 
     public saySentance = (text: string, time: number = 2000) => {
-        this._textBubble.showMessage(text, time);
+        this.textBubble.showMessage(text, time);
     }
 
     private _menageWaypoints(data: ICharacterData) {
