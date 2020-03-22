@@ -25,8 +25,8 @@ export class Main extends Phaser.Scene {
             be affraid of the infection. In this sunny day the boulevard is
             full of people, so you and you're friends decided to meet at 
             the pier. Follow east to meet them. Just be careful. Observe
-            people's behavior and avoid those who look suspicious. You don't want 
-            to spend two weeks in bed...
+            people's behavior and avoid those who look or sounds suspicious. 
+            You don't want to spend two weeks in bed...
         `);
     }
 
