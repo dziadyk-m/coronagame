@@ -769,10 +769,7 @@ export const NPC_DATA: ICharacterData[] = [
         action: () => {
             console.log('youre close');
         },
-        idleAction: combineActionsIntoScenerio([
-            {delay: 1000, action: () => DataService.getInstance().findNpcById(1).saySentance('Whoof!')},
-            {delay: 1000, action: () => DataService.getInstance().findNpcById(1).saySentance('Whoof, woof!')},
-        ]),
+        idleAction: combineActionsIntoScenerio([]),
     },
     {
         sprite: 'npc_12',
@@ -783,10 +780,7 @@ export const NPC_DATA: ICharacterData[] = [
         action: () => {
             console.log('youre close');
         },
-        idleAction: combineActionsIntoScenerio([
-            {delay: 1000, action: () => DataService.getInstance().findNpcById(1).saySentance('Whoof!')},
-            {delay: 1000, action: () => DataService.getInstance().findNpcById(1).saySentance('Whoof, woof!')},
-        ]),
+        idleAction: combineActionsIntoScenerio([]),
     },
     {
         sprite: 'npc_11',
@@ -797,10 +791,7 @@ export const NPC_DATA: ICharacterData[] = [
         action: () => {
             console.log('youre close');
         },
-        idleAction: combineActionsIntoScenerio([
-            {delay: 1000, action: () => DataService.getInstance().findNpcById(1).saySentance('Whoof!')},
-            {delay: 1000, action: () => DataService.getInstance().findNpcById(1).saySentance('Whoof, woof!')},
-        ]),
+        idleAction: combineActionsIntoScenerio([]),
     },
     {
         sprite: 'npc_10',
@@ -811,21 +802,30 @@ export const NPC_DATA: ICharacterData[] = [
         action: () => {},
         idleAction: combineActionsIntoScenerio([
             {delay: 1000, action: () => {
-                DialogService.getInstance().openModal('Awesome!', `
-                    You've met your friends and you spend some 
-                    great time together. Nothing bad happened and you 
-                    haven't got infected by any of the people from the 
-                    boulevard. Good job! That was easy, wasn't it?
-                    `, () => {
-                        DialogService.getInstance().openModal('Or maybe not?', `
-                            In fact, in this specific scenario every single 
-                            person on the boulevard was free from the virus.
-                            At least until you joined them...
-                        `)
-                    }
-                )   
+                !DataService.getInstance().shouldDisplayInfection
+                    ?   DialogService.getInstance().openModal('Awesome!', `
+                            You've met your friends and you spend some 
+                            great time together. Nothing bad happened and you 
+                            haven't got infected by any of the people from the 
+                            boulevard. Good job! That was easy, wasn't it?
+                            `, () => {
+                                DialogService.getInstance().openModal('Or maybe not?', `
+                                    In fact, in this specific scenario every single 
+                                    person on the boulevard was free from the virus.
+                                    At least until you joined them...
+                                `)
+                            }
+                        )
+                    :   DialogService.getInstance().openModal('Final', `
+                            This time you've infected ${DataService.getInstance().infectedNpcs} people.
+                            As you could see, the ignorance of a single person can 
+                            have huge impact on the outcome of the global fight 
+                            against Coronavirus. Remember, you're not alone, 
+                            and your lack of responsibility can cause serious damage 
+                            to other people's lives. Remember: be smart, be safe and 
+                            stay human.
+                        `)   
             }},
-            {delay: 1000, action: () => DataService.getInstance().findNpcById(1).saySentance('Whoof, woof!')},
         ]),
     },
     {
