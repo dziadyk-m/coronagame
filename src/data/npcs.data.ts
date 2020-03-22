@@ -688,7 +688,7 @@ export const NPC_DATA: ICharacterData[] = [
         sprite: 'npc_6',
         startX: 10.5,
         startY: 6.5,
-        id: 29,
+        id: 38,
         constantSpeed: true,
         waypoints: new MultiSteps(
             [
@@ -698,14 +698,14 @@ export const NPC_DATA: ICharacterData[] = [
         ),
         action: () => {
             DataService.getInstance()
-                .findNpcById(28)
+                .findNpcById(38)
                 .displayEmotion('eek');
         },
         idleAction: combineActionsIntoScenerio([
-            {delay: 1000, action: () => console.log('id29')},
-            {delay: 1000, action: () => DataService.getInstance().findNpcById(29).moveTo(25, 18)},
+            {delay: 1000, action: () => console.log('id38')},
+            {delay: 1000, action: () => DataService.getInstance().findNpcById(38).moveTo(-5, 19)},
             {delay: 1000, action: () => console.log('moveTo')},
-            {delay: 1000, action: () => DataService.getInstance().findNpcById(29).saySentance('Kfuc, Kfuc')},
+            {delay: 1000, action: () => DataService.getInstance().findNpcById(38).saySentance('Kfuc, Kfuc')},
             {delay: 1000, action: () => console.log('say')},
         ]),
     },
@@ -713,7 +713,7 @@ export const NPC_DATA: ICharacterData[] = [
         sprite: 'npc_6',
         startX: 10.5,
         startY: 6.5,
-        id: 30,
+        id: 39,
         constantSpeed: true,
         waypoints: new MultiSteps(
             [
@@ -723,13 +723,13 @@ export const NPC_DATA: ICharacterData[] = [
         ),
         action: () => {
             DataService.getInstance()
-                .findNpcById(28)
+                .findNpcById(39)
                 .displayEmotion('eek');
         },
         idleAction: combineActionsIntoScenerio([
             {delay: 1000, action: () => console.log('id30')},
-            {delay: 1000, action: () => DataService.getInstance().findNpcById(30).moveTo(34, 18)},
-            {delay: 1000, action: () => DataService.getInstance().findNpcById(30).saySentance('Kfuc, Kfuc')},
+            {delay: 1000, action: () => DataService.getInstance().findNpcById(39).moveTo(-5, 17)},
+            {delay: 1000, action: () => DataService.getInstance().findNpcById(39).saySentance('Kfuc, Kfuc')},
         ]),
     },
     // {
