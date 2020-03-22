@@ -686,13 +686,13 @@ export const NPC_DATA: ICharacterData[] = [
     },
     {
         sprite: 'npc_6',
-        startX: 10.5,
+        startX: 20.5,
         startY: 6.5,
         id: 38,
         constantSpeed: true,
         waypoints: new MultiSteps(
             [
-                new SingleStep(3, 19),
+                new SingleStep(21, 19),
             ],
             true
         ),
@@ -703,7 +703,8 @@ export const NPC_DATA: ICharacterData[] = [
         },
         idleAction: combineActionsIntoScenerio([
             {delay: 1000, action: () => console.log('id38')},
-            {delay: 1000, action: () => DataService.getInstance().findNpcById(38).moveTo(-5, 19)},
+            {delay: 1000, action: () => DataService.getInstance().findNpcById(38).saySentance("Let's do something funny!")},
+            {delay: 10000, action: () => DataService.getInstance().findNpcById(38).moveTo(-5, 19)},
             {delay: 1000, action: () => console.log('moveTo')},
             {delay: 1000, action: () => DataService.getInstance().findNpcById(38).saySentance('Kfuc, Kfuc')},
             {delay: 1000, action: () => console.log('say')},
@@ -711,13 +712,13 @@ export const NPC_DATA: ICharacterData[] = [
     },
     {
         sprite: 'npc_6',
-        startX: 10.5,
+        startX: 20.5,
         startY: 6.5,
         id: 39,
         constantSpeed: true,
         waypoints: new MultiSteps(
             [
-                new SingleStep(4, 17),
+                new SingleStep(20, 20),
             ],
             true
         ),
@@ -728,31 +729,33 @@ export const NPC_DATA: ICharacterData[] = [
         },
         idleAction: combineActionsIntoScenerio([
             {delay: 1000, action: () => console.log('id30')},
-            {delay: 1000, action: () => DataService.getInstance().findNpcById(39).moveTo(-5, 17)},
+            {delay: 3000, action: () => DataService.getInstance().findNpcById(39).saySentance("Hmm, maybe something related with Covid?")},
+            {delay: 7000, action: () => DataService.getInstance().findNpcById(39).moveTo(-5, 17)},
             {delay: 1000, action: () => DataService.getInstance().findNpcById(39).saySentance('Kfuc, Kfuc')},
         ]),
     },
-    // {
-    //     sprite: 'npc_6',
-    //     startX: 10.5,
-    //     startY: 6.5,
-    //     id: 31,
-    //     constantSpeed: true,
-    //     waypoints: new MultiSteps(
-    //         [
-    //             new SingleStep(5, 19),
-    //         ],
-    //         true
-    //     ),
-    //     action: () => {
-    //         DataService.getInstance()
-    //             .findNpcById(28)
-    //             .displayEmotion('eek');
-    //     },
-    //     idleAction: combineActionsIntoScenerio([
-    //         {delay: 1000, action: () => console.log('id31')},
-    //         {delay: 1000, action: () => DataService.getInstance().findNpcById(31).moveTo(10.5, 6.5)},
-    //         {delay: 1000, action: () => DataService.getInstance().findNpcById(31).saySentance('Kfuc, Kfuc')},
-    //     ]),
-    // }
+    {
+        sprite: 'npc_6',
+        startX: 20.5,
+        startY: 7.5,
+        id: 40,
+        constantSpeed: true,
+        waypoints: new MultiSteps(
+            [
+                new SingleStep(19, 19),
+            ],
+            true
+        ),
+        action: () => {
+            DataService.getInstance()
+                .findNpcById(28)
+                .displayEmotion('eek');
+        },
+        idleAction: combineActionsIntoScenerio([
+            {delay: 1000, action: () => console.log('id31')},
+            {delay: 5000, action: () => DataService.getInstance().findNpcById(40).saySentance("Why not. Let's frighten the oldies.")},
+            {delay: 5000, action: () => DataService.getInstance().findNpcById(40).moveTo(10.5, 6.5)},
+            {delay: 1000, action: () => DataService.getInstance().findNpcById(40).saySentance('Kfuc, Kfuc')},
+        ]),
+    }
 ];
