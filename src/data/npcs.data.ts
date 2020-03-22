@@ -24,9 +24,7 @@ export const NPC_DATA: ICharacterData[] = [
             );
         },
         idleAction: () => console.log('fox is near!'),
-        messages: [
-            { cooldown: 5000, message: '*Cough*' }
-        ]
+        messages: [{ cooldown: 5000, message: 'Hau! Hau!' }]
     },
     {
         sprite: 'npc_3',
@@ -39,7 +37,8 @@ export const NPC_DATA: ICharacterData[] = [
                 'Test modal',
                 `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.`
             );
-        }
+        },
+        messages: [{ cooldown: 7000, message: '♩ Lalalala ♩' }]
     },
     {
         sprite: 'npc_11',
@@ -61,7 +60,7 @@ export const NPC_DATA: ICharacterData[] = [
                 .findNpcById(3)
                 .displayEmotion('love');
         },
-        idleAction: () => console.log('npc_13 is near!'),
+        idleAction: () => console.log('npc_13 is near!')
     },
     {
         sprite: 'npc_4',
@@ -73,7 +72,8 @@ export const NPC_DATA: ICharacterData[] = [
             DataService.getInstance()
                 .findNpcById(4)
                 .displayEmotion('love2');
-        }
+        },
+        messages: [{ cooldown: 7000, message: 'And she told me...' }]
     },
     {
         sprite: 'npc_12',
@@ -90,7 +90,7 @@ export const NPC_DATA: ICharacterData[] = [
                 .findNpcById(5)
                 .displayEmotion('cringe');
         },
-        idleAction: () => console.log('npc_12 is near!'),
+        idleAction: () => console.log('npc_12 is near!')
     },
     {
         sprite: 'npc_2',
@@ -102,7 +102,8 @@ export const NPC_DATA: ICharacterData[] = [
             false,
             true
         ),
-        action: () => {}
+        action: () => {},
+        messages: [{ cooldown: 4000, message: 'People always talk...' }]
     },
     {
         sprite: 'npc_12',
@@ -122,7 +123,8 @@ export const NPC_DATA: ICharacterData[] = [
         startY: 6.5,
         id: 8,
         waypoints: new MultiSteps([new SingleStep(35, 28)], false, true),
-        action: () => {}
+        action: () => {},
+        messages: [{ cooldown: 7000, message: 'My husband thinks differently!' }]
     },
     {
         sprite: 'npc_5',
@@ -176,7 +178,8 @@ export const NPC_DATA: ICharacterData[] = [
             DataService.getInstance()
                 .findNpcById(11)
                 .displayEmotion('wow');
-        }
+        },
+        messages: [{ cooldown: 2500, message: 'And in Italy, apparently...' }]
     },
     {
         sprite: 'npc_6',
@@ -220,7 +223,8 @@ export const NPC_DATA: ICharacterData[] = [
             DataService.getInstance()
                 .findNpcById(13)
                 .displayEmotion('what');
-        }
+        },
+        messages: [{ cooldown: 7000, message: 'Look at my new IPhone XIII!' }]
     },
     {
         sprite: 'npc_7',
@@ -289,7 +293,8 @@ export const NPC_DATA: ICharacterData[] = [
             DataService.getInstance()
                 .findNpcById(17)
                 .displayEmotion('yes');
-        }
+        },
+        messages: [{ cooldown: 5000, message: '* Cough *' }]
     },
     {
         sprite: 'npc_1',
@@ -340,7 +345,8 @@ export const NPC_DATA: ICharacterData[] = [
             DataService.getInstance()
                 .findNpcById(20)
                 .displayEmotion('cringe');
-        }
+        },
+        messages: [{ cooldown: 3000, message: 'Hey, Listen!' }]
     },
     {
         sprite: 'fox',
@@ -444,7 +450,7 @@ export const NPC_DATA: ICharacterData[] = [
         sprite: 'npc_14',
         startX: 10.5,
         startY: 6.5,
-        id:26,
+        id: 26,
         constantSpeed: true,
         waypoints: new MultiSteps(
             [
@@ -464,7 +470,7 @@ export const NPC_DATA: ICharacterData[] = [
         sprite: 'npc_2',
         startX: 10.5,
         startY: 6.5,
-        id:27,
+        id: 27,
         constantSpeed: true,
         waypoints: new MultiSteps(
             [
