@@ -15,9 +15,9 @@ export class Main extends Phaser.Scene {
     }
 
     public create(): void {
-        this._setBackgroundMusic();
         this._loadEntitiesAndWorldData();
         this._actionHookes();
+        this._setBackgroundMusic();
     }
 
     public update(): void {
