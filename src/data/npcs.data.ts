@@ -28,7 +28,6 @@ export const NPC_DATA: ICharacterData[] = [
             {delay: 1000, action: () => DataService.getInstance().findNpcById(1).saySentance('Kfuc')},
             {delay: 1000, action: () => DataService.getInstance().findNpcById(1).saySentance('Kfuc, Kfuc')},
         ]),
-        messages: [{ cooldown: 5000, message: 'Hau! Hau!' }]
     },
     {
         sprite: 'npc_3',
