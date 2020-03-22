@@ -25,7 +25,7 @@ export class Main extends Phaser.Scene {
             be affraid of the infection. In this sunny day the boulevard is
             full of people, so you and you're friends decided to meet at 
             the pier. Follow east to meet them. Just be careful. Observe
-            people's behavior and avoid those who look or sounds suspicious. 
+            people's behavior and avoid those who look or sound suspicious. 
             You don't want to spend two weeks in bed...
         `);
     }
@@ -94,13 +94,30 @@ export class Main extends Phaser.Scene {
         DialogService.init(this.scene);
         this.input.keyboard.on('keydown', (key: Phaser.Input.Keyboard.Key) => {
             switch (key.keyCode) {
-                case 32 /* Space */:
+                case 32: // Space
                     tryToProvideAction(this._dataService.player, this._dataService.npcs, this._dataService.objects);
                     break;
-                case 27 /* Esc */:
+                case 27: // Esc
                     DialogService.getInstance().closeAllModals();
                     break;
+                case 81: // Q
+                    DialogService.getInstance().openModal('Awesome!', `
+                    You've met your friends and you spend some 
+                    great time together. Nothing bad happened and you 
+                    haven't got infected by any of the people from the 
+                    boulevard. Good job! That was easy, wasn't it?
+                    `, () => {
+                        DialogService.getInstance().openModal('Or maybe not?', `
+                            In fact, in this specific scenario every single 
+                            person on the boulevard was free from the virus.
+                            At least until you joined them...
+                        `)
+                    })
+                    break;
+
+
             }
+            console.log(key)
         });
     }
     

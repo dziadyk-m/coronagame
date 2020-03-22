@@ -2,12 +2,14 @@ export class DialogService {
     private static _typingInterval?: NodeJS.Timeout;
     private static _instance: DialogService;
     private static _modal: Element;
+    private static _onClose: () => void;
     readonly _scene;
 
     constructor(sceneObject) {
         this._scene = sceneObject.scene;
         DialogService._modal = document.getElementById('modal');
         DialogService._modal.querySelector('[data-action="close"]').addEventListener('click', this.closeAllModals);
+        DialogService._onClose = null;
     }
 
     public static init(scene): void {
@@ -21,7 +23,10 @@ export class DialogService {
         return DialogService._instance;
     }
 
-    public openModal = (title: string, text: string) => {
+    public openModal = (title: string, text: string, onClose?: () => void, ) => {
+        if (onClose) {
+            DialogService._onClose = onClose;
+        }
         clearInterval(DialogService._typingInterval);
         DialogService._modal.classList.add('modal__container--visible');
         DialogService._modal.querySelector('[data-title]').textContent = title;
@@ -34,6 +39,10 @@ export class DialogService {
     public closeAllModals = (): void => {
         clearInterval(DialogService._typingInterval);
         DialogService._modal.classList.remove('modal__container--visible');
+        if (DialogService._onClose) {
+            DialogService._onClose();
+            DialogService._onClose = null;
+        }
     }
 
     private _type = (text: string, element: Node): void => {
