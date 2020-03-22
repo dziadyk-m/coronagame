@@ -110,7 +110,6 @@ export const NPC_DATA: ICharacterData[] = [
             true
         ),
         action: () => {},
-        messages: [{ cooldown: 4000, message: 'People always talk...' }]
     },
     {
         sprite: 'npc_12',
@@ -683,5 +682,86 @@ export const NPC_DATA: ICharacterData[] = [
                 .findNpcById(37)
                 .displayEmotion('eek');
         }
+    },
+    {
+        sprite: 'npc_6',
+        startX: 20.5,
+        startY: 6.5,
+        id: 38,
+        constantSpeed: true,
+        waypoints: new MultiSteps(
+            [
+                new SingleStep(21, 19),
+            ],
+            true
+        ),
+        action: () => {
+            DataService.getInstance()
+                .findNpcById(38)
+                .displayEmotion('eek');
+        },
+        idleAction: combineActionsIntoScenerio([
+            {delay: 1000, action: () => console.log('id38')},
+            {delay: 1000, action: () => DataService.getInstance().findNpcById(38).saySentance("Let's do something funny!")},
+            {delay: 9000, action: () => DataService.getInstance().findNpcById(38).moveTo(6, 24)},
+            {delay: 1000, action: () => console.log('moveTo')},
+            {delay: 23000, action: () => DataService.getInstance().findNpcById(38).moveTo(-5, 25)},
+            {delay: 1000, action: () => DataService.getInstance().findNpcById(38).saySentance('haha, kfuck')},
+            {delay: 1000, action: () => console.log('say')},
+        ]),
+    },
+    {
+        sprite: 'npc_6',
+        startX: 20.5,
+        startY: 6.5,
+        id: 39,
+        constantSpeed: true,
+        waypoints: new MultiSteps(
+            [
+                new SingleStep(20, 20),
+            ],
+            true
+        ),
+        action: () => {
+            DataService.getInstance()
+                .findNpcById(39)
+                .displayEmotion('eek');
+        },
+        idleAction: combineActionsIntoScenerio([
+            {delay: 1000, action: () => console.log('id30')},
+            {delay: 3000, action: () => DataService.getInstance().findNpcById(39).saySentance("Hmm, maybe something related with Covid?")},
+            {delay: 6000, action: () => DataService.getInstance().findNpcById(39).moveTo(7, 25)},
+            {delay: 17000, action: () => DataService.getInstance().findNpcById(39).saySentance("We've got covid, haha")},
+            {delay: 7000, action: () => DataService.getInstance().findNpcById(39).moveTo(-5, 25)},
+            {delay: 1000, action: () => DataService.getInstance().findNpcById(39).saySentance('Kfuc, Kfuc')},
+        ]),
+    },
+    {
+        sprite: 'npc_6',
+        startX: 20.5,
+        startY: 7.5,
+        id: 40,
+        constantSpeed: true,
+        waypoints: new MultiSteps(
+            [
+                new SingleStep(19, 19),
+            ],
+            true
+        ),
+        action: () => {
+            DataService.getInstance()
+                .findNpcById(28)
+                .displayEmotion('eek');
+        },
+        idleAction: combineActionsIntoScenerio([
+            {delay: 1000, action: () => console.log('id31')},
+            {delay: 5000, action: () => DataService.getInstance().findNpcById(40).saySentance("Why not. Let's frighten the oldies.")},
+            {delay: 4000, action: () => DataService.getInstance().findNpcById(40).moveTo(5, 25)},
+            {delay: 14000, action: () => DataService.getInstance().findNpcById(40).saySentance("You should be worry, kfuc, kfuc.")},
+            {delay: 8000, action: () => DataService.getInstance().findNpcById(6).saySentance("Aghhh!!.")},
+            {delay: 2000, action: () => DataService.getInstance().findNpcById(6).moveTo(-10, 25)},
+            {delay: 1500, action: () => DataService.getInstance().findNpcById(40).moveTo(-5, 25)},
+            {delay: 1000, action: () => DataService.getInstance().findNpcById(40).saySentance('Hahaha')},
+        ]),
     }
 ];
