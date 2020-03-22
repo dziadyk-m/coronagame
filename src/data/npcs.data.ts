@@ -1,5 +1,6 @@
 import { ICharacterData, SingleStep, MultiSteps } from '../models';
 import { DialogService, DataService } from '../services';
+import {combineActionsIntoScenerio} from "../utils";
 
 export const NPC_DATA: ICharacterData[] = [
     {
@@ -23,7 +24,10 @@ export const NPC_DATA: ICharacterData[] = [
                 `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.`
             );
         },
-        idleAction: () => console.log('fox is near!'),
+        idleAction: combineActionsIntoScenerio([
+            {delay: 1000, action: () => DataService.getInstance().findNpcById(1).saySentance('Kfuc')},
+            {delay: 1000, action: () => DataService.getInstance().findNpcById(1).saySentance('Kfuc, Kfuc')},
+        ]),
         messages: [{ cooldown: 5000, message: 'Hau! Hau!' }]
     },
     {
@@ -90,7 +94,11 @@ export const NPC_DATA: ICharacterData[] = [
                 .findNpcById(5)
                 .displayEmotion('cringe');
         },
-        idleAction: () => console.log('npc_12 is near!')
+        idleAction: combineActionsIntoScenerio([
+            {delay: 1000, action: () => DataService.getInstance().findNpcById(5).move()},
+            {delay: 1000, action: () => DataService.getInstance().findNpcById(5).saySentance('Nie zbliżaj się typie!')},
+            {delay: 3000, action: () => DataService.getInstance().findNpcById(5).saySentance('Dobra przecież nie ma co też spinać xD!')}
+        ]),
     },
     {
         sprite: 'npc_2',
