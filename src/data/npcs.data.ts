@@ -812,7 +812,8 @@ export const NPC_DATA: ICharacterData[] = [
                                 DialogService.getInstance().openModal('Or maybe not?', `
                                     In fact, in this specific scenario every single 
                                     person on the boulevard was free from the virus.
-                                    At least until you joined them...
+                                    At least until you joined them... [PRESS 2 ON THE
+                                    KEYBOARD TO SEE WHAT HAS REALLY HAPPENED]
                                 `)
                             }
                         )

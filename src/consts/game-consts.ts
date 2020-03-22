@@ -9,11 +9,12 @@ export const LVL1_INITIAL_DIALOG_TITLE = 'Meet your friends!';
 export const LVL1_INITIAL_DIALOG_TEXT = `
     This whole quarantine is so annoying... Everyone knows that
     if you're young or at least in good condition, you should not 
-    be affraid of the infection. In tShis sunny day the boulevard is
+    be affraid of the infection. In this sunny day the boulevard is
     full of people, so you and you're friends decided to meet at 
     the pier. Follow east to meet them. Just be careful. Observe
     people's behavior and avoid those who look or sound suspicious. 
-    You don't want to spend two weeks in bed...
+    You don't want to spend two weeks in bed... [USE ARROW KEYS TO 
+    CONTROL YOUR CHARACTER]
 `
 export const LVL2_INITIAL_DIALOG_TITLE = 'Understand';
 export const LVL2_INITIAL_DIALOG_TEXT = `
