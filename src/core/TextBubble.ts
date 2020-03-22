@@ -1,6 +1,7 @@
 import { TILE_SIZE } from "../consts";
+import { privateEncrypt } from "crypto";
 
-const BUBBLE_WIDTH = 140;
+const MAX_BUBBLE_WIDTH = 140;
 
 export class TextBubble {
     public visible: boolean;
@@ -11,9 +12,9 @@ export class TextBubble {
 
         this._parent = parent;
         this.visible = false;
-        const { x, y } = this.calculatePosition(parent);
-        this._text = scene.add.text(x, y, 'gfsdafdsfsdf', { 
-            wordWrap: { width: BUBBLE_WIDTH },
+        const { x, y } = 
+        this._text = scene.add.text(parent.x, parent.y, 'gfsdafdsfsdf', { 
+            wordWrap: { width: MAX_BUBBLE_WIDTH },
             fontSize: '0.85rem',
             backgroundColor: '#fff',
             color: '#000',
@@ -40,8 +41,8 @@ export class TextBubble {
     }
 
     private calculatePosition = (parent: Phaser.Physics.Impact.ImpactSprite) => ({
-        x: parent.x - (BUBBLE_WIDTH / 2),
-        y: parent.y - (TILE_SIZE * 2.5),
+        x: parent.x - (this._text.displayWidth / 2),
+        y: parent.y - parent.displayHeight - this._text.displayHeight + 25
     })
 
 
