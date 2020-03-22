@@ -79,7 +79,7 @@ export class SingleStep {
             direction = "right";
         }
 
-        if (Math.abs(this._previousPlayerX - x) < 0.2 && Math.abs(this._previousPlayerY - y) < 0.2 && this._avoidObstacleTries == 0) {
+        if (Math.abs(this._previousPlayerX - x) < 0.2 && Math.abs(this._previousPlayerY - y) < 0.2 && this._avoidObstacleTries == 0 && direction != "end") {
             if (this._previousDirection == "up") {
                 this._timesBackoff++
             }
