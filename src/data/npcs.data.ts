@@ -513,5 +513,176 @@ export const NPC_DATA: ICharacterData[] = [
                 .findNpcById(28)
                 .displayEmotion('eek');
         }
+    },
+    {
+        sprite: 'npc_5',
+        startX: 10.5,
+        startY: 6.5,
+        id: 29,
+        waypoints: new MultiSteps(
+            [
+                new SingleStep(72, 23),
+                new SingleStep(72, 31),
+                new SingleStep(72, 23)
+            ],
+            true
+        ),
+        action: () => {
+            DataService.getInstance()
+                .findNpcById(29)
+                .displayEmotion('eek');
+        }
+    },
+    {
+        sprite: 'npc_6',
+        startX: 10.5,
+        startY: 6.5,
+        id: 30,
+        waypoints: new MultiSteps(
+            [
+                new SingleStep(73, 18),
+                new SingleStep(73, 31),
+                new SingleStep(73, 18)
+            ],
+            true
+        ),
+        action: () => {
+            DataService.getInstance()
+                .findNpcById(30)
+                .displayEmotion('eek');
+        }
+    },
+    {
+        sprite: 'npc_7',
+        startX: 10.5,
+        startY: 6.5,
+        id: 31,
+        waypoints: new MultiSteps(
+            [
+                new SingleStep(74, 18),
+                new SingleStep(74, 31),
+                new SingleStep(74, 18)
+            ],
+            true
+        ),
+        action: () => {
+            DataService.getInstance()
+                .findNpcById(31)
+                .displayEmotion('eek');
+        }
+    },
+    {
+        sprite: 'npc_8',
+        startX: 10.5,
+        startY: 6.5,
+        id: 32,
+        waypoints: new MultiSteps(
+            [
+                new SingleStep(75, 23),
+                new SingleStep(75, 31),
+                new SingleStep(75, 23)
+            ],
+            true
+        ),
+        action: () => {
+            DataService.getInstance()
+                .findNpcById(32)
+                .displayEmotion('eek');
+        }
+    },
+    {
+        sprite: 'npc_13',
+        startX: 10.5,
+        startY: 6.5,
+        id: 33,
+        waypoints: new MultiSteps(
+            [
+                new SingleStep(51, 24),
+                new SingleStep(60, 24),
+                new SingleStep(51, 24)
+            ],
+            true
+        ),
+        action: () => {
+            DataService.getInstance()
+                .findNpcById(33)
+                .displayEmotion('eek');
+        }
+    },
+    {
+        sprite: 'npc_13',
+        startX: 10.5,
+        startY: 6.5,
+        id: 34,
+        waypoints: new MultiSteps(
+            [
+                new SingleStep(48, 19),
+                new SingleStep(48, 17),
+                new SingleStep(48, 19)
+            ],
+            true
+        ),
+        action: () => {
+            DataService.getInstance()
+                .findNpcById(34)
+                .displayEmotion('eek');
+        }
+    },
+    {
+        sprite: 'npc_13',
+        startX: 10.5,
+        startY: 6.5,
+        id: 35,
+        waypoints: new MultiSteps(
+            [
+                new SingleStep(64, 19),
+                new SingleStep(64, 17),
+                new SingleStep(64, 19)
+            ],
+            true
+        ),
+        action: () => {
+            DataService.getInstance()
+                .findNpcById(35)
+                .displayEmotion('eek');
+        }
+    },
+    {
+        sprite: 'npc_13',
+        startX: 10.5,
+        startY: 6.5,
+        id: 36,
+        waypoints: new MultiSteps(
+            [
+                new SingleStep(24, 10),
+                new SingleStep(24, 5),
+                new SingleStep(24, 10)
+            ],
+            true
+        ),
+        action: () => {
+            DataService.getInstance()
+                .findNpcById(36)
+                .displayEmotion('eek');
+        }
+    },
+    {
+        sprite: 'npc_13',
+        startX: 10.5,
+        startY: 6.5,
+        id: 37,
+        waypoints: new MultiSteps(
+            [
+                new SingleStep(29, 9),
+                new SingleStep(29, 6),
+                new SingleStep(29, 9)
+            ],
+            true
+        ),
+        action: () => {
+            DataService.getInstance()
+                .findNpcById(37)
+                .displayEmotion('eek');
+        }
     }
 ];
