@@ -683,5 +683,76 @@ export const NPC_DATA: ICharacterData[] = [
                 .findNpcById(37)
                 .displayEmotion('eek');
         }
-    }
+    },
+    {
+        sprite: 'npc_6',
+        startX: 10.5,
+        startY: 6.5,
+        id: 29,
+        constantSpeed: true,
+        waypoints: new MultiSteps(
+            [
+                new SingleStep(3, 19),
+            ],
+            true
+        ),
+        action: () => {
+            DataService.getInstance()
+                .findNpcById(28)
+                .displayEmotion('eek');
+        },
+        idleAction: combineActionsIntoScenerio([
+            {delay: 1000, action: () => console.log('id29')},
+            {delay: 1000, action: () => DataService.getInstance().findNpcById(29).moveTo(25, 18)},
+            {delay: 1000, action: () => console.log('moveTo')},
+            {delay: 1000, action: () => DataService.getInstance().findNpcById(29).saySentance('Kfuc, Kfuc')},
+            {delay: 1000, action: () => console.log('say')},
+        ]),
+    },
+    {
+        sprite: 'npc_6',
+        startX: 10.5,
+        startY: 6.5,
+        id: 30,
+        constantSpeed: true,
+        waypoints: new MultiSteps(
+            [
+                new SingleStep(4, 17),
+            ],
+            true
+        ),
+        action: () => {
+            DataService.getInstance()
+                .findNpcById(28)
+                .displayEmotion('eek');
+        },
+        idleAction: combineActionsIntoScenerio([
+            {delay: 1000, action: () => console.log('id30')},
+            {delay: 1000, action: () => DataService.getInstance().findNpcById(30).moveTo(34, 18)},
+            {delay: 1000, action: () => DataService.getInstance().findNpcById(30).saySentance('Kfuc, Kfuc')},
+        ]),
+    },
+    // {
+    //     sprite: 'npc_6',
+    //     startX: 10.5,
+    //     startY: 6.5,
+    //     id: 31,
+    //     constantSpeed: true,
+    //     waypoints: new MultiSteps(
+    //         [
+    //             new SingleStep(5, 19),
+    //         ],
+    //         true
+    //     ),
+    //     action: () => {
+    //         DataService.getInstance()
+    //             .findNpcById(28)
+    //             .displayEmotion('eek');
+    //     },
+    //     idleAction: combineActionsIntoScenerio([
+    //         {delay: 1000, action: () => console.log('id31')},
+    //         {delay: 1000, action: () => DataService.getInstance().findNpcById(31).moveTo(10.5, 6.5)},
+    //         {delay: 1000, action: () => DataService.getInstance().findNpcById(31).saySentance('Kfuc, Kfuc')},
+    //     ]),
+    // }
 ];
