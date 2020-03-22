@@ -1,4 +1,4 @@
-import { COLLISION_BLOCKS, TILE_SIZE, INITIAL_DIALOG, INITIAL_DIALOG_TITLE } from '../consts';
+import { COLLISION_BLOCKS, TILE_SIZE, LVL1_INITIAL_DIALOG_TEXT, LVL1_INITIAL_DIALOG_TITLE, LVL2_INITIAL_DIALOG_TITLE, LVL2_INITIAL_DIALOG_TEXT } from '../consts';
 import { tryToProvideAction, checkForActions, generateCrowdSound } from '../utils';
 import { DataService, DialogService, SoundService } from '../services';
 import { Player, Character, GameObject } from '../core';
@@ -9,9 +9,12 @@ export class Main extends Phaser.Scene {
     private _gameMap: Phaser.Tilemaps.Tilemap;
 
     private _dataService = DataService.getInstance();
+    private _level = 1;
 
     constructor() {
         super('main');
+        const levelParam = new URL(window.location.href).searchParams.get('level');
+        this._level = levelParam ? parseInt(levelParam, 10) : 1;
     }
 
     public create(): void {
@@ -19,7 +22,15 @@ export class Main extends Phaser.Scene {
         this._actionHookes();
         this._setBackgroundMusic();
 
-        DialogService.getInstance().openModal(INITIAL_DIALOG_TITLE, INITIAL_DIALOG);
+        switch (this._level) {
+            case 1:
+                DialogService.getInstance().openModal(LVL1_INITIAL_DIALOG_TITLE, LVL1_INITIAL_DIALOG_TEXT);
+                break;
+            case 2:
+                DialogService.getInstance().openModal(LVL2_INITIAL_DIALOG_TITLE, LVL2_INITIAL_DIALOG_TEXT);
+                DataService.getInstance().shouldDisplayInfection = true;
+                break;
+        }
     }
 
     public update(): void {
@@ -92,24 +103,14 @@ export class Main extends Phaser.Scene {
                 case 27: // Esc
                     DialogService.getInstance().closeAllModals();
                     break;
-                case 81: // Q
-                    DialogService.getInstance().openModal('Awesome!', `
-                    You've met your friends and you spend some 
-                    great time together. Nothing bad happened and you 
-                    haven't got infected by any of the people from the 
-                    boulevard. Good job! That was easy, wasn't it?
-                    `, () => {
-                        DialogService.getInstance().openModal('Or maybe not?', `
-                            In fact, in this specific scenario every single 
-                            person on the boulevard was free from the virus.
-                            At least until you joined them...
-                        `)
-                    })
+                case 49: // 1
+                    window.location.href = `//${location.host}${location.pathname}`
                     break;
-
-
+                case 50: // 2
+                    window.location.href = `//${location.host}${location.pathname}?level=2`
+                    break;
             }
-        });
+21        });
     }
     
     private _tryToProvideActions(): void {

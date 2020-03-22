@@ -19,14 +19,10 @@ export const NPC_DATA: ICharacterData[] = [
             true
         ),
         action: () => {
-            DialogService.getInstance().openModal(
-                'Test modal',
-                `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.`
-            );
         },
         idleAction: combineActionsIntoScenerio([
-            {delay: 1000, action: () => DataService.getInstance().findNpcById(1).saySentance('Kfuc')},
-            {delay: 1000, action: () => DataService.getInstance().findNpcById(1).saySentance('Kfuc, Kfuc')},
+            {delay: 1000, action: () => DataService.getInstance().findNpcById(1).saySentance('Whoof!')},
+            {delay: 1000, action: () => DataService.getInstance().findNpcById(1).saySentance('Whoof, woof!')},
         ]),
     },
     {
@@ -36,10 +32,6 @@ export const NPC_DATA: ICharacterData[] = [
         id: 2,
         waypoints: null,
         action: () => {
-            DialogService.getInstance().openModal(
-                'Test modal',
-                `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.`
-            );
         },
         messages: [{ cooldown: 7000, message: '♩ Lalalala ♩' }]
     },
@@ -196,8 +188,8 @@ export const NPC_DATA: ICharacterData[] = [
         waypoints: new MultiSteps(
             [
                 new SingleStep(173, 24),
-                new SingleStep(173, 58),
-                new SingleStep(180, 58),
+                new SingleStep(173, 53),
+                new SingleStep(180, 53),
                 new SingleStep(180, 24),
                 new SingleStep(173, 24)
             ],
@@ -218,8 +210,8 @@ export const NPC_DATA: ICharacterData[] = [
         waypoints: new MultiSteps(
             [
                 new SingleStep(174, 24),
-                new SingleStep(174, 57),
-                new SingleStep(181, 57),
+                new SingleStep(174, 52),
+                new SingleStep(181, 52),
                 new SingleStep(181, 24),
                 new SingleStep(174, 24)
             ],
@@ -706,7 +698,7 @@ export const NPC_DATA: ICharacterData[] = [
             {delay: 9000, action: () => DataService.getInstance().findNpcById(38).moveTo(6, 24)},
             {delay: 1000, action: () => console.log('moveTo')},
             {delay: 23000, action: () => DataService.getInstance().findNpcById(38).moveTo(-5, 25)},
-            {delay: 1000, action: () => DataService.getInstance().findNpcById(38).saySentance('haha, kfuck')},
+            {delay: 1000, action: () => DataService.getInstance().findNpcById(38).saySentance('haha, *FAKE COUGH*')},
             {delay: 1000, action: () => console.log('say')},
         ]),
     },
@@ -733,7 +725,7 @@ export const NPC_DATA: ICharacterData[] = [
             {delay: 6000, action: () => DataService.getInstance().findNpcById(39).moveTo(7, 25)},
             {delay: 17000, action: () => DataService.getInstance().findNpcById(39).saySentance("We've got covid, haha")},
             {delay: 7000, action: () => DataService.getInstance().findNpcById(39).moveTo(-5, 25)},
-            {delay: 1000, action: () => DataService.getInstance().findNpcById(39).saySentance('Kfuc, Kfuc')},
+            {delay: 1000, action: () => DataService.getInstance().findNpcById(39).saySentance('*FAKE COUGH*, *FAKE COUGH*')},
         ]),
     },
     {
@@ -757,11 +749,91 @@ export const NPC_DATA: ICharacterData[] = [
             {delay: 1000, action: () => console.log('id31')},
             {delay: 5000, action: () => DataService.getInstance().findNpcById(40).saySentance("Why not. Let's frighten the oldies.")},
             {delay: 4000, action: () => DataService.getInstance().findNpcById(40).moveTo(5, 25)},
-            {delay: 14000, action: () => DataService.getInstance().findNpcById(40).saySentance("You should be worry, kfuc, kfuc.")},
-            {delay: 8000, action: () => DataService.getInstance().findNpcById(6).saySentance("Aghhh!!.")},
+            {delay: 14000, action: () => DataService.getInstance().findNpcById(40).saySentance("You should be worry. *FAKE COUGH*")},
+            {delay: 8000, action: () => DataService.getInstance().findNpcById(6).saySentance("Aghhh!!")},
             {delay: 2000, action: () => DataService.getInstance().findNpcById(6).moveTo(-10, 25)},
             {delay: 1500, action: () => DataService.getInstance().findNpcById(40).moveTo(-5, 25)},
             {delay: 1000, action: () => DataService.getInstance().findNpcById(40).saySentance('Hahaha')},
         ]),
-    }
+    },
+    {
+        sprite: 'npc_13',
+        startX: 175,
+        startY: 58,
+        id: 41,
+        waypoints: null,
+        action: () => {
+            console.log('youre close');
+        },
+        idleAction: combineActionsIntoScenerio([
+            {delay: 1000, action: () => DataService.getInstance().findNpcById(1).saySentance('Whoof!')},
+            {delay: 1000, action: () => DataService.getInstance().findNpcById(1).saySentance('Whoof, woof!')},
+        ]),
+    },
+    {
+        sprite: 'npc_12',
+        startX: 176,
+        startY: 59,
+        id: 42,
+        waypoints: null,
+        action: () => {
+            console.log('youre close');
+        },
+        idleAction: combineActionsIntoScenerio([
+            {delay: 1000, action: () => DataService.getInstance().findNpcById(1).saySentance('Whoof!')},
+            {delay: 1000, action: () => DataService.getInstance().findNpcById(1).saySentance('Whoof, woof!')},
+        ]),
+    },
+    {
+        sprite: 'npc_11',
+        startX: 177,
+        startY: 59,
+        id: 43,
+        waypoints: null,
+        action: () => {
+            console.log('youre close');
+        },
+        idleAction: combineActionsIntoScenerio([
+            {delay: 1000, action: () => DataService.getInstance().findNpcById(1).saySentance('Whoof!')},
+            {delay: 1000, action: () => DataService.getInstance().findNpcById(1).saySentance('Whoof, woof!')},
+        ]),
+    },
+    {
+        sprite: 'npc_10',
+        startX: 178,
+        startY: 57,
+        id: 44,
+        waypoints: null,
+        action: () => {},
+        idleAction: combineActionsIntoScenerio([
+            {delay: 1000, action: () => {
+                DialogService.getInstance().openModal('Awesome!', `
+                    You've met your friends and you spend some 
+                    great time together. Nothing bad happened and you 
+                    haven't got infected by any of the people from the 
+                    boulevard. Good job! That was easy, wasn't it?
+                    `, () => {
+                        DialogService.getInstance().openModal('Or maybe not?', `
+                            In fact, in this specific scenario every single 
+                            person on the boulevard was free from the virus.
+                            At least until you joined them...
+                        `)
+                    }
+                )   
+            }},
+            {delay: 1000, action: () => DataService.getInstance().findNpcById(1).saySentance('Whoof, woof!')},
+        ]),
+    },
+    {
+        sprite: 'npc_8',
+        startX: 179,
+        startY: 58,
+        id: 45,
+        waypoints: null,
+        action: () => {},
+        idleAction: combineActionsIntoScenerio([
+            {delay: 1000, action: () => DataService.getInstance().findNpcById(1).saySentance('Whoof!')},
+            {delay: 1000, action: () => DataService.getInstance().findNpcById(1).saySentance('Whoof, woof!')},
+        ]),
+    },
 ];
