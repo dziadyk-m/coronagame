@@ -1,6 +1,3 @@
-import { TILE_SIZE } from "../consts";
-import { privateEncrypt } from "crypto";
-
 const MAX_BUBBLE_WIDTH = 140;
 
 export class TextBubble {

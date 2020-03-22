@@ -1,5 +1,5 @@
 import { CHARACTER_DEFAULT_FRAMES, TILE_SIZE, CHARACTER_OFFSET, NPC_MODERATE_SPEED } from '../consts';
-import { ICharacterFrames, ICharacterData, ICharacterMoves } from '../models';
+import { ICharacterFrames, ICharacterData, ICharacterMoves, SingleStep } from '../models';
 import { TextBubble } from './TextBubble';
 import { DataService } from '../services';
 import { NpcSpeed } from './NpcSpeed';
@@ -96,6 +96,21 @@ export class Character {
         }
     }
 
+    public moveToRaw(x: number, y: number ): void {
+        this._directions = new SingleStep(Math.floor(x/TILE_SIZE), Math.floor(y/TILE_SIZE));
+        this.move();
+    }
+
+    public moveTo(x: number, y: number ): void {
+        this._directions = new SingleStep(x, y);
+        this.move();
+    }
+
+    public setPath(path: ICharacterMoves): void {
+        this._directions = path;
+        this.move();
+    }
+
     public move(): void {
         const direction = !this._hasStoped && this._directions
             ? this._directions.getStep(this._instance.x, this._instance.y)
@@ -121,6 +136,10 @@ export class Character {
                 break;
             }
             case 'stop': {
+                this._stop();
+                break;
+            }
+            case 'end': {
                 this._stop();
                 break;
             }
