@@ -18,6 +18,16 @@ export class Main extends Phaser.Scene {
         this._loadEntitiesAndWorldData();
         this._actionHookes();
         this._setBackgroundMusic();
+
+        DialogService.getInstance().openModal('Meet your friends!', `
+            This whole quarantine is so annoying... Everyone knows that
+            if you're young or at least in good condition, you should not 
+            be affraid of the infection. In this sunny day the boulevard is
+            full of people, so you and you're friends decided to meet at 
+            the pier. Follow east to meet them. Just be careful. Observe
+            people's behavior and avoid those who look suspicious. You don't want 
+            to spend two weeks in bed...
+        `);
     }
 
     public update(): void {
