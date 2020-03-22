@@ -33,6 +33,21 @@ export class Emotions {
         instance.anims.play(`emotions_${emotion}`, false);
     }
 
+    public displayAndKeep(x: number, y: number, emotion: string, character: Character) {
+        if (!this._anims.get(`emotions_${emotion}`)) {
+            this._createAnimation(emotion);
+        }
+
+        const instance = this._impact.add.sprite(x, y - 2 * TILE_SIZE, 'emotions');
+        character.hasStoped = true;
+        instance.addListener('animationcomplete', () => {
+            character.hasStoped = false;
+        });
+        instance.anims.play(`emotions_${emotion}`, false);
+        return instance;
+    }
+
+
     private _createAnimation(key: string): void {
         const frame = EMOTION_FRAMES.find((frame: IFrame) => frame.key === key)
         this._anims.create({

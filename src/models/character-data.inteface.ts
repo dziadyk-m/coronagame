@@ -13,6 +13,7 @@ export interface ICharacterData {
         cooldown: number;
         message: string;
     }]
+    immuneToVirus?: boolean;
 }
 
 export interface ICharacterMoves {

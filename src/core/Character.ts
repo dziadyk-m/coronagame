@@ -26,8 +26,10 @@ export class Character {
     private _emotions: Emotions;
     private _speed: NpcSpeed;
     private _id: number;
-    
+    private _stickyEmotion: Phaser.Physics.Impact.ImpactSprite;
+
     private _isInfected: boolean = false;
+    private _isImmuneToVirus: boolean = false;
     private _hasStoped: boolean = false;
     private _constSpeed: boolean = false;
 
@@ -49,6 +51,7 @@ export class Character {
         this.action = data.action;
         this._id = data.id;
         this._constSpeed = data.constantSpeed;
+        this._isImmuneToVirus = !!data.immuneToVirus
 
         this._menageAnimations(anims, data, frames);
         this._menagePhisics();
@@ -76,15 +79,19 @@ export class Character {
         this._hasStoped = value;
     }
 
-    public displayEmotion(id: string): void {
-        this._emotions.display(this.instance.x, this.instance.y, id, this);
+    public displayEmotion(id: string, keep: boolean = false): void {
+        if (keep) {
+            this._stickyEmotion = this._emotions.displayAndKeep(this.instance.x, this.instance.y, id, this);
+        } else {
+            this._emotions.display(this.instance.x, this.instance.y, id, this);
+        }
     }
 
     public tryToInfect(): void {
-        if (Math.random() < 0.0085 && !this._isInfected) {
+        if (!this._isImmuneToVirus && Math.random() < 0.0085 && !this._isInfected) {
             this._isInfected = true;
             if (DataService.getInstance().shouldDisplayInfection) {
-                this.displayEmotion('hate');
+                this.displayEmotion('hate', true);
             }
         }
     }
@@ -145,6 +152,14 @@ export class Character {
             }
         }
         this._textBubble.update();
+        this._udpateStickyEmotion();
+    }
+
+    private _udpateStickyEmotion = () => {
+        if (this._stickyEmotion) {
+            this._stickyEmotion.x = this.instance.x;
+            this._stickyEmotion.y = this.instance.y - this.instance.displayHeight;
+        }
     }
 
     public update(): void {

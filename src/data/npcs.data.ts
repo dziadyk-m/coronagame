@@ -5,6 +5,7 @@ import {combineActionsIntoScenerio} from "../utils";
 export const NPC_DATA: ICharacterData[] = [
     {
         sprite: 'fox',
+        immuneToVirus: true,
         startX: 10.5,
         startY: 6.5,
         id: 1,
@@ -348,6 +349,7 @@ export const NPC_DATA: ICharacterData[] = [
     },
     {
         sprite: 'fox',
+        immuneToVirus: true,
         startX: 10.5,
         startY: 6.5,
         id: 21,
@@ -369,6 +371,7 @@ export const NPC_DATA: ICharacterData[] = [
     },
     {
         sprite: 'fox',
+        immuneToVirus: true,
         startX: 10.5,
         startY: 6.5,
         id: 22,
@@ -426,6 +429,7 @@ export const NPC_DATA: ICharacterData[] = [
     },
     {
         sprite: 'fox',
+        immuneToVirus: true,
         startX: 10.5,
         startY: 6.5,
         id: 25,
