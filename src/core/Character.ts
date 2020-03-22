@@ -98,14 +98,17 @@ export class Character {
 
     public moveToRaw(x: number, y: number ): void {
         this._directions = new SingleStep(Math.floor(x/TILE_SIZE), Math.floor(y/TILE_SIZE));
+        this.move();
     }
 
     public moveTo(x: number, y: number ): void {
         this._directions = new SingleStep(x, y);
+        this.move();
     }
 
     public setPath(path: ICharacterMoves): void {
         this._directions = path;
+        this.move();
     }
 
     public move(): void {
