@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f5e3df2b-8bc5-489d-b9d7-9ff657e81542" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/core/Character.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/Character.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/npcs.data.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/npcs.data.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/ramda.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/ramda.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

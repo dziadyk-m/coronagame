@@ -91,7 +91,6 @@ export class Character {
 
     private setIsIdleDoneHof(fn: Function = () => {}): Function {
         return () => {
-            console.log('setIsIdle')
             fn();
             this.isIdleActionDone = true;
         }
