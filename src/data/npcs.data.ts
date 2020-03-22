@@ -110,7 +110,6 @@ export const NPC_DATA: ICharacterData[] = [
             true
         ),
         action: () => {},
-        messages: [{ cooldown: 4000, message: 'People always talk...' }]
     },
     {
         sprite: 'npc_12',
@@ -704,9 +703,10 @@ export const NPC_DATA: ICharacterData[] = [
         idleAction: combineActionsIntoScenerio([
             {delay: 1000, action: () => console.log('id38')},
             {delay: 1000, action: () => DataService.getInstance().findNpcById(38).saySentance("Let's do something funny!")},
-            {delay: 10000, action: () => DataService.getInstance().findNpcById(38).moveTo(-5, 19)},
+            {delay: 9000, action: () => DataService.getInstance().findNpcById(38).moveTo(6, 24)},
             {delay: 1000, action: () => console.log('moveTo')},
-            {delay: 1000, action: () => DataService.getInstance().findNpcById(38).saySentance('Kfuc, Kfuc')},
+            {delay: 23000, action: () => DataService.getInstance().findNpcById(38).moveTo(-5, 25)},
+            {delay: 1000, action: () => DataService.getInstance().findNpcById(38).saySentance('haha, kfuck')},
             {delay: 1000, action: () => console.log('say')},
         ]),
     },
@@ -730,7 +730,9 @@ export const NPC_DATA: ICharacterData[] = [
         idleAction: combineActionsIntoScenerio([
             {delay: 1000, action: () => console.log('id30')},
             {delay: 3000, action: () => DataService.getInstance().findNpcById(39).saySentance("Hmm, maybe something related with Covid?")},
-            {delay: 7000, action: () => DataService.getInstance().findNpcById(39).moveTo(-5, 17)},
+            {delay: 6000, action: () => DataService.getInstance().findNpcById(39).moveTo(7, 25)},
+            {delay: 17000, action: () => DataService.getInstance().findNpcById(39).saySentance("We've got covid, haha")},
+            {delay: 7000, action: () => DataService.getInstance().findNpcById(39).moveTo(-5, 25)},
             {delay: 1000, action: () => DataService.getInstance().findNpcById(39).saySentance('Kfuc, Kfuc')},
         ]),
     },
@@ -754,8 +756,12 @@ export const NPC_DATA: ICharacterData[] = [
         idleAction: combineActionsIntoScenerio([
             {delay: 1000, action: () => console.log('id31')},
             {delay: 5000, action: () => DataService.getInstance().findNpcById(40).saySentance("Why not. Let's frighten the oldies.")},
-            {delay: 5000, action: () => DataService.getInstance().findNpcById(40).moveTo(10.5, 6.5)},
-            {delay: 1000, action: () => DataService.getInstance().findNpcById(40).saySentance('Kfuc, Kfuc')},
+            {delay: 4000, action: () => DataService.getInstance().findNpcById(40).moveTo(5, 25)},
+            {delay: 14000, action: () => DataService.getInstance().findNpcById(40).saySentance("You should be worry, kfuc, kfuc.")},
+            {delay: 8000, action: () => DataService.getInstance().findNpcById(6).saySentance("Aghhh!!.")},
+            {delay: 2000, action: () => DataService.getInstance().findNpcById(6).moveTo(-10, 25)},
+            {delay: 1500, action: () => DataService.getInstance().findNpcById(40).moveTo(-5, 25)},
+            {delay: 1000, action: () => DataService.getInstance().findNpcById(40).saySentance('Hahaha')},
         ]),
     }
 ];
