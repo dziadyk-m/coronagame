@@ -1,6 +1,6 @@
+import { COLLISION_BLOCKS, TILE_SIZE, INITIAL_DIALOG, INITIAL_DIALOG_TITLE } from '../consts';
 import { tryToProvideAction, checkForActions, generateCrowdSound } from '../utils';
 import { DataService, DialogService, SoundService } from '../services';
-import { COLLISION_BLOCKS, TILE_SIZE } from '../consts';
 import { Player, Character, GameObject } from '../core';
 import { NPC_DATA, GAME_OBJECTS_DATA } from '../data';
 
@@ -19,15 +19,7 @@ export class Main extends Phaser.Scene {
         this._actionHookes();
         this._setBackgroundMusic();
 
-        DialogService.getInstance().openModal('Meet your friends!', `
-            This whole quarantine is so annoying... Everyone knows that
-            if you're young or at least in good condition, you should not 
-            be affraid of the infection. In this sunny day the boulevard is
-            full of people, so you and you're friends decided to meet at 
-            the pier. Follow east to meet them. Just be careful. Observe
-            people's behavior and avoid those who look or sounds suspicious. 
-            You don't want to spend two weeks in bed...
-        `);
+        DialogService.getInstance().openModal(INITIAL_DIALOG_TITLE, INITIAL_DIALOG);
     }
 
     public update(): void {
