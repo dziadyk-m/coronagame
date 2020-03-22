@@ -33,7 +33,7 @@ export class Main extends Phaser.Scene {
         this._gameMap = this.make.tilemap({ key: 'map' });
         const beachTiles = this._gameMap.addTilesetImage('beach_tileset', 'beach_tiles');
         const gameTiles = this._gameMap.addTilesetImage('tilemap2x', 'tiles');
-        const beachMaps = ['collision_sea', 'underfloating', 'background_sea', 'shadows_sea'];
+        const beachMaps = ['underfloating', 'background_sea', 'shadows_sea', 'collision_sea'];
         const cityMaps = ['background', 'shadows', 'collision'];
 
         this._collisionLayer = this._gameMap.createStaticLayer('main_collisions', gameTiles, 0, TILE_SIZE);
