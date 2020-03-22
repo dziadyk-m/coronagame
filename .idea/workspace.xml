@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f5e3df2b-8bc5-489d-b9d7-9ff657e81542" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/core/TextBubble.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/consts/frames-consts.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/consts/frames-consts.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/core/Character.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/Character.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/Player.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/Player.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/npcs.data.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/npcs.data.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/character-data.inteface.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/character-data.inteface.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scenes/Main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/Main.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,21 +79,21 @@
       <screen x="-423" y="-1417" width="2560" height="1417" />
     </state>
     <state x="595" y="-955" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1792.1097/-423.-1417.2560.1417@-423.-1417.2560.1417" timestamp="1584747608761" />
-    <state x="-299" y="-1417" width="2344" height="1325" key="MergeDialog" timestamp="1584830945964">
+    <state x="-299" y="-1417" width="2344" height="1325" key="MergeDialog" timestamp="1584836119519">
       <screen x="-423" y="-1417" width="2560" height="1417" />
     </state>
-    <state x="-299" y="-1417" width="2344" height="1325" key="MergeDialog/0.23.1792.1097/-423.-1417.2560.1417@-423.-1417.2560.1417" timestamp="1584830945964" />
-    <state x="573" y="-986" key="MultipleFileMergeDialog" timestamp="1584830946004">
+    <state x="-299" y="-1417" width="2344" height="1325" key="MergeDialog/0.23.1792.1097/-423.-1417.2560.1417@-423.-1417.2560.1417" timestamp="1584836119519" />
+    <state x="573" y="-986" key="MultipleFileMergeDialog" timestamp="1584836119565">
       <screen x="-423" y="-1417" width="2560" height="1417" />
     </state>
-    <state x="573" y="-986" key="MultipleFileMergeDialog/0.23.1792.1097/-423.-1417.2560.1417@-423.-1417.2560.1417" timestamp="1584830946004" />
+    <state x="573" y="-986" key="MultipleFileMergeDialog/0.23.1792.1097/-423.-1417.2560.1417@-423.-1417.2560.1417" timestamp="1584836119565" />
     <state x="537" y="-952" width="782" height="550" key="find.popup" timestamp="1584826020760">
       <screen x="-423" y="-1417" width="2560" height="1417" />
     </state>
     <state x="537" y="-952" width="782" height="550" key="find.popup/0.23.1792.1097/-423.-1417.2560.1417@-423.-1417.2560.1417" timestamp="1584826020760" />
-    <state x="522" y="-1092" width="670" height="676" key="search.everywhere.popup" timestamp="1584830842374">
+    <state x="522" y="-1092" width="670" height="676" key="search.everywhere.popup" timestamp="1584835993066">
       <screen x="-423" y="-1417" width="2560" height="1417" />
     </state>
-    <state x="522" y="-1092" width="670" height="676" key="search.everywhere.popup/0.23.1792.1097/-423.-1417.2560.1417@-423.-1417.2560.1417" timestamp="1584830842374" />
+    <state x="522" y="-1092" width="670" height="676" key="search.everywhere.popup/0.23.1792.1097/-423.-1417.2560.1417@-423.-1417.2560.1417" timestamp="1584835993066" />
   </component>
 </project>

@@ -90,7 +90,10 @@ export class Character {
     }
 
     private setIsIdleDoneHof(fn: Function = () => {}): Function {
-        return () => { fn(); this.isIdleActionDone = true;}
+        return () => {
+            fn();
+            this.isIdleActionDone = true;
+        }
     }
 
     public move(): void {
@@ -142,6 +145,10 @@ export class Character {
             this._lastMessageCooldown = message.cooldown;
             this._textBubble.showMessage(message.message, messageLength);
         }        
+    }
+
+    public saySentance = (text: string, time: number = 2000) => {
+        this._textBubble.showMessage(text, time);
     }
 
     private _menageWaypoints(data: ICharacterData) {

@@ -1,7 +1,6 @@
 import { EMOTION_FRAMES, TILE_SIZE } from '../consts';
-import { IFrame } from '../models';
-import { DataService } from '../services';
 import { Character } from './Character';
+import { IFrame } from '../models';
 
 // Becuase there is no other way to hide sprite animation without destroung it
 export const OUT_OF_SREEN = 1000;
@@ -20,15 +19,15 @@ export class Emotions {
         this._anims = anims;
     }
 
-    public display(x: number, y: number, emotion: string, stoped: Character) {
+    public display(x: number, y: number, emotion: string, character: Character) {
         if (!this._anims.get(`emotions_${emotion}`)) {
             this._createAnimation(emotion);
         }
 
         const instance = this._impact.add.sprite(x, y - 2 * TILE_SIZE, 'emotions');
-        stoped.hasStoped = true;
+        character.hasStoped = true;
         instance.addListener('animationcomplete', () => {
-            stoped.hasStoped = false;
+            character.hasStoped = false;
             instance.destroy();
         });
         instance.anims.play(`emotions_${emotion}`, false);

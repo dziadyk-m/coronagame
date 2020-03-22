@@ -1,3 +1,6 @@
+
+type step = { delay: number, action: Function };
+
 // take(2, ['foo', 'bar', 'baz']); // => ['foo', 'bar']
 const take = (number: number, array: any[]) => array.slice(0, number);
 
@@ -19,6 +22,14 @@ const difference = (arr: any[], ...others: any[]) => {
 // combine(["foo"], ["bar", "baz"], [1, 2]) // => ["foo", "bar", "baz", 1, 2]
 const combine = (...arrays: any[]): any[] => [].concat(...arrays);
 
+
+const combineActionsIntoScenerio = (steps: step[]): Function => {
+    return () => steps.reduce((acc, step) => {
+        setTimeout(step.action, acc + step.delay);
+        return acc + step.delay;
+    }, 0)
+}
+
 // min([10, 50, 30]) // => 10
 const min = (arr: any) => Math.min(...arr);
 
@@ -33,5 +44,6 @@ export {
     head,
     last,
     min,
-    max
+    max,
+    combineActionsIntoScenerio
 };
