@@ -20,11 +20,13 @@ export class Player extends Character {
     }
 
     public update = () => {
-        if (this._infected !== DataService.getInstance().infectedNpcs) {
-            this._infected = DataService.getInstance().infectedNpcs
-            this.textBubble.showMessage(`Infected: ${this._infected}`, 2000);
+        if (DataService.getInstance().shouldDisplayInfection) {
+            if (this._infected !== DataService.getInstance().infectedNpcs) {
+                this._infected = DataService.getInstance().infectedNpcs
+                this.textBubble.showMessage(`Infected: ${this._infected}`, 2000);
+            }
+            this.textBubble.update();
         }
-        this.textBubble.update();
     }
 
     public move(): void {
