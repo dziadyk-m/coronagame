@@ -1,6 +1,7 @@
 import { CHARACTER_DEFAULT_FRAMES, TILE_SIZE, CHARACTER_OFFSET, NPC_MODERATE_SPEED } from '../consts';
 import { ICharacterFrames, ICharacterData, ICharacterMoves } from '../models';
 import { TextBubble } from './TextBubble';
+import { DataService } from '../services';
 import { NpcSpeed } from './NpcSpeed';
 import { Emotions } from './Emotions';
 import { Animations } from '../enum';
@@ -82,7 +83,9 @@ export class Character {
     public tryToInfect(): void {
         if (Math.random() < 0.0085 && !this._isInfected) {
             this._isInfected = true;
-            this.displayEmotion('hate');
+            if (DataService.getInstance().shouldDisplayInfection) {
+                this.displayEmotion('hate');
+            }
         }
     }
 

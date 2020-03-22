@@ -4,6 +4,7 @@ import { head } from '../utils';
 export class DataService {
     private static instance: DataService;
 
+    public shouldDisplayInfection = true;
     public objects: GameObject[] = [];
     public npcs: Character[] = [];
     public player: Player;
